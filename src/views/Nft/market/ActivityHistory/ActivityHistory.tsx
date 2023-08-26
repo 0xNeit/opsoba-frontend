@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { isAddress } from 'utils'
 import { useAppDispatch } from 'state'
-import {
-  ArrowBackIcon,
-  ArrowForwardIcon,
-  Box,
-  Button,
-  Flex,
-  Table,
-  Text,
-  Th,
-  useMatchBreakpoints,
-} from 'opsoba-uikit'
+import { ArrowBackIcon, ArrowForwardIcon, Box, Button, Flex, Table, Text, Th, useMatchBreakpoints } from 'opsoba-uikit'
 import { getCollectionActivity } from 'state/nftMarket/helpers'
 import Container from 'components/Layout/Container'
 import TableLoader from 'components/TableLoader'
