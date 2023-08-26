@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token } from 'opsoba-sdk'
 import { mainnetTokens, testnetTokens } from './tokens'
 
-export const ROUTER_ADDRESS = '0xfAB9a8cDE497C214D0738AA18da94D140E744bD5'
+export const ROUTER_ADDRESS = '0x323c0B48F48Da849c95AD7b6C9A3DF79A05884A2'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -16,7 +16,6 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     mainnetTokens.busd,
     mainnetTokens.usdt,
     mainnetTokens.btcb,
-    mainnetTokens.ust,
     mainnetTokens.eth,
     mainnetTokens.usdc,
   ],

@@ -1,6 +1,6 @@
 import { MenuItemsType, DropdownMenuItemType, menuStatus } from 'opsoba-uikit'
 import { ContextApi } from 'contexts/Localization/types'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
 
 export type ConfigMenuItemsType = MenuItemsType & { hideSubNav?: boolean }
 
@@ -36,7 +36,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
       },
     ],
   },
-  {
+  /* {
     label: t('Win'),
     href: '/prediction',
     icon: 'Trophy',
@@ -73,8 +73,8 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         href: `${nftsBaseUrl}/activity`,
       },
     ],
-  },
-  {
+  }, */
+  /* {
     label: '',
     href: '/info',
     icon: 'More',
@@ -114,7 +114,7 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
     ],
-  },
+  }, */
 ]
 
 export default config

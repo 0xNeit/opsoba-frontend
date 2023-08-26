@@ -6,7 +6,7 @@ import { Ifo } from './types'
 export const cakeBnbLpToken = new Token(ChainId.MAINNET, farms[1].lpAddresses[ChainId.MAINNET], 18, farms[1].lpSymbol)
 
 const ifos: Ifo[] = [
-  {
+  /* {
     id: 'froyo',
     address: '0xE0d6c91860a332068bdB59275b0AAC8769e26Ac4',
     isActive: true,
@@ -385,7 +385,7 @@ const ifos: Ifo[] = [
     articleUrl: 'https://medium.com/pancakeswap/1-000-000-ifo-blink-joins-pancakeswap-15841800bdd8',
     tokenOfferingPrice: null,
     version: 1,
-  },
+  }, */
 ]
 
 export default ifos

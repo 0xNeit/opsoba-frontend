@@ -2,8 +2,8 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
-        "name": "_cake",
+        "internalType": "contract SobaToken",
+        "name": "_soba",
         "type": "address"
       },
       {
@@ -18,7 +18,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_cakePerBlock",
+        "name": "_sobaPerBlock",
         "type": "uint256"
       },
       {
@@ -162,10 +162,10 @@
   },
   {
     "inputs": [],
-    "name": "cake",
+    "name": "soba",
     "outputs": [
       {
-        "internalType": "contract CakeToken",
+        "internalType": "contract SobaToken",
         "name": "",
         "type": "address"
       }
@@ -175,7 +175,7 @@
   },
   {
     "inputs": [],
-    "name": "cakePerBlock",
+    "name": "sobaPerBlock",
     "outputs": [
       {
         "internalType": "uint256",
@@ -352,7 +352,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingSoba",
     "outputs": [
       {
         "internalType": "uint256",
@@ -390,7 +390,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accCakePerShare",
+        "name": "accSobaPerShare",
         "type": "uint256"
       }
     ],

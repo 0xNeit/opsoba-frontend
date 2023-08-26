@@ -15665,10 +15665,10 @@ opn@^5.5.0:
   dependencies:
     is-wsl "^1.1.0"
 
-opsoba-sdk@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/opsoba-sdk/-/opsoba-sdk-2.4.0.tgz#74de381ba275f37de706901892603913f28fc60e"
-  integrity sha512-i4Fj0IhkTbbvO0Xo8FsaLbmTJyXaPttLlIjkvlrwdph1dYplWqiZQl51Ul2JMOuxsCWR8qy+UYSjg2dNPnC3Qg==
+opsoba-sdk@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/opsoba-sdk/-/opsoba-sdk-2.4.1.tgz#a573225aac8f31ff4c564b734183ebe7a88c4eda"
+  integrity sha512-sU0xS6zSIMRY092JL1cR56juHKfxPhvAIH+3E9U/wZaa8+vgKED2FctulbJz94NrXJVrowcAwcUgQlSp7esFww==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"
