@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from 'opsoba-sdk'
 import {
   Button,
   Text,
@@ -12,7 +12,7 @@ import {
   BottomDrawer,
   useMatchBreakpoints,
   ArrowUpDownIcon,
-} from '@pancakeswap/uikit'
+} from 'opsoba-uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import Footer from 'components/Menu/Footer'

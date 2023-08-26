@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, Spinner } from '@pancakeswap/uikit'
+import { Flex, Text, Button, Spinner } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
 
 interface ConfirmStageProps {

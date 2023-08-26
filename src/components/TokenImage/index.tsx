@@ -4,9 +4,9 @@ import {
   TokenPairImageProps as UIKitTokenPairImageProps,
   TokenImage as UIKitTokenImage,
   ImageProps,
-} from '@pancakeswap/uikit'
+} from 'opsoba-uikit'
 import tokens from 'config/constants/tokens'
-import { Token } from '@pancakeswap/sdk'
+import { Token } from 'opsoba-sdk'
 
 interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc' | 'secondarySrc'> {
   primaryToken: Token

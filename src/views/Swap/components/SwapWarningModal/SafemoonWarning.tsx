@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
-import { Text, Link } from '@pancakeswap/uikit'
+import { Text, Link } from 'opsoba-uikit'
 
 const SafemoonWarning = () => {
   const { t } = useTranslation()

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Skeleton, Table, Td, Th, Flex, ArrowUpIcon, ArrowDownIcon } from '@pancakeswap/uikit'
+import { Skeleton, Table, Td, Th, Flex, ArrowUpIcon, ArrowDownIcon } from 'opsoba-uikit'
 import { useHistory } from 'react-router'
 import times from 'lodash/times'
 import { formatNumber } from 'utils/formatBalance'

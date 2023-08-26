@@ -1,6 +1,6 @@
 import React from 'react'
-import { InjectedModalProps, Modal, Flex, Text, Button, Link, BinanceIcon, Box } from '@pancakeswap/uikit'
-import { Price } from '@pancakeswap/sdk'
+import { InjectedModalProps, Modal, Flex, Text, Button, Link, BinanceIcon, Box } from 'opsoba-uikit'
+import { Price } from 'opsoba-sdk'
 import useTheme from 'hooks/useTheme'
 import { Activity, NftToken } from 'state/nftMarket/types'
 import { LightGreyCard } from 'components/Card'

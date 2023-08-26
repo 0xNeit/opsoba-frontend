@@ -34,8 +34,6 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.5.0",
-    "@pancakeswap/sdk": "^2.4.0",
-    "@pancakeswap/uikit": "^0.63.1",
     "@reduxjs/toolkit": "^1.5.0",
     "@sentry/react": "^6.15.0",
     "@sentry/tracing": "^6.15.0",
@@ -69,6 +67,8 @@
     "multicodec": "^2.0.0",
     "multihashes": "^3.0.1",
     "numeral": "^2.0.6",
+    "opsoba-sdk": "^2.4.0",
+    "opsoba-uikit": "^1.0.1",
     "qs": "^6.9.4",
     "react": "^17.0.1",
     "react-countup": "^4.3.3",

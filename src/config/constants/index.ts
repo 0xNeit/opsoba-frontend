@@ -1,7 +1,7 @@
-import { ChainId, JSBI, Percent, Token } from '@pancakeswap/sdk'
+import { ChainId, JSBI, Percent, Token } from 'opsoba-sdk'
 import { mainnetTokens, testnetTokens } from './tokens'
 
-export const ROUTER_ADDRESS = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
+export const ROUTER_ADDRESS = '0xfAB9a8cDE497C214D0738AA18da94D140E744bD5'
 
 // a list of tokens by chain
 type ChainTokenList = {
