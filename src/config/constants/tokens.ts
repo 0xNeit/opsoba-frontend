@@ -83,7 +83,7 @@ export const mainnetTokens = defineTokens({
     18,
     'SYRUP',
     'SyrupBar Token',
-    'https://pancakeswap.finance/',
+    'https://sobaswap.finance/',
   ),
   /* pha: new Token(
     MAINNET,
@@ -1754,7 +1754,7 @@ export const testnetTokens = defineTokens({
     18,
     'SYRUP',
     'SyrupBar Token',
-    'https://pancakeswap.finance/',
+    'https://sobaswap.finance/',
   ),
   /* bake: new Token(
     TESTNET,

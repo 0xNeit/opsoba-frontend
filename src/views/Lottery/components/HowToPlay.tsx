@@ -333,7 +333,7 @@ const HowToPlay: React.FC = () => {
                 {t(
                   'An average total of 35,000 SOBA from the treasury is added to lottery rounds over the course of a week. This SOBA is of course also included in rollovers! Read more in our guide to ',
                 )}
-                <InlineLink href="https://docs.pancakeswap.finance/tokenomics/cake/cake-tokenomics">
+                <InlineLink href="https://docs.sobaswap.finance/tokenomics/cake/cake-tokenomics">
                   {t('SOBA Tokenomics')}
                 </InlineLink>
               </Text>
@@ -353,8 +353,8 @@ const HowToPlay: React.FC = () => {
           </Heading>
           <Text>
             {t('Check our in-depth guide on')}{' '}
-            <InlineLink href="https://docs.pancakeswap.finance/products/lottery/lottery-guide">
-              {t('how to play the PancakeSwap lottery!')}
+            <InlineLink href="https://docs.sobaswap.finance/products/lottery/lottery-guide">
+              {t('how to play the SobaSwap lottery!')}
             </InlineLink>
           </Text>
         </Flex>
