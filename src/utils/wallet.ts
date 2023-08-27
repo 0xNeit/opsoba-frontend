@@ -17,14 +17,14 @@ export const setupNetwork = async () => {
         params: [
           {
             chainId: `0x${chainId.toString(16)}`,
-            chainName: 'opBNB Mainnet',
+            chainName: 'opBNB Testnet',
             nativeCurrency: {
               name: 'BNB',
               symbol: 'bnb',
               decimals: 18,
             },
             rpcUrls: nodes,
-            blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
+            blockExplorerUrls: [`https://opbnbscan.com`],
           },
         ],
       })
@@ -34,7 +34,7 @@ export const setupNetwork = async () => {
       return false
     }
   } else {
-    console.error("Can't setup the BSC network on metamask because window.ethereum is undefined")
+    console.error("Can't setup the opBNB network on metamask because window.ethereum is undefined")
     return false
   }
 }
