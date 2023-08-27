@@ -29,7 +29,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
     <ModalInner mb="0">
       <Text as="p" mb="24px" fontSize="14px" color="textSubtle">
         {t(
-          'Your voting power is determined by the amount of CAKE you held at the block detailed below. CAKE held in other places does not contribute to your voting power.',
+          'Your voting power is determined by the amount of SOBA you held at the block detailed below. SOBA held in other places does not contribute to your voting power.',
         )}
       </Text>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
@@ -76,7 +76,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
-          {t('CAKE BNB LP')}
+          {t('SOBA BNB LP')}
         </Text>
         <Text textAlign="right">{formatNumber(cakeBnbLpBalance, 0, 3)}</Text>
       </Flex>

@@ -6,7 +6,6 @@ import { DeserializedPool } from 'state/types'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import useGetTopFarmsByApr from 'views/Home/hooks/useGetTopFarmsByApr'
 import useGetTopPoolsByApr from 'views/Home/hooks/useGetTopPoolsByApr'
-import { vaultPoolConfig } from 'config/constants/pools'
 import TopFarmPool from './TopFarmPool'
 import RowHeading from './RowHeading'
 
@@ -51,8 +50,8 @@ const FarmsPoolsRow = () => {
   }, [timer, isLoaded, startTimer])
 
   const getPoolText = (pool: DeserializedPool) => {
-    if (pool.vaultKey) {
-      return t(vaultPoolConfig[pool.vaultKey].name)
+    if (pool.isAutoVault) {
+      return t('Auto SOBA')
     }
 
     if (pool.sousId === 0) {

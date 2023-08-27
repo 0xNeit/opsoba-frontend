@@ -3,18 +3,17 @@ import { Flex, Text } from 'opsoba-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useVaultPoolByKey } from 'state/pools/hooks'
-import { VaultKey } from 'state/types'
+import { useCakeVault } from 'state/pools/hooks'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import RecentCakeProfitBalance from './RecentCakeProfitBalance'
 
-const RecentCakeProfitCountdownRow = ({ vaultKey }: { vaultKey: VaultKey }) => {
+const RecentCakeProfitCountdownRow = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const {
     pricePerFullShare,
     userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
-  } = useVaultPoolByKey(vaultKey)
+  } = useCakeVault()
   const cakePriceBusd = usePriceCakeBusd()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
@@ -30,7 +29,7 @@ const RecentCakeProfitCountdownRow = ({ vaultKey }: { vaultKey: VaultKey }) => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <Text fontSize="14px">{`${t('Recent CAKE profit')}:`}</Text>
+      <Text fontSize="14px">{`${t('Recent SOBA profit')}:`}</Text>
       {hasAutoEarnings && (
         <RecentCakeProfitBalance
           cakeToDisplay={autoCakeToDisplay}

@@ -4,13 +4,11 @@ import { ethers, Contract } from 'ethers'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
 import { useTranslation } from 'contexts/Localization'
-import { useCake, useSousChef, useVaultPoolContract } from 'hooks/useContract'
+import { useCake, useSousChef, useCakeVaultContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import { VaultKey } from 'state/types'
-import { logError } from 'utils/sentry'
 
 export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
@@ -25,7 +23,6 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
     try {
       setRequestedApproval(true)
       const tx = await callWithGasPrice(lpContract, 'approve', [sousChefContract.address, ethers.constants.MaxUint256])
-      toastSuccess(`${t('Transaction Submitted')}!`, <ToastDescriptionWithTx txHash={tx.hash} />)
       const receipt = await tx.wait()
 
       dispatch(updateUserAllowance(sousId, account))
@@ -43,7 +40,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
         setRequestedApproval(false)
       }
     } catch (e) {
-      logError(e)
+      console.error(e)
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
     }
   }, [
@@ -62,25 +59,24 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
   return { handleApprove, requestedApproval }
 }
 
-// Approve CAKE auto pool
-export const useVaultApprove = (vaultKey: VaultKey, setLastUpdated: () => void) => {
+// Approve SOBA auto pool
+export const useVaultApprove = (setLastUpdated: () => void) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { t } = useTranslation()
   const { toastSuccess, toastError } = useToast()
-  const vaultPoolContract = useVaultPoolContract(vaultKey)
+  const cakeVaultContract = useCakeVaultContract()
   const { callWithGasPrice } = useCallWithGasPrice()
   const cakeContract = useCake()
 
   const handleApprove = async () => {
-    const tx = await callWithGasPrice(cakeContract, 'approve', [vaultPoolContract.address, ethers.constants.MaxUint256])
-    toastSuccess(`${t('Transaction Submitted')}!`, <ToastDescriptionWithTx txHash={tx.hash} />)
+    const tx = await callWithGasPrice(cakeContract, 'approve', [cakeVaultContract.address, ethers.constants.MaxUint256])
     setRequestedApproval(true)
     const receipt = await tx.wait()
     if (receipt.status) {
       toastSuccess(
         t('Contract Enabled'),
         <ToastDescriptionWithTx txHash={receipt.transactionHash}>
-          {t('You can now stake in the %symbol% vault!', { symbol: 'CAKE' })}
+          {t('You can now stake in the %symbol% vault!', { symbol: 'SOBA' })}
         </ToastDescriptionWithTx>,
       )
       setLastUpdated()
@@ -94,16 +90,16 @@ export const useVaultApprove = (vaultKey: VaultKey, setLastUpdated: () => void) 
   return { handleApprove, requestedApproval }
 }
 
-export const useCheckVaultApprovalStatus = (vaultKey: VaultKey) => {
+export const useCheckVaultApprovalStatus = () => {
   const [isVaultApproved, setIsVaultApproved] = useState(false)
   const { account } = useWeb3React()
   const cakeContract = useCake()
-  const vaultPoolContract = useVaultPoolContract(vaultKey)
+  const cakeVaultContract = useCakeVaultContract()
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   useEffect(() => {
     const checkApprovalStatus = async () => {
       try {
-        const currentAllowance = await cakeContract.allowance(account, vaultPoolContract.address)
+        const currentAllowance = await cakeContract.allowance(account, cakeVaultContract.address)
         setIsVaultApproved(currentAllowance.gt(0))
       } catch (error) {
         setIsVaultApproved(false)
@@ -111,7 +107,7 @@ export const useCheckVaultApprovalStatus = (vaultKey: VaultKey) => {
     }
 
     checkApprovalStatus()
-  }, [account, cakeContract, vaultPoolContract, lastUpdated])
+  }, [account, cakeContract, cakeVaultContract, lastUpdated])
 
   return { isVaultApproved, setLastUpdated }
 }

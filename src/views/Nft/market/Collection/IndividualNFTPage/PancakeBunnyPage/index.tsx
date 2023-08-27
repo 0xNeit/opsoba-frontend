@@ -10,7 +10,7 @@ import PageLoader from 'components/Loader/PageLoader'
 import usePreviousValue from 'hooks/usePreviousValue'
 import { useFastFresh } from 'hooks/useRefresh'
 import useIsWindowVisible from 'hooks/useIsWindowVisible'
-import { PANCAKE_BUNNIES_UPDATE_FREQUENCY } from 'config'
+import { SOBA_BUNNIES_UPDATE_FREQUENCY } from 'config'
 import { useGetCollectionDistributionPB } from 'views/Nft/market/hooks/useGetCollectionDistribution'
 import MainPancakeBunnyCard from './MainPancakeBunnyCard'
 import ManagePancakeBunniesCard from './ManagePancakeBunniesCard'
@@ -62,7 +62,7 @@ const IndividualPancakeBunnyPage: React.FC<IndividualPancakeBunnyPageProps> = ({
     // The difference in 2 seconds is just to prevent some edge cases when request takes too long
     if (
       prevBunnyId !== bunnyId ||
-      (msSinceLastUpdate > PANCAKE_BUNNIES_UPDATE_FREQUENCY && !isUpdatingPancakeBunnies && isWindowVisible)
+      (msSinceLastUpdate > SOBA_BUNNIES_UPDATE_FREQUENCY && !isUpdatingPancakeBunnies && isWindowVisible)
     ) {
       fetchMorePancakeBunnies(priceSort)
     }

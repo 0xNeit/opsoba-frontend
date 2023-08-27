@@ -2,24 +2,27 @@ import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { parseUnits } from 'ethers/lib/utils'
 import { useAppDispatch } from 'state'
-import { updateUserBalance, updateUserPendingReward, updateUserStakedBalance } from 'state/actions'
+import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { unstakeFarm } from 'utils/calls'
 import { useMasterchef, useSousChef } from 'hooks/useContract'
 import getGasPrice from 'utils/getGasPrice'
-import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
 
-const sousUnstake = (sousChefContract: any, amount: string, decimals: number) => {
+const sousUnstake = async (sousChefContract: any, amount: string, decimals: number) => {
   const gasPrice = getGasPrice()
   const units = parseUnits(amount, decimals)
 
-  return sousChefContract.withdraw(units.toString(), {
+  const tx = await sousChefContract.withdraw(units.toString(), {
     gasPrice,
   })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
-const sousEmergencyUnstake = (sousChefContract: any) => {
+const sousEmergencyUnstake = async (sousChefContract: any) => {
   const gasPrice = getGasPrice()
-  return sousChefContract.emergencyWithdraw({ gasPrice })
+  const tx = await sousChefContract.emergencyWithdraw({ gasPrice })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 const useUnstakePool = (sousId: number, enableEmergencyWithdraw = false) => {
@@ -29,31 +32,17 @@ const useUnstakePool = (sousId: number, enableEmergencyWithdraw = false) => {
   const sousChefContract = useSousChef(sousId)
 
   const handleUnstake = useCallback(
-    async (
-      amount: string,
-      decimals: number,
-      onTransactionSubmitted: (tx: TransactionResponse) => void,
-      onSuccess: (receipt: TransactionReceipt) => void,
-      onError: (receipt: TransactionReceipt) => void,
-    ) => {
-      let tx
+    async (amount: string, decimals: number) => {
       if (sousId === 0) {
-        tx = await unstakeFarm(masterChefContract, 0, amount)
+        await unstakeFarm(masterChefContract, 0, amount)
       } else if (enableEmergencyWithdraw) {
-        tx = await sousEmergencyUnstake(sousChefContract)
+        await sousEmergencyUnstake(sousChefContract)
       } else {
-        tx = await sousUnstake(sousChefContract, amount, decimals)
+        await sousUnstake(sousChefContract, amount, decimals)
       }
-      onTransactionSubmitted(tx)
-      const receipt = await tx.wait()
-      if (receipt.status) {
-        onSuccess(receipt)
-        dispatch(updateUserStakedBalance(sousId, account))
-        dispatch(updateUserBalance(sousId, account))
-        dispatch(updateUserPendingReward(sousId, account))
-      } else {
-        onError(receipt)
-      }
+      dispatch(updateUserStakedBalance(sousId, account))
+      dispatch(updateUserBalance(sousId, account))
+      dispatch(updateUserPendingReward(sousId, account))
     },
     [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
   )

@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { useVaultPoolByKey } from 'state/pools/hooks'
+import { useCakeVault } from 'state/pools/hooks'
 import { DeserializedPool } from 'state/types'
 
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
@@ -14,11 +14,7 @@ interface AutoHarvestActionProps extends DeserializedPool {
   userDataLoaded: boolean
 }
 
-const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({
-  userDataLoaded,
-  earningTokenPrice,
-  vaultKey,
-}) => {
+const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ userDataLoaded, earningTokenPrice }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
 
@@ -26,7 +22,7 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({
     userData: { cakeAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
-  } = useVaultPoolByKey(vaultKey)
+  } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
     cakeAtLastUserAction,
@@ -46,7 +42,7 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({
 
   const actionTitle = (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent CAKE profit')}
+      {t('Recent SOBA profit')}
     </Text>
   )
 
@@ -104,7 +100,7 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({
           </>
         </Flex>
         <Flex flex="1.3" flexDirection="column" alignSelf="flex-start" alignItems="flex-start">
-          <UnstakingFeeCountdownRow vaultKey={vaultKey} isTableVariant />
+          <UnstakingFeeCountdownRow isTableVariant />
           <Flex mb="2px" justifyContent="space-between" alignItems="center">
             {tooltipVisible && tooltip}
             <TooltipText ref={targetRef} small>

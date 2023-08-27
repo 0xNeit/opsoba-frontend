@@ -8,7 +8,6 @@ import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
 import { BIG_TEN } from 'utils/bigNumber'
 import { useMasterchef, useSousChef } from 'hooks/useContract'
 import getGasPrice from 'utils/getGasPrice'
-import { TransactionResponse, TransactionReceipt } from '@ethersproject/providers'
 
 const options = {
   gasLimit: DEFAULT_GAS_LIMIT,
@@ -16,18 +15,22 @@ const options = {
 
 const sousStake = async (sousChefContract, amount, decimals = 18) => {
   const gasPrice = getGasPrice()
-  return sousChefContract.deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
+  const tx = await sousChefContract.deposit(new BigNumber(amount).times(BIG_TEN.pow(decimals)).toString(), {
     ...options,
     gasPrice,
   })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 const sousStakeBnb = async (sousChefContract, amount) => {
   const gasPrice = getGasPrice()
-  return sousChefContract.deposit(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), {
+  const tx = await sousChefContract.deposit(new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString(), {
     ...options,
     gasPrice,
   })
+  const receipt = await tx.wait()
+  return receipt.status
 }
 
 const useStakePool = (sousId: number, isUsingBnb = false) => {
@@ -37,30 +40,16 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
   const sousChefContract = useSousChef(sousId)
 
   const handleStake = useCallback(
-    async (
-      amount: string,
-      decimals: number,
-      onTransactionSubmitted: (tx: TransactionResponse) => void,
-      onSuccess: (receipt: TransactionReceipt) => void,
-      onError: (receipt: TransactionReceipt) => void,
-    ) => {
-      let tx
+    async (amount: string, decimals: number) => {
       if (sousId === 0) {
-        tx = await stakeFarm(masterChefContract, 0, amount)
+        await stakeFarm(masterChefContract, 0, amount)
       } else if (isUsingBnb) {
-        tx = await sousStakeBnb(sousChefContract, amount)
+        await sousStakeBnb(sousChefContract, amount)
       } else {
-        tx = await sousStake(sousChefContract, amount, decimals)
+        await sousStake(sousChefContract, amount, decimals)
       }
-      onTransactionSubmitted(tx)
-      const receipt = await tx.wait()
-      if (receipt.status) {
-        onSuccess(receipt)
-        dispatch(updateUserStakedBalance(sousId, account))
-        dispatch(updateUserBalance(sousId, account))
-      } else {
-        onError(receipt)
-      }
+      dispatch(updateUserStakedBalance(sousId, account))
+      dispatch(updateUserBalance(sousId, account))
     },
     [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
   )

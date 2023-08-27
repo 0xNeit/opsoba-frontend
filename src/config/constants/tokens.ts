@@ -31,7 +31,7 @@ export const mainnetTokens = defineTokens({
   ),
   busd: new Token(
     TESTNET,
-    '0xa9aD1484D9Bfb27adbc2bf50A6E495777CC8cFf2',
+    '0xb1A54003bF3D37F12c6b78a6b75F951199800ad0',
     18,
     'BUSD',
     'Binance USD',
@@ -97,7 +97,7 @@ export const mainnetTokens = defineTokens({
     MAINNET,
     '0xdB8D30b74bf098aF214e862C90E647bbB1fcC58c',
     18,
-    'BABYCAKE',
+    'BABYSOBA',
     'Baby Cake Token',
     'https://babycake.app/',
   ),
@@ -1742,7 +1742,7 @@ export const testnetTokens = defineTokens({
   ),
   busd: new Token(
     TESTNET,
-    '0xa9aD1484D9Bfb27adbc2bf50A6E495777CC8cFf2',
+    '0xb1A54003bF3D37F12c6b78a6b75F951199800ad0',
     18,
     'BUSD',
     'Binance USD',

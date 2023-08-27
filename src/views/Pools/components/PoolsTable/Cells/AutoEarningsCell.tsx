@@ -3,19 +3,15 @@ import styled from 'styled-components'
 import { Skeleton, Text, useTooltip, HelpIcon, Flex, Box, useMatchBreakpoints } from 'opsoba-uikit'
 import { DeserializedPool } from 'state/types'
 import Balance from 'components/Balance'
-import { useVaultPoolByKey } from 'state/pools/hooks'
+import { useCakeVault } from 'state/pools/hooks'
 import { useTranslation } from 'contexts/Localization'
-import { convertSharesToCake, getCakeVaultEarnings } from 'views/Pools/helpers'
-import { differenceInHours } from 'date-fns'
-import BigNumber from 'bignumber.js'
-import { getBalanceNumber } from 'utils/formatBalance'
-import { getInterestBreakdown } from 'utils/compoundApyHelpers'
-import { vaultPoolConfig } from 'config/constants/pools'
+import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
 
 interface AutoEarningsCellProps {
   pool: DeserializedPool
   account: string
+  userDataLoaded: boolean
 }
 
 const StyledCell = styled(BaseCell)`
@@ -29,43 +25,15 @@ const HelpIconWrapper = styled.div`
   align-self: center;
 `
 
-const getAutoEarningsInterestBreakdown = (
-  pool: DeserializedPool,
-  lastActionInMs: number,
-  earningTokenDollarBalance: number,
-  userShares: BigNumber,
-  pricePerFullShare: BigNumber,
-  performanceFeeAsDecimal: number,
-) => {
-  const { stakingTokenPrice, earningTokenPrice, rawApr } = pool
-  const autoCompoundFrequency = vaultPoolConfig[pool.vaultKey]?.autoCompoundFrequency ?? 0
-
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
-  return getInterestBreakdown({
-    principalInUSD: getBalanceNumber(cakeAsBigNumber.times(stakingTokenPrice)),
-    apr: rawApr,
-    earningTokenPrice,
-    compoundFrequency: autoCompoundFrequency,
-    performanceFee: performanceFeeAsDecimal,
-  })
-}
-
-const getAutoEarningsRoiTimePeriod = (timePeriod: number, interestBreakdown, earningTokenPrice) => {
-  const hasInterest = Number.isFinite(interestBreakdown[timePeriod])
-  const roiTokens = hasInterest ? interestBreakdown[timePeriod] : 0
-  return hasInterest ? roiTokens * earningTokenPrice : 0
-}
-
-const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account }) => {
+const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, userDataLoaded }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const { earningTokenPrice } = pool
 
   const {
-    userData: { isLoading: userDataLoading, cakeAtLastUserAction, userShares, lastUserActionTime },
-    fees: { performanceFeeAsDecimal },
+    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
-  } = useVaultPoolByKey(pool.vaultKey)
+  } = useCakeVault()
   const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
     cakeAtLastUserAction,
@@ -74,50 +42,21 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account }) =>
     earningTokenPrice,
   )
 
-  const labelText = t('Recent CAKE profit')
+  const labelText = t('Recent SOBA profit')
   const earningTokenBalance = autoCakeToDisplay
   const hasEarnings = hasAutoEarnings
   const earningTokenDollarBalance = autoUsdToDisplay
 
-  const lastActionInMs = lastUserActionTime ? parseInt(lastUserActionTime) * 1000 : 0
-  const hourDiffSinceLastAction = differenceInHours(Date.now(), lastActionInMs)
-  const earnedCakePerHour = hourDiffSinceLastAction ? earningTokenBalance / hourDiffSinceLastAction : 0
-  const earnedUsdPerHour = hourDiffSinceLastAction ? earningTokenDollarBalance / hourDiffSinceLastAction : 0
-
-  const interestBreakdown = getAutoEarningsInterestBreakdown(
-    pool,
-    lastActionInMs,
-    earningTokenDollarBalance,
-    userShares,
-    pricePerFullShare,
-    performanceFeeAsDecimal,
-  )
-  const roiDay = getAutoEarningsRoiTimePeriod(0, interestBreakdown, earningTokenPrice)
-  const roiWeek = getAutoEarningsRoiTimePeriod(1, interestBreakdown, earningTokenPrice)
-  const roiMonth = getAutoEarningsRoiTimePeriod(2, interestBreakdown, earningTokenPrice)
-  const roiYear = getAutoEarningsRoiTimePeriod(3, interestBreakdown, earningTokenPrice)
+  const lastActionInMs = lastUserActionTime && parseInt(lastUserActionTime) * 1000
+  const dateTimeLastAction = new Date(lastActionInMs)
+  const dateStringToDisplay = dateTimeLastAction.toLocaleString()
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
-      <Text bold>
-        {autoCakeToDisplay.toFixed(3)}
-        {' CAKE'}
-      </Text>
-      <Text bold>~${autoUsdToDisplay.toFixed(2)}</Text>
-      <Text>{t('Earned since your last action')}:</Text>
-      <Text>{new Date(lastActionInMs).toLocaleString()}</Text>
-      {hourDiffSinceLastAction ? (
-        <>
-          <Text>{t('Your average per hour')}:</Text>
-          <Text bold>{t('CAKE per hour: %amount%', { amount: earnedCakePerHour.toFixed(2) })}</Text>
-          <Text bold>{t('per hour: ~$%amount%', { amount: earnedUsdPerHour.toFixed(2) })}</Text>
-        </>
-      ) : null}
-      <Text>{t('At this rate, you would earn')}:</Text>
-      <Text bold>{t('per 1d: ~$%amount%', { amount: roiDay.toFixed(2) })}</Text>
-      <Text bold>{t('per 7d: ~$%amount%', { amount: roiWeek.toFixed(2) })}</Text>
-      <Text bold>{t('per 30d: ~$%amount%', { amount: roiMonth.toFixed(2) })}</Text>
-      <Text bold>{t('per 365d: ~$%amount%', { amount: roiYear.toFixed(2) })}</Text>
+      <Balance fontSize="16px" value={autoCakeToDisplay} decimals={3} bold unit=" SOBA" />
+      <Balance fontSize="16px" value={autoUsdToDisplay} decimals={2} bold prefix="~$" />
+      {t('Earned since your last action')}
+      <Text>{dateStringToDisplay}</Text>
     </>,
     { placement: 'bottom' },
   )
@@ -128,7 +67,7 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account }) =>
         <Text fontSize="12px" color="textSubtle" textAlign="left">
           {labelText}
         </Text>
-        {userDataLoading && account ? (
+        {!userDataLoaded && account ? (
           <Skeleton width="80px" height="16px" />
         ) : (
           <>

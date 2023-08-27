@@ -1,7 +1,7 @@
 import { PancakeCollectionKey, PancakeCollections } from './types'
 
 const pancakeCollections: PancakeCollections = {
-  [PancakeCollectionKey.PANCAKE]: {
+  [PancakeCollectionKey.SOBA]: {
     name: 'Pancake Bunnies',
     slug: 'pancake-bunnies',
     address: {

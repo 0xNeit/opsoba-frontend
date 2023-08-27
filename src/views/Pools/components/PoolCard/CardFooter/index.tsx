@@ -11,7 +11,6 @@ interface FooterProps {
   pool: DeserializedPool
   account: string
   totalCakeInVault?: BigNumber
-  defaultExpanded?: boolean
 }
 
 const ExpandableButtonWrapper = styled(Flex)`
@@ -22,17 +21,17 @@ const ExpandableButtonWrapper = styled(Flex)`
   }
 `
 
-const Footer: React.FC<FooterProps> = ({ pool, account, defaultExpanded }) => {
-  const { vaultKey } = pool
+const Footer: React.FC<FooterProps> = ({ pool, account }) => {
+  const { isAutoVault } = pool
   const { t } = useTranslation()
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded || false)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
     'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
   )
 
-  const { targetRef, tooltip, tooltipVisible } = useTooltip(vaultKey ? autoTooltipText : manualTooltipText, {
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
     placement: 'bottom',
   })
 
@@ -40,7 +39,7 @@ const Footer: React.FC<FooterProps> = ({ pool, account, defaultExpanded }) => {
     <CardFooter>
       <ExpandableButtonWrapper>
         <Flex alignItems="center">
-          {vaultKey ? <CompoundingPoolTag /> : <ManualPoolTag />}
+          {isAutoVault ? <CompoundingPoolTag /> : <ManualPoolTag />}
           {tooltipVisible && tooltip}
           <Flex ref={targetRef}>
             <HelpIcon ml="4px" width="20px" height="20px" color="textSubtle" />

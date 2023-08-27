@@ -4,8 +4,6 @@ import { Card } from 'opsoba-uikit'
 export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
   max-width: 352px;
   margin: 0 8px 24px;
-  width: 100%;
-  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-self: baseline;

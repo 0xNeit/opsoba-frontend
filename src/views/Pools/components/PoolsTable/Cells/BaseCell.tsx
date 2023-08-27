@@ -1,11 +1,12 @@
 import { Flex, Text } from 'opsoba-uikit'
 import styled from 'styled-components'
 
-const BaseCell = styled(Flex)`
+const BaseCell = styled.div`
   color: black;
 
   padding: 24px 8px;
 
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
 `

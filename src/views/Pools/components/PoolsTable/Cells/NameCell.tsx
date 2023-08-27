@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Text, useMatchBreakpoints, TokenPairImage as UITokenPairImage } from 'opsoba-uikit'
+import { Text, useMatchBreakpoints } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useVaultPoolByKey } from 'state/pools/hooks'
+import { useCakeVault } from 'state/pools/hooks'
 import { DeserializedPool } from 'state/types'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { vaultPoolConfig } from 'config/constants/pools'
 import { TokenPairImage } from 'components/TokenImage'
+import CakeVaultTokenPairImage from '../../CakeVaultCard/CakeVaultTokenPairImage'
 import BaseCell, { CellContent } from './BaseCell'
 
 interface NameCellProps {
@@ -27,10 +27,10 @@ const StyledCell = styled(BaseCell)`
 const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
-  const { sousId, stakingToken, earningToken, userData, isFinished, vaultKey } = pool
+  const { sousId, stakingToken, earningToken, userData, isFinished, isAutoVault } = pool
   const {
     userData: { userShares },
-  } = useVaultPoolByKey(pool.vaultKey)
+  } = useCakeVault()
   const hasVaultShares = userShares && userShares.gt(0)
 
   const stakingTokenSymbol = stakingToken.symbol
@@ -40,15 +40,15 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
   const isStaked = stakedBalance.gt(0)
   const isManualCakePool = sousId === 0
 
-  const showStakedTag = vaultKey ? hasVaultShares : isStaked
+  const showStakedTag = isAutoVault ? hasVaultShares : isStaked
 
   let title = `${t('Earn')} ${earningTokenSymbol}`
   let subtitle = `${t('Stake')} ${stakingTokenSymbol}`
   const showSubtitle = sousId !== 0 || (sousId === 0 && !isMobile)
 
-  if (vaultKey) {
-    title = t(vaultPoolConfig[vaultKey].name)
-    subtitle = t(vaultPoolConfig[vaultKey].description)
+  if (isAutoVault) {
+    title = t('Auto SOBA')
+    subtitle = t('Automatic restaking')
   } else if (isManualCakePool) {
     title = t('Manual SOBA')
     subtitle = `${t('Earn')} SOBA ${t('Stake').toLocaleLowerCase()} SOBA`
@@ -56,8 +56,8 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
 
   return (
     <StyledCell role="cell">
-      {vaultKey ? (
-        <UITokenPairImage {...vaultPoolConfig[vaultKey].tokenImage} mr="8px" width={40} height={40} />
+      {isAutoVault ? (
+        <CakeVaultTokenPairImage mr="8px" width={40} height={40} />
       ) : (
         <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} mr="8px" width={40} height={40} />
       )}
