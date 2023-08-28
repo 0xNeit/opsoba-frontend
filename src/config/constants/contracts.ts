@@ -51,7 +51,7 @@ export default {
     204: '0x23c41D28A239dDCAABd1bb1deF8d057189510066',
     5611: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
-  cakeVault: {
+  sobaVault: {
     204: '',
     5611: '0xe71C3d3cF6faC0D58aD5feb31C4656683872D1bA',
   },
@@ -67,7 +67,7 @@ export default {
     204: '0xD276fCF34D54A926773c399eBAa772C12ec394aC',
     5611: '',
   },
-  bunnySpecialCakeVault: {
+  bunnySpecialSobaVault: {
     204: '0x5B4a770Abe7Eafb2601CA4dF9d73EA99363E60a4',
     5611: '',
   },

@@ -121,7 +121,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "priceTicketInCake",
+        "name": "priceTicketInSoba",
         "type": "uint256"
       },
       {
@@ -504,7 +504,7 @@
   },
   {
     "inputs": [],
-    "name": "maxPriceTicketInCake",
+    "name": "maxPriceTicketInSoba",
     "outputs": [
       {
         "internalType": "uint256",
@@ -517,7 +517,7 @@
   },
   {
     "inputs": [],
-    "name": "minPriceTicketInCake",
+    "name": "minPriceTicketInSoba",
     "outputs": [
       {
         "internalType": "uint256",
@@ -622,16 +622,16 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_minPriceTicketInCake",
+        "name": "_minPriceTicketInSoba",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_maxPriceTicketInCake",
+        "name": "_maxPriceTicketInSoba",
         "type": "uint256"
       }
     ],
-    "name": "setMinAndMaxTicketPriceInCake",
+    "name": "setMinAndMaxTicketPriceInSoba",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -668,7 +668,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_priceTicketInCake",
+        "name": "_priceTicketInSoba",
         "type": "uint256"
       },
       {
@@ -760,7 +760,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "priceTicketInCake",
+            "name": "priceTicketInSoba",
             "type": "uint256"
           },
           {
@@ -800,7 +800,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "amountCollectedInCake",
+            "name": "amountCollectedInSoba",
             "type": "uint256"
           },
           {

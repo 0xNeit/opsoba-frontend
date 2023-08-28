@@ -303,7 +303,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateHarvestCakeRewards",
+    "name": "calculateHarvestSobaRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -316,7 +316,7 @@
   },
   {
     "inputs": [],
-    "name": "calculateTotalPendingCakeRewards",
+    "name": "calculateTotalPendingSobaRewards",
     "outputs": [
       {
         "internalType": "uint256",
@@ -766,7 +766,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "cakeAtLastUserAction",
+        "name": "sobaAtLastUserAction",
         "type": "uint256"
       },
       {

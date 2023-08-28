@@ -16,7 +16,7 @@ const initialState: State = {
     tokenId: null,
   },
   userName: '',
-  minimumCakeRequired: totalCost,
+  minimumSobaRequired: totalCost,
   allowance,
 }
 

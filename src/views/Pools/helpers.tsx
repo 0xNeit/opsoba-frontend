@@ -3,28 +3,28 @@ import { DeserializedPool } from 'state/types'
 import { getApy } from 'utils/compoundApyHelpers'
 import { getBalanceNumber, getFullDisplayBalance, getDecimalAmount } from 'utils/formatBalance'
 
-export const convertSharesToCake = (
+export const convertSharesToSoba = (
   shares: BigNumber,
-  cakePerFullShare: BigNumber,
+  sobaPerFullShare: BigNumber,
   decimals = 18,
   decimalsToRound = 3,
 ) => {
-  const sharePriceNumber = getBalanceNumber(cakePerFullShare, decimals)
-  const amountInCake = new BigNumber(shares.multipliedBy(sharePriceNumber))
-  const cakeAsNumberBalance = getBalanceNumber(amountInCake, decimals)
-  const cakeAsBigNumber = getDecimalAmount(new BigNumber(cakeAsNumberBalance), decimals)
-  const cakeAsDisplayBalance = getFullDisplayBalance(amountInCake, decimals, decimalsToRound)
-  return { cakeAsNumberBalance, cakeAsBigNumber, cakeAsDisplayBalance }
+  const sharePriceNumber = getBalanceNumber(sobaPerFullShare, decimals)
+  const amountInSoba = new BigNumber(shares.multipliedBy(sharePriceNumber))
+  const sobaAsNumberBalance = getBalanceNumber(amountInSoba, decimals)
+  const sobaAsBigNumber = getDecimalAmount(new BigNumber(sobaAsNumberBalance), decimals)
+  const sobaAsDisplayBalance = getFullDisplayBalance(amountInSoba, decimals, decimalsToRound)
+  return { sobaAsNumberBalance, sobaAsBigNumber, sobaAsDisplayBalance }
 }
 
-export const convertCakeToShares = (
-  cake: BigNumber,
-  cakePerFullShare: BigNumber,
+export const convertSobaToShares = (
+  soba: BigNumber,
+  sobaPerFullShare: BigNumber,
   decimals = 18,
   decimalsToRound = 3,
 ) => {
-  const sharePriceNumber = getBalanceNumber(cakePerFullShare, decimals)
-  const amountInShares = new BigNumber(cake.dividedBy(sharePriceNumber))
+  const sharePriceNumber = getBalanceNumber(sobaPerFullShare, decimals)
+  const amountInShares = new BigNumber(soba.dividedBy(sharePriceNumber))
   const sharesAsNumberBalance = getBalanceNumber(amountInShares, decimals)
   const sharesAsBigNumber = getDecimalAmount(new BigNumber(sharesAsNumberBalance), decimals)
   const sharesAsDisplayBalance = getFullDisplayBalance(amountInShares, decimals, decimalsToRound)
@@ -47,22 +47,22 @@ export const getAprData = (pool: DeserializedPool, performanceFee: number) => {
   return { apr, autoCompoundFrequency }
 }
 
-export const getCakeVaultEarnings = (
+export const getSobaVaultEarnings = (
   account: string,
-  cakeAtLastUserAction: BigNumber,
+  sobaAtLastUserAction: BigNumber,
   userShares: BigNumber,
   pricePerFullShare: BigNumber,
   earningTokenPrice: number,
 ) => {
   const hasAutoEarnings =
-    account && cakeAtLastUserAction && cakeAtLastUserAction.gt(0) && userShares && userShares.gt(0)
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
-  const autoCakeProfit = cakeAsBigNumber.minus(cakeAtLastUserAction)
-  const autoCakeToDisplay = autoCakeProfit.gte(0) ? getBalanceNumber(autoCakeProfit, 18) : 0
+    account && sobaAtLastUserAction && sobaAtLastUserAction.gt(0) && userShares && userShares.gt(0)
+  const { sobaAsBigNumber } = convertSharesToSoba(userShares, pricePerFullShare)
+  const autoSobaProfit = sobaAsBigNumber.minus(sobaAtLastUserAction)
+  const autoSobaToDisplay = autoSobaProfit.gte(0) ? getBalanceNumber(autoSobaProfit, 18) : 0
 
-  const autoUsdProfit = autoCakeProfit.times(earningTokenPrice)
+  const autoUsdProfit = autoSobaProfit.times(earningTokenPrice)
   const autoUsdToDisplay = autoUsdProfit.gte(0) ? getBalanceNumber(autoUsdProfit, 18) : 0
-  return { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay }
+  return { hasAutoEarnings, autoSobaToDisplay, autoUsdToDisplay }
 }
 
 export const getPoolBlockInfo = (pool: DeserializedPool, currentBlock: number) => {

@@ -16,7 +16,7 @@ import AuctionTimer from './components/AuctionTimer'
 import ReclaimBidCard from './components/ReclaimBidCard'
 import NotWhitelistedNotice from './components/NotWhitelistedNotice'
 import CongratulationsCard from './components/CongratulationsCard'
-import AuctionCakeBurn from './components/AuctionCakeBurn'
+import AuctionSobaBurn from './components/AuctionSobaBurn'
 
 const FAQS_BG_LIGHT = 'linear-gradient(180deg, #CBD7EF 0%, #9A9FD0 100%)'
 const FAQ_BG_DARK = 'linear-gradient(180deg, #434575 0%, #66578D 100%)'
@@ -147,7 +147,7 @@ const FarmAuction = () => {
           dividerPosition="top"
           dividerFill={{ light: SOBA_BURN_TOP_FILL_LIGHT, dark: SOBA_BURN_TOP_FILL_DARK }}
         >
-          <AuctionCakeBurn />
+          <AuctionSobaBurn />
         </PageSection>
         <PageSection
           background={theme.isDark ? FAQ_BG_DARK : FAQS_BG_LIGHT}

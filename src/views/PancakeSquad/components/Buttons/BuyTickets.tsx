@@ -5,7 +5,7 @@ import { ContextApi } from 'contexts/Localization/types'
 import { ethers, BigNumber } from 'ethers'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { useCake, useNftSaleContract } from 'hooks/useContract'
+import { useSoba, useNftSaleContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { DefaultTheme } from 'styled-components'
 import { ethersToBigNumber } from 'utils/bigNumber'
@@ -29,7 +29,7 @@ type BuyTicketsProps = {
   numberTicketsOfUser: number
   numberTicketsForGen0: number
   numberTicketsUsedForGen0: number
-  cakeBalance: BigNumber
+  sobaBalance: BigNumber
   pricePerTicket: BigNumber
   startTimestamp: number
 }
@@ -46,7 +46,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
   numberTicketsOfUser,
   numberTicketsForGen0,
   numberTicketsUsedForGen0,
-  cakeBalance,
+  sobaBalance,
   pricePerTicket,
   startTimestamp,
 }) => {
@@ -55,7 +55,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
   const { callWithGasPrice } = useCallWithGasPrice()
   const nftSaleContract = useNftSaleContract()
   const { toastSuccess } = useToast()
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const { isUserEnabled, setIsUserEnabled } = useContext(PancakeSquadContext)
 
   const canBuySaleTicket =
@@ -70,7 +70,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
         try {
-          const response = await cakeContract.allowance(account, nftSaleContract.address)
+          const response = await sobaContract.allowance(account, nftSaleContract.address)
           const currentAllowance = ethersToBigNumber(response)
           return currentAllowance.gt(0)
         } catch (error) {
@@ -78,7 +78,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
         }
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContract, 'approve', [nftSaleContract.address, ethers.constants.MaxUint256])
+        return callWithGasPrice(sobaContract, 'approve', [nftSaleContract.address, ethers.constants.MaxUint256])
       },
       onApproveSuccess: async ({ receipt }) => {
         toastSuccess(t('Transaction has succeeded!'))
@@ -133,7 +133,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
       title={t('Buy Minting Tickets')}
       buyTicketCallBack={handleConfirm}
       headerBackground={theme.colors.gradients.cardHeader}
-      cakeBalance={cakeBalance}
+      sobaBalance={sobaBalance}
       maxPerAddress={maxPerAddress}
       maxPerTransaction={maxPerTransaction}
       numberTicketsForGen0={numberTicketsForGen0}

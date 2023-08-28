@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Text, Flex, Skeleton, Image } from 'opsoba-uikit'
 import { useFarmAuctionContract } from 'hooks/useContract'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import Balance from 'components/Balance'
@@ -16,33 +16,33 @@ const BurnedText = styled(Text)`
   }
 `
 
-const AuctionCakeBurn: React.FC = () => {
-  const [burnedCakeAmount, setBurnedCakeAmount] = useState(0)
+const AuctionSobaBurn: React.FC = () => {
+  const [burnedSobaAmount, setBurnedSobaAmount] = useState(0)
   const { t } = useTranslation()
   const farmAuctionContract = useFarmAuctionContract(false)
-  const cakePriceBusd = usePriceCakeBusd()
+  const sobaPriceBusd = usePriceSobaBusd()
 
-  const burnedAmountAsUSD = cakePriceBusd.times(burnedCakeAmount)
+  const burnedAmountAsUSD = sobaPriceBusd.times(burnedSobaAmount)
 
   useEffect(() => {
-    const fetchBurnedCakeAmount = async () => {
+    const fetchBurnedSobaAmount = async () => {
       try {
         const amount = await farmAuctionContract.totalCollected()
         const amountAsBN = ethersToBigNumber(amount)
-        setBurnedCakeAmount(getBalanceNumber(amountAsBN))
+        setBurnedSobaAmount(getBalanceNumber(amountAsBN))
       } catch (error) {
-        console.error('Failed to fetch burned auction cake', error)
+        console.error('Failed to fetch burned auction soba', error)
       }
     }
-    if (burnedCakeAmount === 0) {
-      fetchBurnedCakeAmount()
+    if (burnedSobaAmount === 0) {
+      fetchBurnedSobaAmount()
     }
-  }, [burnedCakeAmount, farmAuctionContract])
+  }, [burnedSobaAmount, farmAuctionContract])
   return (
     <Flex flexDirection={['column-reverse', null, 'row']}>
       <Flex flexDirection="column" flex="2">
-        {burnedCakeAmount !== 0 ? (
-          <Balance fontSize="64px" bold value={burnedCakeAmount} decimals={0} unit=" SOBA" />
+        {burnedSobaAmount !== 0 ? (
+          <Balance fontSize="64px" bold value={burnedSobaAmount} decimals={0} unit=" SOBA" />
         ) : (
           <Skeleton width="256px" height="64px" />
         )}
@@ -65,4 +65,4 @@ const AuctionCakeBurn: React.FC = () => {
   )
 }
 
-export default AuctionCakeBurn
+export default AuctionSobaBurn

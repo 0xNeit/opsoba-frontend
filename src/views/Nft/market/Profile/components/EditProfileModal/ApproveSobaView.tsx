@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useCake } from 'hooks/useContract'
+import { useSoba } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useProfile } from 'state/profile/hooks'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
@@ -9,23 +9,23 @@ import { formatBigNumber } from 'utils/formatBalance'
 import useGetProfileCosts from 'views/Nft/market/Profile/hooks/useGetProfileCosts'
 import { UseEditProfileResponse } from './reducer'
 
-interface ApproveCakePageProps extends InjectedModalProps {
+interface ApproveSobaPageProps extends InjectedModalProps {
   goToChange: UseEditProfileResponse['goToChange']
 }
 
-const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss }) => {
+const ApproveSobaPage: React.FC<ApproveSobaPageProps> = ({ goToChange, onDismiss }) => {
   const [isApproving, setIsApproving] = useState(false)
   const { profile } = useProfile()
   const { t } = useTranslation()
   const {
-    costs: { numberCakeToUpdate, numberCakeToReactivate },
+    costs: { numberSobaToUpdate, numberSobaToReactivate },
   } = useGetProfileCosts()
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const { toastError } = useToast()
-  const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
+  const cost = profile.isActive ? numberSobaToUpdate : numberSobaToReactivate
 
   const handleApprove = async () => {
-    const tx = await cakeContract.approve(getPancakeProfileAddress(), cost.mul(2).toString())
+    const tx = await sobaContract.approve(getPancakeProfileAddress(), cost.mul(2).toString())
     setIsApproving(true)
     const receipt = await tx.wait()
     if (receipt.status) {
@@ -63,4 +63,4 @@ const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss
   )
 }
 
-export default ApproveCakePage
+export default ApproveSobaPage

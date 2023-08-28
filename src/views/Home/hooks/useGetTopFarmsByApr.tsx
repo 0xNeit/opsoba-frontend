@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { ChainId } from 'opsoba-sdk'
-import { useFarms, usePriceCakeBusd } from 'state/farms/hooks'
+import { useFarms, usePriceSobaBusd } from 'state/farms/hooks'
 import { useAppDispatch } from 'state'
 import { fetchFarmsPublicDataAsync, nonArchivedFarms } from 'state/farms'
 import { getFarmApr } from 'utils/apr'
@@ -14,7 +14,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
   const { data: farms } = useFarms()
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.Idle)
   const [topFarms, setTopFarms] = useState<FarmWithStakedValue[]>([null, null, null, null, null])
-  const cakePriceBusd = usePriceCakeBusd()
+  const sobaPriceBusd = usePriceSobaBusd()
 
   useEffect(() => {
     const fetchFarmData = async () => {
@@ -46,13 +46,13 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
       )
       const farmsWithApr: FarmWithStakedValue[] = farmsWithPrices.map((farm) => {
         const totalLiquidity = farm.lpTotalInQuoteToken.times(farm.quoteTokenPriceBusd)
-        const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
+        const { sobaRewardsApr, lpRewardsApr } = getFarmApr(
           farm.poolWeight,
-          cakePriceBusd,
+          sobaPriceBusd,
           totalLiquidity,
           farm.lpAddresses[ChainId.MAINNET],
         )
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr }
+        return { ...farm, apr: sobaRewardsApr, lpRewardsApr }
       })
 
       const sortedByApr = orderBy(farmsWithApr, (farm) => farm.apr + farm.lpRewardsApr, 'desc')
@@ -62,7 +62,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
     if (fetchStatus === FetchStatus.Fetched && !topFarms[0]) {
       getTopFarmsByApr(farms)
     }
-  }, [setTopFarms, farms, fetchStatus, cakePriceBusd, topFarms])
+  }, [setTopFarms, farms, fetchStatus, sobaPriceBusd, topFarms])
 
   return { topFarms }
 }

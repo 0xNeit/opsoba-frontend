@@ -24,7 +24,7 @@ const farms: SerializedFarmConfig[] = [
       5611: '0x15f84a3BC3D88c08C80BaD01D047a6BEc3F3CB8A',
       204: '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0',
     },
-    token: serializedTokens.cake,
+    token: serializedTokens.soba,
     quoteToken: serializedTokens.wbnb,
   },
   {
@@ -951,7 +951,7 @@ const farms: SerializedFarmConfig[] = [
       5611: '',
       204: '0xA39Af17CE4a8eb807E076805Da1e2B8EA7D0755b',
     },
-    token: serializedTokens.cake,
+    token: serializedTokens.soba,
     quoteToken: serializedTokens.usdt,
   },
   {
@@ -1321,7 +1321,7 @@ const farms: SerializedFarmConfig[] = [
       5611: '',
       204: '0x804678fa97d91B974ec2af3c843270886528a9E6',
     },
-    token: serializedTokens.cake,
+    token: serializedTokens.soba,
     quoteToken: serializedTokens.busd,
   },
   {
@@ -2554,7 +2554,7 @@ const farms: SerializedFarmConfig[] = [
       5611: '',
       204: '0xFB7E9FE9D13561AdA7131Fa746942a14F7dd4Cf6',
     },
-    token: serializedTokens.cake,
+    token: serializedTokens.soba,
     quoteToken: serializedTokens.wbnb,
   },
   {
@@ -3677,7 +3677,7 @@ const farms: SerializedFarmConfig[] = [
       5611: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
       204: '0xA527a61703D82139F8a06Bc30097cC9CAA2df5A6',
     },
-    token: serializedTokens.cake,
+    token: serializedTokens.soba,
     quoteToken: serializedTokens.wbnb,
   },
   {
@@ -4908,7 +4908,7 @@ const farms: SerializedFarmConfig[] = [
       204: '0x7cd05f8b960ba071fdf69c750c0e5a57c8366500',
     },
     token: serializedTokens.stax,
-    quoteToken: serializedTokens.cake,
+    quoteToken: serializedTokens.soba,
     isCommunity: true,
   },
   {
@@ -4919,7 +4919,7 @@ const farms: SerializedFarmConfig[] = [
       204: '0x745c4fd226e169d6da959283275a8e0ecdd7f312',
     },
     token: serializedTokens.nar,
-    quoteToken: serializedTokens.cake,
+    quoteToken: serializedTokens.soba,
     isCommunity: true,
   },
   {
@@ -4930,7 +4930,7 @@ const farms: SerializedFarmConfig[] = [
       204: '0x2730bf486d658838464a4ef077880998d944252d',
     },
     token: serializedTokens.nya,
-    quoteToken: serializedTokens.cake,
+    quoteToken: serializedTokens.soba,
     isCommunity: true,
   },
   {
@@ -4941,7 +4941,7 @@ const farms: SerializedFarmConfig[] = [
       204: '0x970858016C963b780E06f7DCfdEf8e809919BcE8',
     },
     token: serializedTokens.broobee,
-    quoteToken: serializedTokens.cake,
+    quoteToken: serializedTokens.soba,
     isCommunity: true,
   },
   {

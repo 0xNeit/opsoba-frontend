@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 import useSWR from 'swr'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { simpleRpcProvider } from 'utils/providers'
-import { useCake, useTokenContract } from './useContract'
+import { useSoba, useTokenContract } from './useContract'
 import { useSWRContract } from './useSWRContract'
 
 const useTokenBalance = (tokenAddress: string) => {
@@ -34,8 +34,8 @@ const useTokenBalance = (tokenAddress: string) => {
 }
 
 export const useTotalSupply = () => {
-  const cakeContract = useCake()
-  const { data } = useSWRContract([cakeContract, 'totalSupply'], {
+  const sobaContract = useSoba()
+  const { data } = useSWRContract([sobaContract, 'totalSupply'], {
     refreshInterval: SLOW_INTERVAL,
   })
 
@@ -60,8 +60,8 @@ export const useGetBnbBalance = () => {
   return { balance: data || ethers.constants.Zero, fetchStatus: status, refresh: mutate }
 }
 
-export const useGetCakeBalance = () => {
-  const { balance, fetchStatus } = useTokenBalance(tokens.cake.address)
+export const useGetSobaBalance = () => {
+  const { balance, fetchStatus } = useTokenBalance(tokens.soba.address)
 
   // TODO: Remove ethers conversion once useTokenBalance is converted to ethers.BigNumber
   return { balance: ethers.BigNumber.from(balance.toString()), fetchStatus }

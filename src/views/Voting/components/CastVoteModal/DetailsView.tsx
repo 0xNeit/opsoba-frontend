@@ -6,21 +6,21 @@ import { VotingBox, ModalInner } from './styles'
 
 interface DetailsViewProps {
   total: number
-  cakeBalance: number
-  cakeVaultBalance: number
-  cakePoolBalance: number
+  sobaBalance: number
+  sobaVaultBalance: number
+  sobaPoolBalance: number
   poolsBalance: number
-  cakeBnbLpBalance: number
+  sobaBnbLpBalance: number
   ifoPoolBalance: number
 }
 
 const DetailsView: React.FC<DetailsViewProps> = ({
   total,
-  cakeBalance,
-  cakeVaultBalance,
-  cakePoolBalance,
+  sobaBalance,
+  sobaVaultBalance,
+  sobaPoolBalance,
   poolsBalance,
-  cakeBnbLpBalance,
+  sobaBnbLpBalance,
   ifoPoolBalance,
 }) => {
   const { t } = useTranslation()
@@ -42,25 +42,25 @@ const DetailsView: React.FC<DetailsViewProps> = ({
         </Text>
       </VotingBox>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
-        {t('Your Cake Held Now')}
+        {t('Your Soba Held Now')}
       </Text>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
           {t('Wallet')}
         </Text>
-        <Text textAlign="right">{formatNumber(cakeBalance, 0, 3)}</Text>
+        <Text textAlign="right">{formatNumber(sobaBalance, 0, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
           {t('Manual SOBA Pool')}
         </Text>
-        <Text textAlign="right">{formatNumber(cakePoolBalance, 0, 3)}</Text>
+        <Text textAlign="right">{formatNumber(sobaPoolBalance, 0, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
           {t('Auto SOBA Pool')}
         </Text>
-        <Text textAlign="right">{formatNumber(cakeVaultBalance, 0, 3)}</Text>
+        <Text textAlign="right">{formatNumber(sobaVaultBalance, 0, 3)}</Text>
       </Flex>
       <Flex alignItems="center" justifyContent="space-between" mb="4px">
         <Text color="textSubtle" fontSize="16px">
@@ -78,7 +78,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
         <Text color="textSubtle" fontSize="16px">
           {t('SOBA BNB LP')}
         </Text>
-        <Text textAlign="right">{formatNumber(cakeBnbLpBalance, 0, 3)}</Text>
+        <Text textAlign="right">{formatNumber(sobaBnbLpBalance, 0, 3)}</Text>
       </Flex>
     </ModalInner>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import { getBalanceNumber, formatLocalisedCompactNumber } from 'utils/formatBalance'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import { Flex, Text, Heading, Skeleton } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
@@ -43,21 +43,21 @@ const Grid = styled.div`
 
 const emissionsPerBlock = 14.25
 
-const CakeDataRow = () => {
+const SobaDataRow = () => {
   const { t } = useTranslation()
   const totalSupply = useTotalSupply()
-  const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.cake.address))
-  const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
-  const cakePriceBusd = usePriceCakeBusd()
-  const mcap = cakePriceBusd.times(cakeSupply)
+  const burnedBalance = getBalanceNumber(useBurnedBalance(tokens.soba.address))
+  const sobaSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
+  const sobaPriceBusd = usePriceSobaBusd()
+  const mcap = sobaPriceBusd.times(sobaSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
 
   return (
     <Grid>
       <Flex flexDirection="column">
         <Text color="textSubtle">{t('Total supply')}</Text>
-        {cakeSupply ? (
-          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
+        {sobaSupply ? (
+          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={sobaSupply} />
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
@@ -81,10 +81,10 @@ const CakeDataRow = () => {
       <StyledColumn>
         <Text color="textSubtle">{t('Current emissions')}</Text>
 
-        <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
+        <Heading scale="lg">{t('%sobaEmissions%/block', { sobaEmissions: emissionsPerBlock })}</Heading>
       </StyledColumn>
     </Grid>
   )
 }
 
-export default CakeDataRow
+export default SobaDataRow

@@ -70,9 +70,9 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
   }, [chainId, currency, ethPair, ethPairState, busdEthPair, busdEthPairState, busdPair, busdPairState, wrapped])
 }
 
-export const useCakeBusdPrice = (): Price | undefined => {
-  const cakeBusdPrice = useBUSDPrice(tokens.cake)
-  return cakeBusdPrice
+export const useSobaBusdPrice = (): Price | undefined => {
+  const sobaBusdPrice = useBUSDPrice(tokens.soba)
+  return sobaBusdPrice
 }
 
 export const useBUSDCurrencyAmount = (currency: Currency, amount: number): number | undefined => {
@@ -85,10 +85,10 @@ export const useBUSDCurrencyAmount = (currency: Currency, amount: number): numbe
   return undefined
 }
 
-export const useBUSDCakeAmount = (amount: number): number | undefined => {
-  const cakeBusdPrice = useCakeBusdPrice()
-  if (cakeBusdPrice) {
-    return multiplyPriceByAmount(cakeBusdPrice, amount)
+export const useBUSDSobaAmount = (amount: number): number | undefined => {
+  const sobaBusdPrice = useSobaBusdPrice()
+  if (sobaBusdPrice) {
+    return multiplyPriceByAmount(sobaBusdPrice, amount)
   }
   return undefined
 }

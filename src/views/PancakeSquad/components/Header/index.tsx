@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Flex, lightColors, Spinner, Text, Timeline } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useGetSobaBalance } from 'hooks/useTokenBalance'
 import useTheme from 'hooks/useTheme'
 import { StyledWaveContainer } from 'views/PancakeSquad/styles'
 import { UserStatusEnum } from 'views/PancakeSquad/types'
@@ -33,7 +33,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
 }) => {
   const { t } = useTranslation()
   const { theme, isDark } = useTheme()
-  const { balance: cakeBalance } = useGetCakeBalance()
+  const { balance: sobaBalance } = useGetSobaBalance()
   const displayEventBlock = !!eventInfos || isLoading
   const {
     ticketsOfUser,
@@ -141,7 +141,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
                         numberTicketsOfUser={numberTicketsOfUser}
                         numberTicketsUsedForGen0={numberTicketsUsedForGen0}
                         totalSupplyMinted={totalSupplyMinted}
-                        cakeBalance={cakeBalance}
+                        sobaBalance={sobaBalance}
                         maxPerTransaction={maxPerTransaction}
                         numberTicketsForGen0={numberTicketsForGen0}
                         pricePerTicket={pricePerTicket}

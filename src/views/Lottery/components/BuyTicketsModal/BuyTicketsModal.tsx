@@ -20,14 +20,14 @@ import tokens from 'config/constants/tokens'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { BIG_ZERO, ethersToBigNumber } from 'utils/bigNumber'
 import { useAppDispatch } from 'state'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import { useLottery } from 'state/lottery/hooks'
 import { fetchUserTicketsAndLotteries } from 'state/lottery'
 import useTheme from 'hooks/useTheme'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { FetchStatus } from 'config/constants/types'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useLotteryV2Contract } from 'hooks/useContract'
+import { useSoba, useLotteryV2Contract } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -66,7 +66,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     maxNumberTicketsPerBuyOrClaim,
     currentLotteryId,
     currentRound: {
-      priceTicketInCake,
+      priceTicketInSoba,
       discountDivisor,
       userTickets: { tickets: userCurrentTickets },
     },
@@ -79,19 +79,19 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const [buyingStage, setBuyingStage] = useState<BuyingStage>(BuyingStage.BUY)
   const [maxPossibleTicketPurchase, setMaxPossibleTicketPurchase] = useState(BIG_ZERO)
   const [maxTicketPurchaseExceeded, setMaxTicketPurchaseExceeded] = useState(false)
-  const [userNotEnoughCake, setUserNotEnoughCake] = useState(false)
+  const [userNotEnoughSoba, setUserNotEnoughSoba] = useState(false)
   const lotteryContract = useLotteryV2Contract()
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const { toastSuccess } = useToast()
-  const { balance: userCake, fetchStatus } = useTokenBalance(tokens.cake.address)
+  const { balance: userSoba, fetchStatus } = useTokenBalance(tokens.soba.address)
   // balance from useTokenBalance causes rerenders in effects as a new BigNumber is instantiated on each render, hence memoising it using the stringified value below.
-  const stringifiedUserCake = userCake.toJSON()
-  const memoisedUserCake = useMemo(() => new BigNumber(stringifiedUserCake), [stringifiedUserCake])
+  const stringifiedUserSoba = userSoba.toJSON()
+  const memoisedUserSoba = useMemo(() => new BigNumber(stringifiedUserSoba), [stringifiedUserSoba])
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const sobaPriceBusd = usePriceSobaBusd()
   const dispatch = useAppDispatch()
   const hasFetchedBalance = fetchStatus === FetchStatus.Fetched
-  const userCakeDisplayBalance = getFullDisplayBalance(userCake, 18, 3)
+  const userSobaDisplayBalance = getFullDisplayBalance(userSoba, 18, 3)
 
   const TooltipComponent = () => (
     <>
@@ -119,47 +119,47 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
 
   const getTicketCostAfterDiscount = useCallback(
     (numberTickets: BigNumber) => {
-      const totalAfterDiscount = priceTicketInCake
+      const totalAfterDiscount = priceTicketInSoba
         .times(numberTickets)
         .times(discountDivisor.plus(1).minus(numberTickets))
         .div(discountDivisor)
       return totalAfterDiscount
     },
-    [discountDivisor, priceTicketInCake],
+    [discountDivisor, priceTicketInSoba],
   )
 
   const getMaxTicketBuyWithDiscount = useCallback(
     (numberTickets: BigNumber) => {
       const costAfterDiscount = getTicketCostAfterDiscount(numberTickets)
-      const costBeforeDiscount = priceTicketInCake.times(numberTickets)
+      const costBeforeDiscount = priceTicketInSoba.times(numberTickets)
       const discountAmount = costBeforeDiscount.minus(costAfterDiscount)
-      const ticketsBoughtWithDiscount = discountAmount.div(priceTicketInCake)
+      const ticketsBoughtWithDiscount = discountAmount.div(priceTicketInSoba)
       const overallTicketBuy = numberTickets.plus(ticketsBoughtWithDiscount)
       return { overallTicketBuy, ticketsBoughtWithDiscount }
     },
-    [getTicketCostAfterDiscount, priceTicketInCake],
+    [getTicketCostAfterDiscount, priceTicketInSoba],
   )
 
   const validateInput = useCallback(
     (inputNumber: BigNumber) => {
       const limitedNumberTickets = limitNumberByMaxTicketsPerBuy(inputNumber)
-      const cakeCostAfterDiscount = getTicketCostAfterDiscount(limitedNumberTickets)
+      const sobaCostAfterDiscount = getTicketCostAfterDiscount(limitedNumberTickets)
 
-      if (cakeCostAfterDiscount.gt(userCake)) {
-        setUserNotEnoughCake(true)
+      if (sobaCostAfterDiscount.gt(userSoba)) {
+        setUserNotEnoughSoba(true)
       } else if (limitedNumberTickets.eq(maxNumberTicketsPerBuyOrClaim)) {
         setMaxTicketPurchaseExceeded(true)
       } else {
-        setUserNotEnoughCake(false)
+        setUserNotEnoughSoba(false)
         setMaxTicketPurchaseExceeded(false)
       }
     },
-    [limitNumberByMaxTicketsPerBuy, getTicketCostAfterDiscount, maxNumberTicketsPerBuyOrClaim, userCake],
+    [limitNumberByMaxTicketsPerBuy, getTicketCostAfterDiscount, maxNumberTicketsPerBuyOrClaim, userSoba],
   )
 
   useEffect(() => {
     const getMaxPossiblePurchase = () => {
-      const maxBalancePurchase = memoisedUserCake.div(priceTicketInCake)
+      const maxBalancePurchase = memoisedUserSoba.div(priceTicketInSoba)
       const limitedMaxPurchase = limitNumberByMaxTicketsPerBuy(maxBalancePurchase)
       let maxPurchase
 
@@ -179,9 +179,9 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
       }
 
       if (hasFetchedBalance && maxPurchase.lt(1)) {
-        setUserNotEnoughCake(true)
+        setUserNotEnoughSoba(true)
       } else {
-        setUserNotEnoughCake(false)
+        setUserNotEnoughSoba(false)
       }
 
       setMaxPossibleTicketPurchase(maxPurchase)
@@ -189,8 +189,8 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     getMaxPossiblePurchase()
   }, [
     maxNumberTicketsPerBuyOrClaim,
-    priceTicketInCake,
-    memoisedUserCake,
+    priceTicketInSoba,
+    memoisedUserSoba,
     limitNumberByMaxTicketsPerBuy,
     getTicketCostAfterDiscount,
     getMaxTicketBuyWithDiscount,
@@ -200,12 +200,12 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   useEffect(() => {
     const numberOfTicketsToBuy = new BigNumber(ticketsToBuy)
     const costAfterDiscount = getTicketCostAfterDiscount(numberOfTicketsToBuy)
-    const costBeforeDiscount = priceTicketInCake.times(numberOfTicketsToBuy)
+    const costBeforeDiscount = priceTicketInSoba.times(numberOfTicketsToBuy)
     const discountBeingApplied = costBeforeDiscount.minus(costAfterDiscount)
     setTicketCostBeforeDiscount(costBeforeDiscount.gt(0) ? getFullDisplayBalance(costBeforeDiscount) : '0')
     setTotalCost(costAfterDiscount.gt(0) ? getFullDisplayBalance(costAfterDiscount) : '0')
     setDiscountValue(discountBeingApplied.gt(0) ? getFullDisplayBalance(discountBeingApplied, 18, 5) : '0')
-  }, [ticketsToBuy, priceTicketInCake, discountDivisor, getTicketCostAfterDiscount])
+  }, [ticketsToBuy, priceTicketInSoba, discountDivisor, getTicketCostAfterDiscount])
 
   const getNumTicketsByPercentage = (percentage: number): number => {
     const percentageOfMaxTickets = maxPossibleTicketPurchase.gt(0)
@@ -230,7 +230,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
 
   const handleNumberButtonClick = (number: number) => {
     setTicketsToBuy(number.toFixed())
-    setUserNotEnoughCake(false)
+    setUserNotEnoughSoba(false)
     setMaxTicketPurchaseExceeded(false)
   }
 
@@ -243,7 +243,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
         try {
-          const response = await cakeContract.allowance(account, lotteryContract.address)
+          const response = await sobaContract.allowance(account, lotteryContract.address)
           const currentAllowance = ethersToBigNumber(response)
           return currentAllowance.gt(0)
         } catch (error) {
@@ -251,7 +251,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
         }
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContract, 'approve', [lotteryContract.address, ethers.constants.MaxUint256])
+        return callWithGasPrice(sobaContract, 'approve', [lotteryContract.address, ethers.constants.MaxUint256])
       },
       onApproveSuccess: async ({ receipt }) => {
         toastSuccess(
@@ -271,7 +271,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
     })
 
   const getErrorMessage = () => {
-    if (userNotEnoughCake) return t('Insufficient SOBA balance')
+    if (userNotEnoughSoba) return t('Insufficient SOBA balance')
     return t('The maximum number of tickets you can buy in one transaction is %maxTickets%', {
       maxTickets: maxNumberTicketsPerBuyOrClaim.toString(),
     })
@@ -288,7 +288,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const disableBuying =
     !isApproved ||
     isConfirmed ||
-    userNotEnoughCake ||
+    userNotEnoughSoba ||
     !ticketsToBuy ||
     new BigNumber(ticketsToBuy).lte(0) ||
     getTicketsForPurchase().length !== parseInt(ticketsToBuy, 10)
@@ -321,18 +321,18 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
         </Flex>
       </Flex>
       <BalanceInput
-        isWarning={account && (userNotEnoughCake || maxTicketPurchaseExceeded)}
+        isWarning={account && (userNotEnoughSoba || maxTicketPurchaseExceeded)}
         placeholder="0"
         value={ticketsToBuy}
         onUserInput={handleInputChange}
         currencyValue={
-          cakePriceBusd.gt(0) &&
-          `~${ticketsToBuy ? getFullDisplayBalance(priceTicketInCake.times(new BigNumber(ticketsToBuy))) : '0.00'} SOBA`
+          sobaPriceBusd.gt(0) &&
+          `~${ticketsToBuy ? getFullDisplayBalance(priceTicketInSoba.times(new BigNumber(ticketsToBuy))) : '0.00'} SOBA`
         }
       />
       <Flex alignItems="center" justifyContent="flex-end" mt="4px" mb="12px">
         <Flex justifyContent="flex-end" flexDirection="column">
-          {account && (userNotEnoughCake || maxTicketPurchaseExceeded) && (
+          {account && (userNotEnoughSoba || maxTicketPurchaseExceeded) && (
             <Text fontSize="12px" color="failure">
               {getErrorMessage()}
             </Text>
@@ -344,7 +344,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
               </Text>
               {hasFetchedBalance ? (
                 <Text fontSize="12px" color="textSubtle">
-                  {userCakeDisplayBalance}
+                  {userSobaDisplayBalance}
                 </Text>
               ) : (
                 <Skeleton width={50} height={12} />
@@ -386,7 +386,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
             {t('Cost')} (SOBA)
           </Text>
           <Text color="textSubtle" fontSize="14px">
-            {priceTicketInCake && getFullDisplayBalance(priceTicketInCake.times(ticketsToBuy || 0))} SOBA
+            {priceTicketInSoba && getFullDisplayBalance(priceTicketInSoba.times(ticketsToBuy || 0))} SOBA
           </Text>
         </Flex>
         <Flex mb="8px" justifyContent="space-between">

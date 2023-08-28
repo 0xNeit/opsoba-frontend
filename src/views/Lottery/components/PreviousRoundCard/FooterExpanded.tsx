@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Flex, Skeleton, Heading, Box, Text } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { LotteryRound, LotteryRoundGraphEntity } from 'state/types'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import { useGetLotteryGraphDataById } from 'state/lottery/hooks'
 import { getGraphLotteries } from 'state/lottery/getLotteriesData'
 import { formatNumber, getBalanceNumber } from 'utils/formatBalance'
@@ -28,7 +28,7 @@ const PreviousRoundCardFooter: React.FC<{ lotteryNodeData: LotteryRound; lottery
   const { t } = useTranslation()
   const [fetchedLotteryGraphData, setFetchedLotteryGraphData] = useState<LotteryRoundGraphEntity>()
   const lotteryGraphDataFromState = useGetLotteryGraphDataById(lotteryId)
-  const cakePriceBusd = usePriceCakeBusd()
+  const sobaPriceBusd = usePriceSobaBusd()
 
   useEffect(() => {
     const getGraphData = async () => {
@@ -42,8 +42,8 @@ const PreviousRoundCardFooter: React.FC<{ lotteryNodeData: LotteryRound; lottery
 
   let prizeInBusd = new BigNumber(NaN)
   if (lotteryNodeData) {
-    const { amountCollectedInCake } = lotteryNodeData
-    prizeInBusd = amountCollectedInCake.times(cakePriceBusd)
+    const { amountCollectedInSoba } = lotteryNodeData
+    prizeInBusd = amountCollectedInSoba.times(sobaPriceBusd)
   }
 
   const getTotalUsers = (): string => {
@@ -75,7 +75,7 @@ const PreviousRoundCardFooter: React.FC<{ lotteryNodeData: LotteryRound; lottery
             fontSize="14px"
             color="textSubtle"
             unit=" SOBA"
-            value={getBalanceNumber(lotteryNodeData?.amountCollectedInCake)}
+            value={getBalanceNumber(lotteryNodeData?.amountCollectedInSoba)}
             decimals={0}
           />
         )}

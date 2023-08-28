@@ -7,22 +7,22 @@ import { getVotingPower } from '../helpers'
 
 interface State {
   verificationHash: string
-  cakeBalance: number
-  cakeVaultBalance: number
-  cakePoolBalance: number
+  sobaBalance: number
+  sobaVaultBalance: number
+  sobaPoolBalance: number
   poolsBalance: number
-  cakeBnbLpBalance: number
+  sobaBnbLpBalance: number
   ifoPoolBalance: number
   total: number
 }
 
 const initialState: State = {
   verificationHash: null,
-  cakeBalance: 0,
-  cakeVaultBalance: 0,
-  cakePoolBalance: 0,
+  sobaBalance: 0,
+  sobaVaultBalance: 0,
+  sobaPoolBalance: 0,
   poolsBalance: 0,
-  cakeBnbLpBalance: 0,
+  sobaBnbLpBalance: 0,
   ifoPoolBalance: 0,
   total: 0,
 }
@@ -41,12 +41,12 @@ const useGetVotingPower = (block?: number, isActive = true): State & { isLoading
         const eligiblePools = await getActivePools(blockNumber)
         const poolAddresses = eligiblePools.map(({ contractAddress }) => getAddress(contractAddress))
         const {
-          cakeBalance,
-          cakeBnbLpBalance,
-          cakePoolBalance,
+          sobaBalance,
+          sobaBnbLpBalance,
+          sobaPoolBalance,
           total,
           poolsBalance,
-          cakeVaultBalance,
+          sobaVaultBalance,
           verificationHash,
           IFOPoolBalance,
         } = await getVotingPower(account, poolAddresses, blockNumber)
@@ -55,11 +55,11 @@ const useGetVotingPower = (block?: number, isActive = true): State & { isLoading
           setVotingPower((prevVotingPower) => ({
             ...prevVotingPower,
             verificationHash,
-            cakeBalance: parseFloat(cakeBalance),
-            cakeBnbLpBalance: parseFloat(cakeBnbLpBalance),
-            cakePoolBalance: parseFloat(cakePoolBalance),
+            sobaBalance: parseFloat(sobaBalance),
+            sobaBnbLpBalance: parseFloat(sobaBnbLpBalance),
+            sobaPoolBalance: parseFloat(sobaPoolBalance),
             poolsBalance: parseFloat(poolsBalance),
-            cakeVaultBalance: parseFloat(cakeVaultBalance),
+            sobaVaultBalance: parseFloat(sobaVaultBalance),
             ifoPoolBalance: IFOPoolBalance ? parseFloat(IFOPoolBalance) : 0,
             total: parseFloat(total),
           }))

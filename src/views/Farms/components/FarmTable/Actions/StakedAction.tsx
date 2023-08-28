@@ -12,7 +12,7 @@ import React, { useCallback, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
-import { useFarmUser, useLpTokenPrice, usePriceCakeBusd } from 'state/farms/hooks'
+import { useFarmUser, useLpTokenPrice, usePriceSobaBusd } from 'state/farms/hooks'
 import styled from 'styled-components'
 import { getAddress } from 'utils/addressHelpers'
 import { getBalanceAmount, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
@@ -57,7 +57,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   const { onUnstake } = useUnstakeFarms(pid)
   const location = useLocation()
   const lpPrice = useLpTokenPrice(lpSymbol)
-  const cakePrice = usePriceCakeBusd()
+  const sobaPrice = usePriceSobaBusd()
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
@@ -143,7 +143,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
       tokenName={lpSymbol}
       multiplier={multiplier}
       addLiquidityUrl={addLiquidityUrl}
-      cakePrice={cakePrice}
+      sobaPrice={sobaPrice}
     />,
   )
   const [onPresentWithdraw] = useModal(

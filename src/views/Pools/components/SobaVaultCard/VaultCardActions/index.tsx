@@ -13,7 +13,7 @@ const InlineText = styled(Text)`
   display: inline;
 `
 
-const CakeVaultCardActions: React.FC<{
+const SobaVaultCardActions: React.FC<{
   pool: DeserializedPool
   accountHasSharesStaked: boolean
   isLoading: boolean
@@ -62,4 +62,4 @@ const CakeVaultCardActions: React.FC<{
   )
 }
 
-export default CakeVaultCardActions
+export default SobaVaultCardActions

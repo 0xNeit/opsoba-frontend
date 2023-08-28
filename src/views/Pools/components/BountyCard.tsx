@@ -16,8 +16,8 @@ import {
 } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import Balance from 'components/Balance'
 import BountyModal from './BountyModal'
 
@@ -32,19 +32,19 @@ const StyledCard = styled(Card)`
 const BountyCard = () => {
   const { t } = useTranslation()
   const {
-    estimatedCakeBountyReward,
+    estimatedSobaBountyReward,
     fees: { callFee },
-  } = useCakeVault()
-  const cakePriceBusd = usePriceCakeBusd()
+  } = useSobaVault()
+  const sobaPriceBusd = usePriceSobaBusd()
 
   const estimatedDollarBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
-  }, [cakePriceBusd, estimatedCakeBountyReward])
+    return new BigNumber(estimatedSobaBountyReward).multipliedBy(sobaPriceBusd)
+  }, [sobaPriceBusd, estimatedSobaBountyReward])
 
   const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
-  const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false
+  const hasFetchedSobaBounty = estimatedSobaBountyReward ? estimatedSobaBountyReward.gte(0) : false
   const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 18) : 0
-  const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
+  const sobaBountyToDisplay = hasFetchedSobaBounty ? getBalanceNumber(estimatedSobaBountyReward, 18) : 0
 
   const TooltipComponent = ({ fee }: { fee: number }) => (
     <>
@@ -85,8 +85,8 @@ const BountyCard = () => {
           <Flex alignItems="center" justifyContent="space-between">
             <Flex flexDirection="column" mr="12px">
               <Heading>
-                {hasFetchedCakeBounty ? (
-                  <Balance fontSize="20px" bold value={cakeBountyToDisplay} decimals={3} />
+                {hasFetchedSobaBounty ? (
+                  <Balance fontSize="20px" bold value={sobaBountyToDisplay} decimals={3} />
                 ) : (
                   <Skeleton height={20} width={96} mb="2px" />
                 )}
@@ -105,7 +105,7 @@ const BountyCard = () => {
               )}
             </Flex>
             <Button
-              disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
+              disabled={!dollarBountyToDisplay || !sobaBountyToDisplay || !callFee}
               onClick={onPresentBountyModal}
               scale="sm"
               id="clickClaimVaultBounty"

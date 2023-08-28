@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { Skeleton, Text, useTooltip, HelpIcon, Flex, Box, useMatchBreakpoints } from 'opsoba-uikit'
 import { DeserializedPool } from 'state/types'
 import Balance from 'components/Balance'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { useTranslation } from 'contexts/Localization'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import { getSobaVaultEarnings } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
 
 interface AutoEarningsCellProps {
@@ -31,19 +31,19 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
   const { earningTokenPrice } = pool
 
   const {
-    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
+    userData: { sobaAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
-  } = useCakeVault()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  } = useSobaVault()
+  const { hasAutoEarnings, autoSobaToDisplay, autoUsdToDisplay } = getSobaVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    sobaAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
   )
 
   const labelText = t('Recent SOBA profit')
-  const earningTokenBalance = autoCakeToDisplay
+  const earningTokenBalance = autoSobaToDisplay
   const hasEarnings = hasAutoEarnings
   const earningTokenDollarBalance = autoUsdToDisplay
 
@@ -53,7 +53,7 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account, user
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
-      <Balance fontSize="16px" value={autoCakeToDisplay} decimals={3} bold unit=" SOBA" />
+      <Balance fontSize="16px" value={autoSobaToDisplay} decimals={3} bold unit=" SOBA" />
       <Balance fontSize="16px" value={autoUsdToDisplay} decimals={2} bold prefix="~$" />
       {t('Earned since your last action')}
       <Text>{dateStringToDisplay}</Text>

@@ -43,12 +43,12 @@ export const earnSectionData: SalesSectionProps = {
     attributes: [
       { src: 'pie', alt: 'Pie chart' },
       { src: 'stonks', alt: 'Stocks chart' },
-      { src: 'folder', alt: 'Folder with cake token' },
+      { src: 'folder', alt: 'Folder with soba token' },
     ],
   },
 }
 
-export const cakeSectionData: SalesSectionProps = {
+export const sobaSectionData: SalesSectionProps = {
   headingText: 'SOBA makes our world go round.',
   bodyText:
     'SOBA token is at the heart of the SobaSwap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
@@ -59,7 +59,7 @@ export const cakeSectionData: SalesSectionProps = {
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.sobaswap.finance/tokenomics/cake',
+    to: 'https://docs.sobaswap.finance/tokenomics/soba',
     text: 'Learn',
     external: true,
   },

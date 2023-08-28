@@ -23,7 +23,7 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
       },
       {
         label: t('SOBA token'),
-        href: 'https://docs.sobaswap.finance/tokenomics/cake',
+        href: 'https://docs.sobaswap.finance/tokenomics/soba',
       },
       {
         label: '—',

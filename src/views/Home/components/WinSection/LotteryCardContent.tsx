@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import { useSlowFresh } from 'hooks/useRefresh'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import Balance from 'components/Balance'
 import styled from 'styled-components'
 import { fetchCurrentLotteryIdAndMaxBuy, fetchLottery } from 'state/lottery/helpers'
@@ -28,14 +28,14 @@ const LotteryCardContent = () => {
   const slowRefresh = useSlowFresh()
   const [lotteryId, setLotteryId] = useState<string>(null)
   const [currentLotteryPrize, setCurrentLotteryPrize] = useState<BigNumber>(null)
-  const cakePriceBusdAsString = usePriceCakeBusd().toString()
+  const sobaPriceBusdAsString = usePriceSobaBusd().toString()
 
-  const cakePrizesText = t('%cakePrizeInUsd% in SOBA prizes this round', { cakePrizeInUsd: cakePriceBusdAsString })
-  const [pretext, prizesThisRound] = cakePrizesText.split(cakePriceBusdAsString)
+  const sobaPrizesText = t('%sobaPrizeInUsd% in SOBA prizes this round', { sobaPrizeInUsd: sobaPriceBusdAsString })
+  const [pretext, prizesThisRound] = sobaPrizesText.split(sobaPriceBusdAsString)
 
-  const cakePriceBusd = useMemo(() => {
-    return new BigNumber(cakePriceBusdAsString)
-  }, [cakePriceBusdAsString])
+  const sobaPriceBusd = useMemo(() => {
+    return new BigNumber(sobaPriceBusdAsString)
+  }, [sobaPriceBusdAsString])
 
   useEffect(() => {
     if (isIntersecting) {
@@ -58,15 +58,15 @@ const LotteryCardContent = () => {
   useEffect(() => {
     // get public data for current lottery
     const fetchCurrentLotteryPrize = async () => {
-      const { amountCollectedInCake } = await fetchLottery(lotteryId)
-      const prizeInBusd = cakePriceBusd.times(amountCollectedInCake)
+      const { amountCollectedInSoba } = await fetchLottery(lotteryId)
+      const prizeInBusd = sobaPriceBusd.times(amountCollectedInSoba)
       setCurrentLotteryPrize(prizeInBusd)
     }
 
     if (lotteryId) {
       fetchCurrentLotteryPrize()
     }
-  }, [lotteryId, slowRefresh, setCurrentLotteryPrize, cakePriceBusd])
+  }, [lotteryId, slowRefresh, setCurrentLotteryPrize, sobaPriceBusd])
 
   return (
     <>

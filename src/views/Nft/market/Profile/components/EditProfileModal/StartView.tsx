@@ -4,8 +4,8 @@ import { useWeb3React } from '@web3-react/core'
 import { Button, Flex, Text, InjectedModalProps } from 'opsoba-uikit'
 import { formatBigNumber } from 'utils/formatBalance'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
-import { useCake } from 'hooks/useContract'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useSoba } from 'hooks/useContract'
+import { useGetSobaBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import useGetProfileCosts from 'views/Nft/market/Profile/hooks/useGetProfileCosts'
 import { FetchStatus } from 'config/constants/types'
@@ -43,16 +43,16 @@ const AvatarWrapper = styled.div`
 const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemove, onDismiss }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const { profile } = useProfile()
-  const { balance: cakeBalance, fetchStatus } = useGetCakeBalance()
+  const { balance: sobaBalance, fetchStatus } = useGetSobaBalance()
   const {
-    costs: { numberCakeToUpdate, numberCakeToReactivate },
+    costs: { numberSobaToUpdate, numberSobaToReactivate },
     isLoading: isProfileCostsLoading,
   } = useGetProfileCosts()
   const [needsApproval, setNeedsApproval] = useState(null)
-  const minimumCakeRequired = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
-  const hasMinimumCakeRequired = fetchStatus === FetchStatus.Fetched && cakeBalance.gte(minimumCakeRequired)
+  const minimumSobaRequired = profile.isActive ? numberSobaToUpdate : numberSobaToReactivate
+  const hasMinimumSobaRequired = fetchStatus === FetchStatus.Fetched && sobaBalance.gte(minimumSobaRequired)
 
   /**
    * Check if the wallet has the required SOBA allowance to change their profile pic or reactivate
@@ -60,14 +60,14 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
    */
   useEffect(() => {
     const checkApprovalStatus = async () => {
-      const response = await cakeContract.allowance(account, getPancakeProfileAddress())
-      setNeedsApproval(response.lt(minimumCakeRequired))
+      const response = await sobaContract.allowance(account, getPancakeProfileAddress())
+      setNeedsApproval(response.lt(minimumSobaRequired))
     }
 
     if (account && !isProfileCostsLoading) {
       checkApprovalStatus()
     }
-  }, [account, minimumCakeRequired, setNeedsApproval, cakeContract, isProfileCostsLoading])
+  }, [account, minimumSobaRequired, setNeedsApproval, sobaContract, isProfileCostsLoading])
 
   if (!profile) {
     return null
@@ -81,8 +81,8 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
       <Flex alignItems="center" style={{ height: '48px' }} justifyContent="center">
         <Text as="p" color="failure">
           {!isProfileCostsLoading &&
-            !hasMinimumCakeRequired &&
-            t('%minimum% SOBA required to change profile pic', { minimum: formatBigNumber(minimumCakeRequired) })}
+            !hasMinimumSobaRequired &&
+            t('%minimum% SOBA required to change profile pic', { minimum: formatBigNumber(minimumSobaRequired) })}
         </Text>
       </Flex>
       {profile.isActive ? (
@@ -91,7 +91,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
             width="100%"
             mb="8px"
             onClick={needsApproval === true ? goToApprove : goToChange}
-            disabled={isProfileCostsLoading || !hasMinimumCakeRequired || needsApproval === null}
+            disabled={isProfileCostsLoading || !hasMinimumSobaRequired || needsApproval === null}
           >
             {t('Change Profile Pic')}
           </Button>
@@ -104,7 +104,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
           width="100%"
           mb="8px"
           onClick={needsApproval === true ? goToApprove : goToChange}
-          disabled={isProfileCostsLoading || !hasMinimumCakeRequired || needsApproval === null}
+          disabled={isProfileCostsLoading || !hasMinimumSobaRequired || needsApproval === null}
         >
           {t('Reactivate Profile')}
         </Button>

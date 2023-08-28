@@ -24,7 +24,7 @@ import { SaleStatusEnum } from 'views/PancakeSquad/types'
 interface BuyTicketsModalProps extends ModalProps {
   buyTicketCallBack: ({ ticketsNumber }: { ticketsNumber: number }) => void
   saleStatus: SaleStatusEnum
-  cakeBalance: BigNumber
+  sobaBalance: BigNumber
   pricePerTicket: BigNumber
   maxPerAddress: number
   maxPerTransaction: number
@@ -41,7 +41,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({
   title,
   headerBackground,
   saleStatus,
-  cakeBalance,
+  sobaBalance,
   pricePerTicket,
   maxPerAddress,
   maxPerTransaction,
@@ -56,8 +56,8 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({
   const remainingTickets = isPreSale
     ? numberTicketsForGen0
     : maxPerAddress - (numberTicketsOfUser - numberTicketsUsedForGen0)
-  const isCakeBalanceInsufficient = cakeBalance.lt(pricePerTicket)
-  const maxBuyTickets = Math.min(cakeBalance.div(pricePerTicket).toNumber(), remainingTickets)
+  const isSobaBalanceInsufficient = sobaBalance.lt(pricePerTicket)
+  const maxBuyTickets = Math.min(sobaBalance.div(pricePerTicket).toNumber(), remainingTickets)
   const totalCost = pricePerTicket.mul(BigNumber.from(ticketsNumber))
   const maxBuyButtons =
     saleStatus === SaleStatusEnum.Presale
@@ -103,8 +103,8 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({
               <Text font-size="14px" color="textSubtle">
                 {t('Your SOBA Balance')}
               </Text>
-              <Text font-size="14px" color={isCakeBalanceInsufficient ? 'failure' : 'text'}>
-                {formatBigNumber(cakeBalance, 3)} SOBA
+              <Text font-size="14px" color={isSobaBalanceInsufficient ? 'failure' : 'text'}>
+                {formatBigNumber(sobaBalance, 3)} SOBA
               </Text>
             </Flex>
             <Flex
@@ -157,11 +157,11 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({
           </Flex>
           <Box px="16px">
             <Button
-              disabled={isCakeBalanceInsufficient}
+              disabled={isSobaBalanceInsufficient}
               onClick={() => buyTicketCallBack({ ticketsNumber })}
               width="100%"
             >
-              {isCakeBalanceInsufficient ? t('Insufficient Balance') : t('Confirm')}
+              {isSobaBalanceInsufficient ? t('Insufficient Balance') : t('Confirm')}
             </Button>
           </Box>
         </Flex>

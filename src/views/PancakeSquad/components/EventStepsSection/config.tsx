@@ -9,7 +9,7 @@ import ReadyText from '../Header/ReadyText'
 import { EventStepsType } from './types'
 import { getStepperStatus } from './utils'
 
-const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, theme, cakeBalance }: EventStepsType) => {
+const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, theme, sobaBalance }: EventStepsType) => {
   const { maxPerAddress, maxPerTransaction, maxSupply, pricePerTicket } = eventInfos || {}
   const {
     canClaimForGen0,
@@ -96,7 +96,7 @@ const stepsConfigBuilder = ({ t, userInfos, eventInfos, userStatus, account, the
               maxPerAddress={maxPerAddress}
               numberTicketsOfUser={numberTicketsOfUser}
               numberTicketsUsedForGen0={numberTicketsUsedForGen0}
-              cakeBalance={cakeBalance}
+              sobaBalance={sobaBalance}
               maxPerTransaction={maxPerTransaction}
               numberTicketsForGen0={numberTicketsForGen0}
               pricePerTicket={pricePerTicket}

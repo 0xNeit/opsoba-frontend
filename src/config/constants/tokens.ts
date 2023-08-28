@@ -21,7 +21,7 @@ export const mainnetTokens = defineTokens({
   ),
   // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
   bnb: new Token(MAINNET, '0x4200000000000000000000000000000000000006', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
-  cake: new Token(
+  soba: new Token(
     MAINNET,
     '0x5643b96d07e49DECc24D8b559a00d63498AEa47B',
     18,
@@ -98,7 +98,7 @@ export const mainnetTokens = defineTokens({
     '0xdB8D30b74bf098aF214e862C90E647bbB1fcC58c',
     18,
     'BABYSOBA',
-    'Baby Cake Token',
+    'Baby Soba Token',
     'https://babycake.app/',
   ),
   bmon: new Token(
@@ -1732,7 +1732,7 @@ export const testnetTokens = defineTokens({
     'Wrapped BNB',
     'https://www.binance.com/',
   ),
-  cake: new Token(
+  soba: new Token(
     TESTNET,
     '0x5643b96d07e49DECc24D8b559a00d63498AEa47B',
     18,

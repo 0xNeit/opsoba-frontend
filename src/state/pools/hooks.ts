@@ -8,9 +8,9 @@ import { useFastFresh, useSlowFresh } from 'hooks/useRefresh'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
-  fetchCakeVaultUserData,
-  fetchCakeVaultFees,
+  fetchSobaVaultPublicData,
+  fetchSobaVaultUserData,
+  fetchSobaVaultFees,
   fetchPoolsStakingLimitsAsync,
 } from '.'
 import { State, DeserializedPool } from '../types'
@@ -49,48 +49,48 @@ export const usePools = (): { pools: DeserializedPool[]; userDataLoaded: boolean
   return { pools: pools.map(transformPool), userDataLoaded }
 }
 
-export const useFetchCakeVault = () => {
+export const useFetchSobaVault = () => {
   const { account } = useWeb3React()
   const fastRefresh = useFastFresh()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchCakeVaultPublicData())
+    dispatch(fetchSobaVaultPublicData())
   }, [dispatch, fastRefresh])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultUserData({ account }))
+    dispatch(fetchSobaVaultUserData({ account }))
   }, [dispatch, fastRefresh, account])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultFees())
+    dispatch(fetchSobaVaultFees())
   }, [dispatch])
 }
 
-export const useCakeVault = () => {
+export const useSobaVault = () => {
   const {
     totalShares: totalSharesAsString,
     pricePerFullShare: pricePerFullShareAsString,
-    totalCakeInVault: totalCakeInVaultAsString,
-    estimatedCakeBountyReward: estimatedCakeBountyRewardAsString,
-    totalPendingCakeHarvest: totalPendingCakeHarvestAsString,
+    totalSobaInVault: totalSobaInVaultAsString,
+    estimatedSobaBountyReward: estimatedSobaBountyRewardAsString,
+    totalPendingSobaHarvest: totalPendingSobaHarvestAsString,
     fees: { performanceFee, callFee, withdrawalFee, withdrawalFeePeriod },
     userData: {
       isLoading,
       userShares: userSharesAsString,
-      cakeAtLastUserAction: cakeAtLastUserActionAsString,
+      sobaAtLastUserAction: sobaAtLastUserActionAsString,
       lastDepositedTime,
       lastUserActionTime,
     },
-  } = useSelector((state: State) => state.pools.cakeVault)
+  } = useSelector((state: State) => state.pools.sobaVault)
 
-  const estimatedCakeBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyRewardAsString)
-  }, [estimatedCakeBountyRewardAsString])
+  const estimatedSobaBountyReward = useMemo(() => {
+    return new BigNumber(estimatedSobaBountyRewardAsString)
+  }, [estimatedSobaBountyRewardAsString])
 
-  const totalPendingCakeHarvest = useMemo(() => {
-    return new BigNumber(totalPendingCakeHarvestAsString)
-  }, [totalPendingCakeHarvestAsString])
+  const totalPendingSobaHarvest = useMemo(() => {
+    return new BigNumber(totalPendingSobaHarvestAsString)
+  }, [totalPendingSobaHarvestAsString])
 
   const totalShares = useMemo(() => {
     return new BigNumber(totalSharesAsString)
@@ -100,24 +100,24 @@ export const useCakeVault = () => {
     return new BigNumber(pricePerFullShareAsString)
   }, [pricePerFullShareAsString])
 
-  const totalCakeInVault = useMemo(() => {
-    return new BigNumber(totalCakeInVaultAsString)
-  }, [totalCakeInVaultAsString])
+  const totalSobaInVault = useMemo(() => {
+    return new BigNumber(totalSobaInVaultAsString)
+  }, [totalSobaInVaultAsString])
 
   const userShares = useMemo(() => {
     return new BigNumber(userSharesAsString)
   }, [userSharesAsString])
 
-  const cakeAtLastUserAction = useMemo(() => {
-    return new BigNumber(cakeAtLastUserActionAsString)
-  }, [cakeAtLastUserActionAsString])
+  const sobaAtLastUserAction = useMemo(() => {
+    return new BigNumber(sobaAtLastUserActionAsString)
+  }, [sobaAtLastUserActionAsString])
 
   return {
     totalShares,
     pricePerFullShare,
-    totalCakeInVault,
-    estimatedCakeBountyReward,
-    totalPendingCakeHarvest,
+    totalSobaInVault,
+    estimatedSobaBountyReward,
+    totalPendingSobaHarvest,
     fees: {
       performanceFee,
       callFee,
@@ -127,7 +127,7 @@ export const useCakeVault = () => {
     userData: {
       isLoading,
       userShares,
-      cakeAtLastUserAction,
+      sobaAtLastUserAction,
       lastDepositedTime,
       lastUserActionTime,
     },

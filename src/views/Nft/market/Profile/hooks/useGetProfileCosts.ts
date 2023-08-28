@@ -10,27 +10,27 @@ const useGetProfileCosts = () => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)
   const [costs, setCosts] = useState({
-    numberCakeToReactivate: ethers.BigNumber.from(0),
-    numberCakeToRegister: ethers.BigNumber.from(0),
-    numberCakeToUpdate: ethers.BigNumber.from(0),
+    numberSobaToReactivate: ethers.BigNumber.from(0),
+    numberSobaToRegister: ethers.BigNumber.from(0),
+    numberSobaToUpdate: ethers.BigNumber.from(0),
   })
   const { toastError } = useToast()
 
   useEffect(() => {
     const fetchCosts = async () => {
       try {
-        const calls = ['numberCakeToReactivate', 'numberCakeToRegister', 'numberCakeToUpdate'].map((method) => ({
+        const calls = ['numberSobaToReactivate', 'numberSobaToRegister', 'numberSobaToUpdate'].map((method) => ({
           address: getPancakeProfileAddress(),
           name: method,
         }))
-        const [[numberCakeToReactivate], [numberCakeToRegister], [numberCakeToUpdate]] = await multicallv2<
+        const [[numberSobaToReactivate], [numberSobaToRegister], [numberSobaToUpdate]] = await multicallv2<
           [[ethers.BigNumber], [ethers.BigNumber], [ethers.BigNumber]]
         >(profileABI, calls)
 
         setCosts({
-          numberCakeToReactivate,
-          numberCakeToRegister,
-          numberCakeToUpdate,
+          numberSobaToReactivate,
+          numberSobaToRegister,
+          numberSobaToUpdate,
         })
         setIsLoading(false)
       } catch (error) {

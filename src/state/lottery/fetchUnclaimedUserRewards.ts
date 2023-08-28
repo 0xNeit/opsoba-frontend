@@ -18,9 +18,9 @@ interface RoundDataAndUserTickets {
 
 const lotteryAddress = getLotteryV2Address()
 
-const fetchCakeRewardsForTickets = async (
+const fetchSobaRewardsForTickets = async (
   winningTickets: LotteryTicket[],
-): Promise<{ ticketsWithUnclaimedRewards: LotteryTicket[]; cakeTotal: BigNumber }> => {
+): Promise<{ ticketsWithUnclaimedRewards: LotteryTicket[]; sobaTotal: BigNumber }> => {
   const calls = winningTickets.map((winningTicket) => {
     const { roundId, id, rewardBracket } = winningTicket
     return {
@@ -31,19 +31,19 @@ const fetchCakeRewardsForTickets = async (
   })
 
   try {
-    const cakeRewards = await multicallv2<any>(lotteryV2Abi, calls)
+    const sobaRewards = await multicallv2<any>(lotteryV2Abi, calls)
 
-    const cakeTotal = cakeRewards.reduce((accum: BigNumber, cakeReward: ethers.BigNumber[]) => {
-      return accum.plus(new BigNumber(cakeReward[0].toString()))
+    const sobaTotal = sobaRewards.reduce((accum: BigNumber, sobaReward: ethers.BigNumber[]) => {
+      return accum.plus(new BigNumber(sobaReward[0].toString()))
     }, BIG_ZERO)
 
     const ticketsWithUnclaimedRewards = winningTickets.map((winningTicket, index) => {
-      return { ...winningTicket, cakeReward: cakeRewards[index] }
+      return { ...winningTicket, sobaReward: sobaRewards[index] }
     })
-    return { ticketsWithUnclaimedRewards, cakeTotal }
+    return { ticketsWithUnclaimedRewards, sobaTotal }
   } catch (error) {
     console.error(error)
-    return { ticketsWithUnclaimedRewards: null, cakeTotal: null }
+    return { ticketsWithUnclaimedRewards: null, sobaTotal: null }
   }
 }
 
@@ -93,12 +93,12 @@ export const getWinningTickets = async (
   })
 
   if (unclaimedWinningTickets.length > 0) {
-    const { ticketsWithUnclaimedRewards, cakeTotal } = await fetchCakeRewardsForTickets(unclaimedWinningTickets)
-    return { ticketsWithUnclaimedRewards, allWinningTickets, cakeTotal, roundId }
+    const { ticketsWithUnclaimedRewards, sobaTotal } = await fetchSobaRewardsForTickets(unclaimedWinningTickets)
+    return { ticketsWithUnclaimedRewards, allWinningTickets, sobaTotal, roundId }
   }
 
   if (allWinningTickets.length > 0) {
-    return { ticketsWithUnclaimedRewards: null, allWinningTickets, cakeTotal: null, roundId }
+    return { ticketsWithUnclaimedRewards: null, allWinningTickets, sobaTotal: null, roundId }
   }
 
   return null

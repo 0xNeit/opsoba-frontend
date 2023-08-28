@@ -90,7 +90,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
-  const [isChartExpanded, setIsChartExpanded] = useState(false)
+  const [isChartExpanded] = useState(false)
   const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
   const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
 
@@ -127,12 +127,6 @@ export default function Swap({ history }: RouteComponentProps) {
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
   const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
-
-  // Price data
-  const {
-    [Field.INPUT]: { currencyId: inputCurrencyId },
-    [Field.OUTPUT]: { currencyId: outputCurrencyId },
-  } = useSwapState()
 
   const {
     wrapType,

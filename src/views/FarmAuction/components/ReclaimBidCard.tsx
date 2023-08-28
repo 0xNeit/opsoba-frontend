@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Text, Heading, Card, CardHeader, CardBody, Flex } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useFarmAuctionContract } from 'hooks/useContract'
+import { useSoba, useFarmAuctionContract } from 'hooks/useContract'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -27,7 +27,7 @@ const ReclaimBidCard: React.FC = () => {
 
   const [reclaimableAuction, checkForNextReclaimableAuction] = useReclaimAuctionBid()
 
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const farmAuctionContract = useFarmAuctionContract()
 
   const { toastSuccess } = useToast()
@@ -35,7 +35,7 @@ const ReclaimBidCard: React.FC = () => {
   const { isApproving, isApproved, isConfirming, handleApprove, handleConfirm } = useApproveConfirmTransaction({
     onRequiresApproval: async () => {
       try {
-        const response = await cakeContract.allowance(account, farmAuctionContract.address)
+        const response = await sobaContract.allowance(account, farmAuctionContract.address)
         const currentAllowance = ethersToBigNumber(response)
         return currentAllowance.gt(0)
       } catch (error) {
@@ -43,7 +43,7 @@ const ReclaimBidCard: React.FC = () => {
       }
     },
     onApprove: () => {
-      return callWithGasPrice(cakeContract, 'approve', [farmAuctionContract.address, ethers.constants.MaxUint256])
+      return callWithGasPrice(sobaContract, 'approve', [farmAuctionContract.address, ethers.constants.MaxUint256])
     },
     onApproveSuccess: async ({ receipt }) => {
       toastSuccess(

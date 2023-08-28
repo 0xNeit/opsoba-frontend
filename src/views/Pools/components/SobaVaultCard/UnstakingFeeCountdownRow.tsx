@@ -3,7 +3,7 @@ import { Flex, Text, TooltipText, useTooltip } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import useWithdrawalFeeTimer from 'views/Pools/hooks/useWithdrawalFeeTimer'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
 interface UnstakingFeeCountdownRowProps {
@@ -16,7 +16,7 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
   const {
     userData: { lastDepositedTime, userShares },
     fees: { withdrawalFee, withdrawalFeePeriod },
-  } = useCakeVault()
+  } = useSobaVault()
   const feeAsDecimal = withdrawalFee / 100 || '-'
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>

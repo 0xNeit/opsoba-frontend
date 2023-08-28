@@ -20,7 +20,7 @@ import { useWeb3React } from '@web3-react/core'
 import { formatUnits } from '@ethersproject/units'
 import { API_PROFILE } from 'config/constants/endpoints'
 import useToast from 'hooks/useToast'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useGetSobaBalance } from 'hooks/useTokenBalance'
 import { signMessage } from 'utils/web3React'
 import fetchWithTimeout from 'utils/fetchWithTimeout'
 import useWeb3Provider from 'hooks/useActiveWeb3React'
@@ -59,7 +59,7 @@ const Indicator = styled(Flex)`
 
 const UserName: React.FC = () => {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
-  const { teamId, selectedNft, userName, actions, minimumCakeRequired, allowance } = useProfileCreation()
+  const { teamId, selectedNft, userName, actions, minimumSobaRequired, allowance } = useProfileCreation()
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { toastError } = useToast()
@@ -69,15 +69,15 @@ const UserName: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
   const fetchAbortSignal = useRef<AbortController>(null)
-  const { balance: cakeBalance, fetchStatus } = useGetCakeBalance()
-  const hasMinimumCakeRequired = fetchStatus === FetchStatus.Fetched && cakeBalance.gte(REGISTER_COST)
+  const { balance: sobaBalance, fetchStatus } = useGetSobaBalance()
+  const hasMinimumSobaRequired = fetchStatus === FetchStatus.Fetched && sobaBalance.gte(REGISTER_COST)
   const [onPresentConfirmProfileCreation] = useModal(
     <ConfirmProfileCreationModal
       userName={userName}
       selectedNft={selectedNft}
       account={account}
       teamId={teamId}
-      minimumCakeRequired={minimumCakeRequired}
+      minimumSobaRequired={minimumSobaRequired}
       allowance={allowance}
     />,
     false,
@@ -268,7 +268,7 @@ const UserName: React.FC = () => {
       >
         {t('Complete Profile')}
       </Button>
-      {!hasMinimumCakeRequired && (
+      {!hasMinimumSobaRequired && (
         <Text color="failure" mt="16px">
           {t('A minimum of %num% SOBA is required', { num: formatUnits(REGISTER_COST) })}
         </Text>

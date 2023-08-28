@@ -37,7 +37,7 @@ export const generateMetaData = () => {
   return {
     plugins: {},
     network: 204,
-    strategies: [{ name: 'cake', params: { symbol: 'SOBA', address: tokens.cake.address, decimals: 18 } }],
+    strategies: [{ name: 'soba', params: { symbol: 'SOBA', address: tokens.soba.address, decimals: 18 } }],
   }
 }
 

@@ -4,7 +4,7 @@ import { Token } from 'opsoba-sdk'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import { TokenPairImage } from 'components/TokenImage'
-import CakeVaultTokenPairImage from '../CakeVaultCard/CakeVaultTokenPairImage'
+import SobaVaultTokenPairImage from '../SobaVaultCard/SobaVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
@@ -20,7 +20,7 @@ const StyledCardHeader: React.FC<{
   isStaking?: boolean
 }> = ({ earningToken, stakingToken, isFinished = false, isAutoVault = false, isStaking = false }) => {
   const { t } = useTranslation()
-  const isCakePool = earningToken.symbol === 'SOBA' && stakingToken.symbol === 'SOBA'
+  const isSobaPool = earningToken.symbol === 'SOBA' && stakingToken.symbol === 'SOBA'
   const background = isStaking ? 'bubblegum' : 'cardHeader'
 
   const getHeadingPrefix = () => {
@@ -28,8 +28,8 @@ const StyledCardHeader: React.FC<{
       // vault
       return t('Auto')
     }
-    if (isCakePool) {
-      // manual cake
+    if (isSobaPool) {
+      // manual soba
       return t('Manual')
     }
     // all other pools
@@ -40,7 +40,7 @@ const StyledCardHeader: React.FC<{
     if (isAutoVault) {
       return t('Automatic restaking')
     }
-    if (isCakePool) {
+    if (isSobaPool) {
       return t('Earn SOBA, stake SOBA')
     }
     return t('Stake %symbol%', { symbol: stakingToken.symbol })
@@ -56,7 +56,7 @@ const StyledCardHeader: React.FC<{
           <Text color={isFinished ? 'textDisabled' : 'textSubtle'}>{getSubHeading()}</Text>
         </Flex>
         {isAutoVault ? (
-          <CakeVaultTokenPairImage width={64} height={64} />
+          <SobaVaultTokenPairImage width={64} height={64} />
         ) : (
           <TokenPairImage primaryToken={earningToken} secondaryToken={stakingToken} width={64} height={64} />
         )}

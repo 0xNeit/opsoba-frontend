@@ -16,7 +16,7 @@ export interface State {
     collectionAddress: string
   }
   userName: string
-  minimumCakeRequired: ethers.BigNumber
+  minimumSobaRequired: ethers.BigNumber
   allowance: ethers.BigNumber
 }
 

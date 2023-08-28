@@ -5,36 +5,36 @@ import { useTranslation } from 'contexts/Localization'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import tokens from 'config/constants/tokens'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { DeserializedPool } from 'state/types'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToSoba } from 'views/Pools/helpers'
 import AprRow from '../PoolCard/AprRow'
 import { StyledCard } from '../PoolCard/StyledCard'
 import CardFooter from '../PoolCard/CardFooter'
 import StyledCardHeader from '../PoolCard/StyledCardHeader'
 import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentCakeProfitRow from './RecentCakeProfitRow'
+import RecentSobaProfitRow from './RecentSobaProfitRow'
 
 const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
   min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
 `
 
-interface CakeVaultProps {
+interface SobaVaultProps {
   pool: DeserializedPool
   showStakedOnly: boolean
 }
 
-const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
+const SobaVaultCard: React.FC<SobaVaultProps> = ({ pool, showStakedOnly }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const {
     userData: { userShares, isLoading: isVaultUserDataLoading },
     fees: { performanceFee },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useSobaVault()
 
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
+  const { sobaAsBigNumber } = convertSharesToSoba(userShares, pricePerFullShare)
 
   const accountHasSharesStaked = userShares && userShares.gt(0)
   const isLoading = !pool.userData || isVaultUserDataLoading
@@ -49,13 +49,13 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
       <StyledCardHeader
         isStaking={accountHasSharesStaked}
         isAutoVault
-        earningToken={tokens.cake}
-        stakingToken={tokens.cake}
+        earningToken={tokens.soba}
+        stakingToken={tokens.soba}
       />
       <StyledCardBody isLoading={isLoading}>
-        <AprRow pool={pool} stakedBalance={cakeAsBigNumber} performanceFee={performanceFeeAsDecimal} />
+        <AprRow pool={pool} stakedBalance={sobaAsBigNumber} performanceFee={performanceFeeAsDecimal} />
         <Box mt="24px">
-          <RecentCakeProfitRow />
+          <RecentSobaProfitRow />
         </Box>
         <Box mt="8px">
           <UnstakingFeeCountdownRow />
@@ -83,4 +83,4 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
   )
 }
 
-export default CakeVaultCard
+export default SobaVaultCard

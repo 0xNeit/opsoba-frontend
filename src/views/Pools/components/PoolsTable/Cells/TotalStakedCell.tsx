@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import BigNumber from 'bignumber.js'
 import Balance from 'components/Balance'
 import { DeserializedPool } from 'state/types'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BaseCell, { CellContent } from './BaseCell'
 
@@ -20,20 +20,20 @@ const StyledCell = styled(BaseCell)`
 const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, isAutoVault } = pool
-  const { totalCakeInVault } = useCakeVault()
+  const { totalSobaInVault } = useSobaVault()
 
-  const isManualCakePool = sousId === 0
+  const isManualSobaPool = sousId === 0
 
   const totalStakedBalance = useMemo(() => {
     if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalSobaInVault, stakingToken.decimals)
     }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
+    if (isManualSobaPool) {
+      const manualSobaTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalSobaInVault)
+      return getBalanceNumber(manualSobaTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
-  }, [isAutoVault, totalCakeInVault, isManualCakePool, totalStaked, stakingToken.decimals])
+  }, [isAutoVault, totalSobaInVault, isManualSobaPool, totalStaked, stakingToken.decimals])
 
   return (
     <StyledCell role="cell">

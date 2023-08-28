@@ -1,14 +1,14 @@
 import React from 'react'
 import { Text, Flex, TooltipText, useTooltip, Skeleton, Heading } from 'opsoba-uikit'
 import { useWeb3React } from '@web3-react/core'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import { getSobaVaultEarnings } from 'views/Pools/helpers'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { DeserializedPool } from 'state/types'
 
 import { ActionContainer, ActionTitles, ActionContent } from './styles'
-import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
+import UnstakingFeeCountdownRow from '../../SobaVaultCard/UnstakingFeeCountdownRow'
 
 interface AutoHarvestActionProps extends DeserializedPool {
   userDataLoaded: boolean
@@ -19,19 +19,19 @@ const AutoHarvestAction: React.FunctionComponent<AutoHarvestActionProps> = ({ us
   const { account } = useWeb3React()
 
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { sobaAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
-  } = useCakeVault()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  } = useSobaVault()
+  const { hasAutoEarnings, autoSobaToDisplay, autoUsdToDisplay } = getSobaVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    sobaAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
   )
 
-  const earningTokenBalance = autoCakeToDisplay
+  const earningTokenBalance = autoSobaToDisplay
   const earningTokenDollarBalance = autoUsdToDisplay
   const hasEarnings = hasAutoEarnings
 

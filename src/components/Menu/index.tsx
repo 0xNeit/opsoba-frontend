@@ -4,7 +4,7 @@ import { Menu as UikitMenu } from 'opsoba-uikit'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import { Link } from 'react-router-dom'
 import config from './config/config'
 import UserMenu from './UserMenu'
@@ -14,7 +14,7 @@ import { footerLinks } from './config/footerConfig'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
-  const cakePriceUsd = usePriceCakeBusd()
+  const sobaPriceUsd = usePriceSobaBusd()
   const { currentLanguage, setLanguage, t } = useTranslation()
   const { pathname } = useLocation()
   // const [showPhishingWarningBanner] = usePhishingBannerManager()
@@ -35,13 +35,13 @@ const Menu = (props) => {
       currentLang={currentLanguage.code}
       langs={languageList}
       setLang={setLanguage}
-      cakePriceUsd={cakePriceUsd.toNumber()}
+      cakePriceUsd={sobaPriceUsd.toNumber()}
       links={config(t)}
       subLinks={activeMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
       footerLinks={footerLinks(t)}
       activeItem={activeMenuItem?.href}
       activeSubItem={activeSubMenuItem?.href}
-      buyCakeLabel={t('Buy SOBA')}
+      buySobaLabel={t('Buy SOBA')}
       {...props}
     />
   )

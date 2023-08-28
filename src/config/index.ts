@@ -16,11 +16,11 @@ export const BASE_BSC_SCAN_URLS = {
 
 // SOBA_PER_BLOCK details
 // 40 SOBA is minted per block
-// 20 SOBA per block is sent to Burn pool (A farm just for burning cake)
+// 20 SOBA per block is sent to Burn pool (A farm just for burning soba)
 // 10 SOBA per block goes to SOBA syrup pool
 // 9 SOBA per block goes to Yield farms and lottery
 // SOBA_PER_BLOCK in config/index.ts = 40 as we only change the amount sent to the burn pool which is effectively a farm.
-// SOBA/Block in src/views/Home/components/CakeDataRow.tsx = 15 (40 - Amount sent to burn pool)
+// SOBA/Block in src/views/Home/components/SobaDataRow.tsx = 15 (40 - Amount sent to burn pool)
 export const SOBA_PER_BLOCK = 15
 export const BLOCKS_PER_YEAR = (60 / BSC_BLOCK_TIME) * 60 * 24 * 365 // 10512000
 export const SOBA_PER_YEAR = SOBA_PER_BLOCK * BLOCKS_PER_YEAR

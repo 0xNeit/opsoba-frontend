@@ -14,8 +14,8 @@ import {
   useFetchPublicPoolsData,
   usePools,
   useFetchUserPools,
-  useFetchCakeVault,
-  useCakeVault,
+  useFetchSobaVault,
+  useSobaVault,
 } from 'state/pools/hooks'
 import { usePollFarmsPublicData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
@@ -29,12 +29,12 @@ import { useUserPoolStakedOnly, useUserPoolsViewMode } from 'state/user/hooks'
 import { ViewMode } from 'state/user/actions'
 import Loading from 'components/Loading'
 import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
+import SobaVaultCard from './components/SobaVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
 import PoolsTable from './components/PoolsTable/PoolsTable'
-import { getAprData, getCakeVaultEarnings } from './helpers'
+import { getAprData, getSobaVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -97,18 +97,18 @@ const Pools: React.FC = () => {
   const [sortOption, setSortOption] = useState('hot')
   const chosenPoolsLength = useRef(0)
   const {
-    userData: { cakeAtLastUserAction, userShares },
+    userData: { sobaAtLastUserAction, userShares },
     fees: { performanceFee },
     pricePerFullShare,
-    totalCakeInVault,
-  } = useCakeVault()
+    totalSobaInVault,
+  } = useSobaVault()
   const accountHasVaultShares = userShares && userShares.gt(0)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   const pools = useMemo(() => {
-    const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
-    const cakeAutoVault = { ...cakePool, isAutoVault: true }
-    return [cakeAutoVault, ...poolsWithoutAutoVault]
+    const sobaPool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
+    const sobaAutoVault = { ...sobaPool, isAutoVault: true }
+    return [sobaAutoVault, ...poolsWithoutAutoVault]
   }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
@@ -136,7 +136,7 @@ const Pools: React.FC = () => {
   const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsPublicData()
-  useFetchCakeVault()
+  useFetchSobaVault()
   useFetchPublicPoolsData()
   useFetchUserPools(account)
 
@@ -178,9 +178,9 @@ const Pools: React.FC = () => {
               return 0
             }
             return pool.isAutoVault
-              ? getCakeVaultEarnings(
+              ? getSobaVaultEarnings(
                   account,
-                  cakeAtLastUserAction,
+                  sobaAtLastUserAction,
                   userShares,
                   pricePerFullShare,
                   pool.earningTokenPrice,
@@ -195,18 +195,18 @@ const Pools: React.FC = () => {
           (pool: DeserializedPool) => {
             let totalStaked = Number.NaN
             if (pool.isAutoVault) {
-              if (pool.stakingTokenPrice && totalCakeInVault.isFinite()) {
+              if (pool.stakingTokenPrice && totalSobaInVault.isFinite()) {
                 totalStaked =
-                  +formatUnits(ethers.BigNumber.from(totalCakeInVault.toString()), pool.stakingToken.decimals) *
+                  +formatUnits(ethers.BigNumber.from(totalSobaInVault.toString()), pool.stakingToken.decimals) *
                   pool.stakingTokenPrice
               }
             } else if (pool.sousId === 0) {
-              if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice && totalCakeInVault.isFinite()) {
-                const manualCakeTotalMinusAutoVault = ethers.BigNumber.from(pool.totalStaked.toString()).sub(
-                  totalCakeInVault.toString(),
+              if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice && totalSobaInVault.isFinite()) {
+                const manualSobaTotalMinusAutoVault = ethers.BigNumber.from(pool.totalStaked.toString()).sub(
+                  totalSobaInVault.toString(),
                 )
                 totalStaked =
-                  +formatUnits(manualCakeTotalMinusAutoVault, pool.stakingToken.decimals) * pool.stakingTokenPrice
+                  +formatUnits(manualSobaTotalMinusAutoVault, pool.stakingToken.decimals) * pool.stakingTokenPrice
               }
             } else if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice) {
               totalStaked =
@@ -243,7 +243,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {chosenPools.map((pool) =>
         pool.isAutoVault ? (
-          <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
+          <SobaVaultCard key="auto-soba" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

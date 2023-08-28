@@ -74,7 +74,7 @@ const bottomLeftImage = {
   attributes: [
     { src: 'bottom-left', alt: 'SOBA card' },
     { src: 'green', alt: 'Green SOBA card with up arrow' },
-    { src: 'red', alt: 'Red Cake card with down arrow' },
+    { src: 'red', alt: 'Red Soba card with down arrow' },
     { src: 'top-right', alt: 'SOBA card' },
   ],
 }

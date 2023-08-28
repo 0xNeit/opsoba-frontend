@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text, useMatchBreakpoints } from 'opsoba-uikit'
 import { DeserializedPool } from 'state/types'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { useTranslation } from 'contexts/Localization'
 import BaseCell, { CellContent } from './BaseCell'
 import Apr from '../Apr'
-import { convertSharesToCake } from '../../../helpers'
+import { convertSharesToSoba } from '../../../helpers'
 
 interface AprCellProps {
   pool: DeserializedPool
@@ -27,9 +27,9 @@ const AutoAprCell: React.FC<AprCellProps> = ({ pool }) => {
     userData: { userShares },
     fees: { performanceFee },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useSobaVault()
 
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
+  const { sobaAsBigNumber } = convertSharesToSoba(userShares, pricePerFullShare)
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   return (
@@ -40,7 +40,7 @@ const AutoAprCell: React.FC<AprCellProps> = ({ pool }) => {
         </Text>
         <Apr
           pool={pool}
-          stakedBalance={cakeAsBigNumber}
+          stakedBalance={sobaAsBigNumber}
           performanceFee={performanceFeeAsDecimal}
           showIcon={!isMobile}
         />

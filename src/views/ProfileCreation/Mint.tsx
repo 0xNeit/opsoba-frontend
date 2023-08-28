@@ -4,8 +4,8 @@ import { Card, CardBody, Heading, Text } from 'opsoba-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useBunnyFactory } from 'hooks/useContract'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useSoba, useBunnyFactory } from 'hooks/useContract'
+import { useGetSobaBalance } from 'hooks/useTokenBalance'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import ApproveConfirmButtons from 'components/ApproveConfirmButtons'
 import useToast from 'hooks/useToast'
@@ -28,17 +28,17 @@ interface MintNftData extends ApiSingleTokenData {
 const Mint: React.FC = () => {
   const [selectedBunnyId, setSelectedBunnyId] = useState<string>('')
   const [starterNfts, setStarterNfts] = useState<MintNftData[]>([])
-  const { actions, minimumCakeRequired, allowance } = useProfileCreation()
+  const { actions, minimumSobaRequired, allowance } = useProfileCreation()
   const collections = useGetCollections()
   const { toastSuccess } = useToast()
   const dispatch = useAppDispatch()
 
   const { account } = useWeb3React()
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const bunnyFactoryContract = useBunnyFactory()
   const { t } = useTranslation()
-  const { balance: cakeBalance, fetchStatus } = useGetCakeBalance()
-  const hasMinimumCakeRequired = fetchStatus === FetchStatus.Fetched && cakeBalance.gte(MINT_COST)
+  const { balance: sobaBalance, fetchStatus } = useGetSobaBalance()
+  const hasMinimumSobaRequired = fetchStatus === FetchStatus.Fetched && sobaBalance.gte(MINT_COST)
   const { callWithGasPrice } = useCallWithGasPrice()
 
   useEffect(() => {
@@ -62,14 +62,14 @@ const Mint: React.FC = () => {
       onRequiresApproval: async () => {
         // TODO: Move this to a helper, this check will be probably be used many times
         try {
-          const response = await cakeContract.allowance(account, bunnyFactoryContract.address)
-          return response.gte(minimumCakeRequired)
+          const response = await sobaContract.allowance(account, bunnyFactoryContract.address)
+          return response.gte(minimumSobaRequired)
         } catch (error) {
           return false
         }
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContract, 'approve', [bunnyFactoryContract.address, allowance.toString()])
+        return callWithGasPrice(sobaContract, 'approve', [bunnyFactoryContract.address, allowance.toString()])
       },
       onConfirm: () => {
         return callWithGasPrice(bunnyFactoryContract, 'mintNFT', [selectedBunnyId])
@@ -119,13 +119,13 @@ const Mint: React.FC = () => {
                 image={nft?.image.thumbnail}
                 isChecked={selectedBunnyId === nft?.bunnyId}
                 onChange={handleChange}
-                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumCakeRequired}
+                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumSobaRequired}
               >
                 <Text bold>{nft?.name}</Text>
               </SelectionCard>
             )
           })}
-          {!hasMinimumCakeRequired && (
+          {!hasMinimumSobaRequired && (
             <Text color="failure" mb="16px">
               {t('A minimum of %num% SOBA is required', { num: formatUnits(MINT_COST) })}
             </Text>
@@ -133,7 +133,7 @@ const Mint: React.FC = () => {
           <ApproveConfirmButtons
             isApproveDisabled={selectedBunnyId === null || isConfirmed || isConfirming || isApproved}
             isApproving={isApproving}
-            isConfirmDisabled={!isApproved || isConfirmed || !hasMinimumCakeRequired}
+            isConfirmDisabled={!isApproved || isConfirmed || !hasMinimumSobaRequired}
             isConfirming={isConfirming}
             onApprove={handleApprove}
             onConfirm={handleConfirm}

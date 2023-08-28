@@ -172,7 +172,7 @@
     "name": "cakeVault",
     "outputs": [
       {
-        "internalType": "contract CakeVault",
+        "internalType": "contract SobaVault",
         "name": "",
         "type": "address"
       }

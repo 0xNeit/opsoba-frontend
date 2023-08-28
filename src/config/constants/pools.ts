@@ -8,8 +8,8 @@ const serializedTokens = serializeTokens()
 const pools: SerializedPoolConfig[] = [
   {
     sousId: 0,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '0x47118a04912DE53b239D18dA9E18DD82b7C7b1D2',
       204: '0x47118a04912DE53b239D18dA9E18DD82b7C7b1D2',
@@ -22,7 +22,7 @@ const pools: SerializedPoolConfig[] = [
   },
   /* {
     sousId: 256,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.aog,
     contractAddress: {
       5611: '',
@@ -35,7 +35,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 255,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.apx,
     contractAddress: {
       5611: '',
@@ -48,7 +48,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 254,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bcoin,
     contractAddress: {
       5611: '',
@@ -61,7 +61,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 253,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bcoin,
     contractAddress: {
       5611: '',
@@ -74,7 +74,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 252,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.insur,
     contractAddress: {
       5611: '',
@@ -87,7 +87,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 251,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.gm,
     contractAddress: {
       5611: '',
@@ -100,7 +100,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 250,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.woop,
     contractAddress: {
       5611: '',
@@ -113,7 +113,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 249,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.high,
     contractAddress: {
       5611: '',
@@ -126,7 +126,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 248,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ccar,
     contractAddress: {
       5611: '',
@@ -139,7 +139,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 247,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dpt,
     contractAddress: {
       5611: '',
@@ -152,7 +152,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 246,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.thg,
     contractAddress: {
       5611: '',
@@ -165,7 +165,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 245,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.idia,
     contractAddress: {
       5611: '',
@@ -178,7 +178,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 244,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xcv,
     contractAddress: {
       5611: '',
@@ -191,7 +191,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 243,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.nabox,
     contractAddress: {
       5611: '',
@@ -204,7 +204,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 242,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.santos,
     contractAddress: {
       5611: '',
@@ -217,7 +217,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 241,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.quidd,
     contractAddress: {
       5611: '',
@@ -230,7 +230,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 240,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.zoo,
     contractAddress: {
       5611: '',
@@ -243,7 +243,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 239,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.sfund,
     contractAddress: {
       5611: '',
@@ -256,7 +256,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 238,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.qi,
     contractAddress: {
       5611: '',
@@ -269,7 +269,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 237,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.kart,
     contractAddress: {
       5611: '',
@@ -282,7 +282,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 236,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.porto,
     contractAddress: {
       5611: '',
@@ -295,7 +295,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 235,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dvi,
     contractAddress: {
       5611: '',
@@ -308,7 +308,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 234,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.jgn,
     contractAddress: {
       5611: '',
@@ -321,7 +321,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 232,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xwg,
     contractAddress: {
       5611: '',
@@ -334,7 +334,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 231,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dar,
     contractAddress: {
       5611: '',
@@ -347,7 +347,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 230,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.fina,
     contractAddress: {
       5611: '',
@@ -360,7 +360,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 229,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bmon,
     contractAddress: {
       5611: '',
@@ -373,7 +373,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 228,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dkt,
     contractAddress: {
       5611: '',
@@ -386,7 +386,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 227,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ramp,
     contractAddress: {
       5611: '',
@@ -399,7 +399,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 226,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lazio,
     contractAddress: {
       5611: '',
@@ -412,7 +412,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 225,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.sps,
     contractAddress: {
       5611: '',
@@ -425,7 +425,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 224,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mcb,
     contractAddress: {
       5611: '',
@@ -438,7 +438,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 223,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.rpg,
     contractAddress: {
       5611: '',
@@ -451,7 +451,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 222,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.beta,
     contractAddress: {
       5611: '',
@@ -464,7 +464,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 233,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.eternal,
     contractAddress: {
       5611: '',
@@ -477,7 +477,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 221,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.nft,
     contractAddress: {
       5611: '',
@@ -490,7 +490,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 220,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.chess,
     contractAddress: {
       5611: '',
@@ -503,7 +503,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 219,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.tlos,
     contractAddress: {
       5611: '',
@@ -516,7 +516,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 218,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.stephero,
     contractAddress: {
       5611: '',
@@ -529,7 +529,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 217,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bp,
     contractAddress: {
       5611: '',
@@ -542,7 +542,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 216,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.cvp,
     contractAddress: {
       5611: '',
@@ -555,7 +555,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 215,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.qbt,
     contractAddress: {
       5611: '',
@@ -568,7 +568,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 214,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.naos,
     contractAddress: {
       5611: '',
@@ -581,7 +581,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 213,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pha,
     contractAddress: {
       5611: '',
@@ -594,7 +594,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 212,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bel,
     contractAddress: {
       5611: '',
@@ -607,7 +607,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 211,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ramp,
     contractAddress: {
       5611: '',
@@ -620,7 +620,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 210,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pots,
     contractAddress: {
       5611: '',
@@ -633,7 +633,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 209,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.tusd,
     contractAddress: {
       5611: '',
@@ -646,7 +646,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 208,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.revv,
     contractAddress: {
       5611: '',
@@ -659,7 +659,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 207,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.btt,
     contractAddress: {
       5611: '',
@@ -672,7 +672,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 206,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.skill,
     contractAddress: {
       5611: '',
@@ -685,7 +685,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 205,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.win,
     contractAddress: {
       5611: '',
@@ -698,7 +698,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 204,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.if,
     contractAddress: {
       5611: '',
@@ -711,7 +711,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 203,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.sps,
     contractAddress: {
       5611: '',
@@ -724,7 +724,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 202,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.c98,
     contractAddress: {
       5611: '',
@@ -737,7 +737,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 201,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.axs,
     contractAddress: {
       5611: '',
@@ -751,7 +751,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 200,
     stakingToken: serializedTokens.axs,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0x583A36816F3b8401C4fdf682203E0caDA6997740',
@@ -763,7 +763,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 199,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pmon,
     contractAddress: {
       5611: '',
@@ -776,7 +776,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 198,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.trx,
     contractAddress: {
       5611: '',
@@ -789,7 +789,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 197,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.chess,
     contractAddress: {
       5611: '',
@@ -802,7 +802,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 196,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.titan,
     contractAddress: {
       5611: '',
@@ -815,7 +815,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 195,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.harmony,
     contractAddress: {
       5611: '',
@@ -828,7 +828,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 194,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mask,
     contractAddress: {
       5611: '',
@@ -841,7 +841,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 193,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dvi,
     contractAddress: {
       5611: '',
@@ -854,7 +854,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 192,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.gum,
     contractAddress: {
       5611: '',
@@ -867,7 +867,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 191,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.adx,
     contractAddress: {
       5611: '',
@@ -880,7 +880,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 190,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.suter,
     contractAddress: {
       5611: '',
@@ -893,7 +893,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 189,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bscpad,
     contractAddress: {
       5611: '',
@@ -906,7 +906,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 188,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.rabbit,
     contractAddress: {
       5611: '',
@@ -919,7 +919,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 187,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.waultx,
     contractAddress: {
       5611: '',
@@ -932,7 +932,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 186,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.wex,
     contractAddress: {
       5611: '',
@@ -945,7 +945,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 185,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.form,
     contractAddress: {
       5611: '',
@@ -958,7 +958,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 184,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.orbs,
     contractAddress: {
       5611: '',
@@ -971,7 +971,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 183,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.$dg,
     contractAddress: {
       5611: '',
@@ -984,7 +984,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 182,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.woo,
     contractAddress: {
       5611: '',
@@ -997,7 +997,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 181,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.woo,
     contractAddress: {
       5611: '',
@@ -1010,7 +1010,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 180,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.htb,
     contractAddress: {
       5611: '',
@@ -1023,7 +1023,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 179,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.jgn,
     contractAddress: {
       5611: '',
@@ -1036,7 +1036,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 178,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dft,
     contractAddress: {
       5611: '',
@@ -1049,7 +1049,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 177,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hai,
     contractAddress: {
       5611: '',
@@ -1062,7 +1062,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 176,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.o3,
     contractAddress: {
       5611: '',
@@ -1075,7 +1075,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 175,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ampl,
     contractAddress: {
       5611: '',
@@ -1088,7 +1088,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 174,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.oddz,
     contractAddress: {
       5611: '',
@@ -1101,7 +1101,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 173,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bondly,
     contractAddress: {
       5611: '',
@@ -1114,7 +1114,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 172,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.marsh,
     contractAddress: {
       5611: '',
@@ -1127,7 +1127,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 171,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mbox,
     contractAddress: {
       5611: '',
@@ -1140,7 +1140,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 170,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ata,
     contractAddress: {
       5611: '',
@@ -1153,7 +1153,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 169,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mx,
     contractAddress: {
       5611: '',
@@ -1166,7 +1166,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 168,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bcfx,
     contractAddress: {
       5611: '',
@@ -1179,7 +1179,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 167,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.qkc,
     contractAddress: {
       5611: '',
@@ -1192,7 +1192,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 166,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ktn,
     contractAddress: {
       5611: '',
@@ -1205,7 +1205,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 165,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mtrg,
     contractAddress: {
       5611: '',
@@ -1218,7 +1218,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 164,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.tusd,
     contractAddress: {
       5611: '',
@@ -1231,7 +1231,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 163,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.vrt,
     contractAddress: {
       5611: '',
@@ -1244,7 +1244,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 162,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.kalm,
     contractAddress: {
       5611: '',
@@ -1257,7 +1257,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 161,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ez,
     contractAddress: {
       5611: '',
@@ -1270,7 +1270,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 160,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.kalm,
     contractAddress: {
       5611: '',
@@ -1284,7 +1284,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 159,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.popen,
     contractAddress: {
       5611: '',
@@ -1297,7 +1297,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 158,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lien,
     contractAddress: {
       5611: '',
@@ -1310,7 +1310,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 157,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.well,
     contractAddress: {
       5611: '',
@@ -1323,7 +1323,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 156,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.deri,
     contractAddress: {
       5611: '',
@@ -1336,7 +1336,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 155,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.chr,
     contractAddress: {
       5611: '',
@@ -1349,7 +1349,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 154,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.cyc,
     contractAddress: {
       5611: '',
@@ -1362,7 +1362,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 153,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xend,
     contractAddress: {
       5611: '',
@@ -1376,7 +1376,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 152,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hget,
     contractAddress: {
       5611: '',
@@ -1390,7 +1390,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 151,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hotcross,
     contractAddress: {
       5611: '',
@@ -1404,7 +1404,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 150,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.rfox,
     contractAddress: {
       5611: '',
@@ -1418,7 +1418,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 149,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.wmass,
     contractAddress: {
       5611: '',
@@ -1432,7 +1432,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 148,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ubxt,
     contractAddress: {
       5611: '',
@@ -1446,7 +1446,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 147,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.btr,
     contractAddress: {
       5611: '',
@@ -1460,7 +1460,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 146,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.τdoge,
     contractAddress: {
       5611: '',
@@ -1474,7 +1474,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 145,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pmon,
     contractAddress: {
       5611: '',
@@ -1488,7 +1488,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 144,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.one,
     contractAddress: {
       5611: '',
@@ -1502,7 +1502,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 143,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.fine,
     contractAddress: {
       5611: '',
@@ -1517,7 +1517,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 142,
     stakingToken: serializedTokens.doge,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0xbebd44824631b55991fa5f2bf5c7a4ec96ff805b',
@@ -1530,7 +1530,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 141,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bmxx,
     contractAddress: {
       5611: '',
@@ -1544,7 +1544,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 140,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.oin,
     contractAddress: {
       5611: '',
@@ -1558,7 +1558,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 139,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hyfi,
     contractAddress: {
       5611: '',
@@ -1572,7 +1572,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 138,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.kun,
     contractAddress: {
       5611: '',
@@ -1586,7 +1586,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 137,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.math,
     contractAddress: {
       5611: '',
@@ -1600,7 +1600,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 136,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ust,
     contractAddress: {
       5611: '',
@@ -1614,7 +1614,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 135,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.win,
     contractAddress: {
       5611: '',
@@ -1628,7 +1628,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 134,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.trx,
     contractAddress: {
       5611: '',
@@ -1642,7 +1642,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 133,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.btt,
     contractAddress: {
       5611: '',
@@ -1656,7 +1656,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 132,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lmt,
     contractAddress: {
       5611: '',
@@ -1670,7 +1670,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 131,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pnt,
     contractAddress: {
       5611: '',
@@ -1684,7 +1684,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 130,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xmark,
     contractAddress: {
       5611: '',
@@ -1698,7 +1698,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 129,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ramp,
     contractAddress: {
       5611: '',
@@ -1712,7 +1712,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 128,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hakka,
     contractAddress: {
       5611: '',
@@ -1726,7 +1726,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 127,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pbtc,
     contractAddress: {
       5611: '',
@@ -1740,7 +1740,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 126,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lien,
     contractAddress: {
       5611: '',
@@ -1754,7 +1754,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 125,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bbadger,
     contractAddress: {
       5611: '',
@@ -1768,7 +1768,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 124,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bdigg,
     contractAddress: {
       5611: '',
@@ -1782,7 +1782,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 123,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bondly,
     contractAddress: {
       5611: '',
@@ -1796,7 +1796,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 122,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xed,
     contractAddress: {
       5611: '',
@@ -1810,7 +1810,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 121,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.cgg,
     contractAddress: {
       5611: '',
@@ -1824,7 +1824,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 120,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.perl,
     contractAddress: {
       5611: '',
@@ -1838,7 +1838,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 119,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.arpa,
     contractAddress: {
       5611: '',
@@ -1852,7 +1852,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 118,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.oddz,
     contractAddress: {
       5611: '',
@@ -1866,7 +1866,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 117,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dexe,
     contractAddress: {
       5611: '',
@@ -1880,7 +1880,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 116,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dfd,
     contractAddress: {
       5611: '',
@@ -1894,7 +1894,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 115,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.alpaca,
     contractAddress: {
       5611: '',
@@ -1908,7 +1908,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 114,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.τbtc,
     contractAddress: {
       5611: '',
@@ -1922,7 +1922,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 113,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.τbtc,
     contractAddress: {
       5611: '',
@@ -1936,7 +1936,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 112,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.swingby,
     contractAddress: {
       5611: '',
@@ -1949,7 +1949,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 111,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xed,
     contractAddress: {
       5611: '',
@@ -1964,7 +1964,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 110,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hakka,
     contractAddress: {
       5611: '',
@@ -1979,7 +1979,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 109,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.cgg,
     contractAddress: {
       5611: '',
@@ -1994,7 +1994,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 108,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mix,
     contractAddress: {
       5611: '',
@@ -2007,7 +2007,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 107,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.suter,
     contractAddress: {
       5611: '',
@@ -2020,7 +2020,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 106,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.broobee,
     contractAddress: {
       5611: '',
@@ -2033,7 +2033,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 105,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hzn,
     contractAddress: {
       5611: '',
@@ -2046,7 +2046,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 104,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.alpa,
     contractAddress: {
       5611: '',
@@ -2059,7 +2059,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 103,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.perl,
     contractAddress: {
       5611: '',
@@ -2074,7 +2074,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 102,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.tlm,
     contractAddress: {
       5611: '',
@@ -2087,7 +2087,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 101,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.jgn,
     contractAddress: {
       5611: '',
@@ -2100,7 +2100,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 100,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.eps,
     contractAddress: {
       5611: '',
@@ -2113,7 +2113,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 99,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.arpa,
     contractAddress: {
       5611: '',
@@ -2128,7 +2128,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 98,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.itam,
     contractAddress: {
       5611: '',
@@ -2141,7 +2141,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 97,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bondly,
     contractAddress: {
       5611: '',
@@ -2156,7 +2156,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 96,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.tko,
     contractAddress: {
       5611: '',
@@ -2169,7 +2169,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 95,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.apys,
     contractAddress: {
       5611: '',
@@ -2182,7 +2182,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 94,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hoo,
     contractAddress: {
       5611: '',
@@ -2195,7 +2195,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 93,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.oddz,
     contractAddress: {
       5611: '',
@@ -2210,7 +2210,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 92,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.easy,
     contractAddress: {
       5611: '',
@@ -2223,7 +2223,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 91,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.nrv,
     contractAddress: {
       5611: '',
@@ -2236,7 +2236,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 90,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dego,
     contractAddress: {
       5611: '',
@@ -2249,7 +2249,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 89,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.gum,
     contractAddress: {
       5611: '',
@@ -2262,7 +2262,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 88,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pbtc,
     contractAddress: {
       5611: '',
@@ -2277,7 +2277,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 87,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dft,
     contractAddress: {
       5611: '',
@@ -2290,7 +2290,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 86,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.swth,
     contractAddress: {
       5611: '',
@@ -2303,7 +2303,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 85,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lien,
     contractAddress: {
       5611: '',
@@ -2318,7 +2318,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 84,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.zil,
     contractAddress: {
       5611: '',
@@ -2331,7 +2331,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 83,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.pcws,
     contractAddress: {
       5611: '',
@@ -2344,7 +2344,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 82,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bbadger,
     contractAddress: {
       5611: '',
@@ -2359,7 +2359,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 81,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bdigg,
     contractAddress: {
       5611: '',
@@ -2374,7 +2374,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 80,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lto,
     contractAddress: {
       5611: '',
@@ -2387,7 +2387,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 79,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mir,
     contractAddress: {
       5611: '',
@@ -2401,7 +2401,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 78,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.mir,
     contractAddress: {
       5611: '',
@@ -2416,7 +2416,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 77,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.trade,
     contractAddress: {
       5611: '',
@@ -2430,7 +2430,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 76,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dusk,
     contractAddress: {
       5611: '',
@@ -2444,7 +2444,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 75,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bifi,
     contractAddress: {
       5611: '',
@@ -2458,7 +2458,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 74,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.txl,
     contractAddress: {
       5611: '',
@@ -2472,7 +2472,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 73,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.cos,
     contractAddress: {
       5611: '',
@@ -2486,7 +2486,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 72,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bunny,
     contractAddress: {
       5611: '',
@@ -2500,7 +2500,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 71,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.alice,
     contractAddress: {
       5611: '',
@@ -2514,7 +2514,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 70,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.for,
     contractAddress: {
       5611: '',
@@ -2528,7 +2528,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 69,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bux,
     contractAddress: {
       5611: '',
@@ -2542,7 +2542,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 68,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.nuls,
     contractAddress: {
       5611: '',
@@ -2556,7 +2556,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 67,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.belt,
     contractAddress: {
       5611: '',
@@ -2570,7 +2570,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 66,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ramp,
     contractAddress: {
       5611: '',
@@ -2585,7 +2585,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 65,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bfi,
     contractAddress: {
       5611: '',
@@ -2599,7 +2599,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 64,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dexe,
     contractAddress: {
       5611: '',
@@ -2614,7 +2614,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 63,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bel,
     contractAddress: {
       5611: '',
@@ -2629,7 +2629,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 62,
     stakingToken: serializedTokens.tpt,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0x0c3D6892aa3b23811Af3bd1bbeA8b0740E8e4528',
@@ -2642,7 +2642,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 61,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.tpt,
     contractAddress: {
       5611: '',
@@ -2656,7 +2656,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 60,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.watch,
     contractAddress: {
       5611: '',
@@ -2670,7 +2670,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 59,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.xmark,
     contractAddress: {
       5611: '',
@@ -2684,7 +2684,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 58,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bmxx,
     contractAddress: {
       5611: '',
@@ -2698,7 +2698,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 57,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.iotx,
     contractAddress: {
       5611: '',
@@ -2712,7 +2712,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 56,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bor,
     contractAddress: {
       5611: '',
@@ -2726,7 +2726,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 55,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bopen,
     contractAddress: {
       5611: '',
@@ -2741,7 +2741,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 54,
     stakingToken: serializedTokens.sushi,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0xb69b6e390cba1F68442A886bC89E955048DAe7E3',
@@ -2754,7 +2754,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 53,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.dodo,
     contractAddress: {
       5611: '',
@@ -2768,7 +2768,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 52,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.swingby,
     contractAddress: {
       5611: '',
@@ -2782,7 +2782,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 51,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bry,
     contractAddress: {
       5611: '',
@@ -2796,7 +2796,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 50,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.zee,
     contractAddress: {
       5611: '',
@@ -2810,7 +2810,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 49,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.swgb,
     contractAddress: {
       5611: '',
@@ -2825,7 +2825,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 48,
     stakingToken: serializedTokens.comp,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0xE0565fBb109A3f3f8097D8A9D931277bfd795072',
@@ -2839,7 +2839,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 47,
     stakingToken: serializedTokens.comp,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0xc3693e3cbc3514d5d07EA5b27A721F184F617900',
@@ -2852,7 +2852,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 46,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.sfp,
     contractAddress: {
       5611: '',
@@ -2866,7 +2866,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 45,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lina,
     contractAddress: {
       5611: '',
@@ -2880,7 +2880,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 44,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lina,
     contractAddress: {
       5611: '',
@@ -2894,7 +2894,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 43,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.lit,
     contractAddress: {
       5611: '',
@@ -2908,7 +2908,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 42,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hget,
     contractAddress: {
       5611: '',
@@ -2922,7 +2922,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 41,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bdo,
     contractAddress: {
       5611: '',
@@ -2936,7 +2936,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 40,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.egld,
     contractAddress: {
       5611: '',
@@ -2950,7 +2950,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 39,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ust,
     contractAddress: {
       5611: '',
@@ -2964,7 +2964,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 38,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.wsote,
     contractAddress: {
       5611: '',
@@ -2978,7 +2978,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 37,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.front,
     contractAddress: {
       5611: '',
@@ -2992,7 +2992,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 36,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.helmet,
     contractAddress: {
       5611: '',
@@ -3006,7 +3006,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 35,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.btcst,
     contractAddress: {
       5611: '',
@@ -3020,7 +3020,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 34,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bscx,
     contractAddress: {
       5611: '',
@@ -3034,7 +3034,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 33,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ten,
     contractAddress: {
       5611: '',
@@ -3048,7 +3048,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 32,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.balbt,
     contractAddress: {
       5611: '',
@@ -3062,7 +3062,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 31,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.asr,
     contractAddress: {
       5611: '',
@@ -3076,7 +3076,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 30,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.atm,
     contractAddress: {
       5611: '',
@@ -3090,7 +3090,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 29,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.og,
     contractAddress: {
       5611: '',
@@ -3104,7 +3104,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 28,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.reef,
     contractAddress: {
       5611: '',
@@ -3118,7 +3118,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 27,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ditto,
     contractAddress: {
       5611: '',
@@ -3133,7 +3133,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 26,
     stakingToken: serializedTokens.twt,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0x0554a5D083Abf2f056ae3F6029e1714B9A655174',
@@ -3146,7 +3146,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 24,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.juv,
     contractAddress: {
       5611: '',
@@ -3160,7 +3160,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 25,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.psg,
     contractAddress: {
       5611: '',
@@ -3174,7 +3174,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 21,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.vai,
     contractAddress: {
       5611: '',
@@ -3189,7 +3189,7 @@ const pools: SerializedPoolConfig[] = [
   {
     sousId: 20,
     stakingToken: serializedTokens.bnb,
-    earningToken: serializedTokens.cake,
+    earningToken: serializedTokens.soba,
     contractAddress: {
       5611: '',
       204: '0x555Ea72d7347E82C614C16f005fA91cAf06DCB5a',
@@ -3202,7 +3202,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 19,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.bnb,
     contractAddress: {
       5611: '',
@@ -3216,7 +3216,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 18,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.blink,
     contractAddress: {
       5611: '',
@@ -3230,7 +3230,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 17,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.blink,
     contractAddress: {
       5611: '',
@@ -3245,7 +3245,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 16,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.unfi,
     contractAddress: {
       5611: '',
@@ -3259,7 +3259,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 15,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.twt,
     contractAddress: {
       5611: '',
@@ -3273,7 +3273,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 14,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.hard,
     contractAddress: {
       5611: '',
@@ -3287,7 +3287,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 13,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.broobee,
     contractAddress: {
       5611: '',
@@ -3301,7 +3301,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 12,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.stax,
     contractAddress: {
       5611: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -3315,7 +3315,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 11,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.nar,
     contractAddress: {
       5611: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -3329,7 +3329,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 10,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.nya,
     contractAddress: {
       5611: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -3343,7 +3343,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 9,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.ctk,
     contractAddress: {
       5611: '0xAfd61Dc94f11A70Ae110dC0E0F2061Af5633061A',
@@ -3357,7 +3357,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 8,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.twt,
     contractAddress: {
       5611: '0xAfd61Dc94f11A70Ae110dC0E0F2061Af5633061A',
@@ -3371,7 +3371,7 @@ const pools: SerializedPoolConfig[] = [
   },
   {
     sousId: 7,
-    stakingToken: serializedTokens.cake,
+    stakingToken: serializedTokens.soba,
     earningToken: serializedTokens.inj,
     contractAddress: {
       5611: '0xAfd61Dc94f11A70Ae110dC0E0F2061Af5633061A',

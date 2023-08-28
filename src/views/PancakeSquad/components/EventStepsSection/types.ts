@@ -11,7 +11,7 @@ export type EventStepsProps = {
   account: string
 }
 
-export type EventStepsType = { t: ContextApi['t']; theme: DefaultTheme; cakeBalance: BigNumber } & Pick<
+export type EventStepsType = { t: ContextApi['t']; theme: DefaultTheme; sobaBalance: BigNumber } & Pick<
   EventStepsProps,
   'eventInfos' | 'userInfos' | 'userStatus' | 'account'
 >

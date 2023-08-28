@@ -65,7 +65,7 @@ export const getGraphLotteryUser = async (
   let user
   const blankUser = {
     account,
-    totalCake: '',
+    totalSoba: '',
     totalTickets: '',
     rounds: [],
   }
@@ -78,7 +78,7 @@ export const getGraphLotteryUser = async (
           user(id: $account) {
             id
             totalTickets
-            totalCake
+            totalSoba
             rounds(first: $first, skip: $skip, where: $where, orderDirection: desc, orderBy: block) {
               id
               lottery {
@@ -102,7 +102,7 @@ export const getGraphLotteryUser = async (
     } else {
       user = {
         account: userRes.id,
-        totalCake: userRes.totalCake,
+        totalSoba: userRes.totalSoba,
         totalTickets: userRes.totalTickets,
         rounds: userRes.rounds.map((round) => {
           return {

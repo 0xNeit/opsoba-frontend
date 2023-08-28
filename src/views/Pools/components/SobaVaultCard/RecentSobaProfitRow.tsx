@@ -2,25 +2,25 @@ import React from 'react'
 import { Flex, Text } from 'opsoba-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
-import RecentCakeProfitBalance from './RecentCakeProfitBalance'
+import { usePriceSobaBusd } from 'state/farms/hooks'
+import { useSobaVault } from 'state/pools/hooks'
+import { getSobaVaultEarnings } from 'views/Pools/helpers'
+import RecentSobaProfitBalance from './RecentSobaProfitBalance'
 
-const RecentCakeProfitCountdownRow = () => {
+const RecentSobaProfitCountdownRow = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const {
     pricePerFullShare,
-    userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
-  } = useCakeVault()
-  const cakePriceBusd = usePriceCakeBusd()
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+    userData: { sobaAtLastUserAction, userShares, lastUserActionTime },
+  } = useSobaVault()
+  const sobaPriceBusd = usePriceSobaBusd()
+  const { hasAutoEarnings, autoSobaToDisplay, autoUsdToDisplay } = getSobaVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    sobaAtLastUserAction,
     userShares,
     pricePerFullShare,
-    cakePriceBusd.toNumber(),
+    sobaPriceBusd.toNumber(),
   )
 
   const lastActionInMs = lastUserActionTime && parseInt(lastUserActionTime) * 1000
@@ -31,8 +31,8 @@ const RecentCakeProfitCountdownRow = () => {
     <Flex alignItems="center" justifyContent="space-between">
       <Text fontSize="14px">{`${t('Recent SOBA profit')}:`}</Text>
       {hasAutoEarnings && (
-        <RecentCakeProfitBalance
-          cakeToDisplay={autoCakeToDisplay}
+        <RecentSobaProfitBalance
+          sobaToDisplay={autoSobaToDisplay}
           dollarValueToDisplay={autoUsdToDisplay}
           dateStringToDisplay={dateStringToDisplay}
         />
@@ -41,4 +41,4 @@ const RecentCakeProfitCountdownRow = () => {
   )
 }
 
-export default RecentCakeProfitCountdownRow
+export default RecentSobaProfitCountdownRow

@@ -43,7 +43,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "costCake",
+        "name": "costSoba",
         "type": "uint256"
       }
     ],
@@ -68,7 +68,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "costCake",
+        "name": "costSoba",
         "type": "uint256"
       },
       {

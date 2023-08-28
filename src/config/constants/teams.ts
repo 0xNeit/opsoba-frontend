@@ -36,7 +36,7 @@ const teams: Team[] = [
   },
   {
     id: 3,
-    name: 'Chaotic Cakers',
+    name: 'Chaotic Sobars',
     description: 'Can you stand the heat? Stay out of the kitchen or you might get burned to a crisp!',
     images: {
       lg: 'chaotic-cakers-lg.png',

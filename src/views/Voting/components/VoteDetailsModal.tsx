@@ -15,11 +15,11 @@ const VoteDetailsModal: React.FC<VoteDetailsModalProps> = ({ block, onDismiss })
   const {
     isLoading,
     total,
-    cakeBalance,
-    cakeVaultBalance,
-    cakePoolBalance,
+    sobaBalance,
+    sobaVaultBalance,
+    sobaPoolBalance,
     poolsBalance,
-    cakeBnbLpBalance,
+    sobaBnbLpBalance,
     ifoPoolBalance,
   } = useGetVotingPower(block, modalIsOpen)
   const { theme } = useTheme()
@@ -40,12 +40,12 @@ const VoteDetailsModal: React.FC<VoteDetailsModalProps> = ({ block, onDismiss })
           <>
             <DetailsView
               total={total}
-              cakeBalance={cakeBalance}
-              cakeVaultBalance={cakeVaultBalance}
-              cakePoolBalance={cakePoolBalance}
+              sobaBalance={sobaBalance}
+              sobaVaultBalance={sobaVaultBalance}
+              sobaPoolBalance={sobaPoolBalance}
               poolsBalance={poolsBalance}
               ifoPoolBalance={ifoPoolBalance}
-              cakeBnbLpBalance={cakeBnbLpBalance}
+              sobaBnbLpBalance={sobaBnbLpBalance}
             />
             <Button variant="secondary" onClick={onDismiss} width="100%" mt="16px">
               {t('Close')}

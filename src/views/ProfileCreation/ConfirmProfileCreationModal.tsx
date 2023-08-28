@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { formatUnits } from '@ethersproject/units'
 import { useAppDispatch } from 'state'
 import { useTranslation } from 'contexts/Localization'
-import { useCake, useProfileContract } from 'hooks/useContract'
+import { useSoba, useProfileContract } from 'hooks/useContract'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { fetchProfile } from 'state/profile'
 import useToast from 'hooks/useToast'
@@ -19,7 +19,7 @@ interface Props {
   selectedNft: State['selectedNft']
   account: string
   teamId: number
-  minimumCakeRequired: ethers.BigNumber
+  minimumSobaRequired: ethers.BigNumber
   allowance: ethers.BigNumber
   onDismiss?: () => void
 }
@@ -28,7 +28,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
   account,
   teamId,
   selectedNft,
-  minimumCakeRequired,
+  minimumSobaRequired,
   allowance,
   onDismiss,
 }) => {
@@ -36,21 +36,21 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
   const profileContract = useProfileContract()
   const dispatch = useAppDispatch()
   const { toastSuccess } = useToast()
-  const cakeContract = useCake()
+  const sobaContract = useSoba()
   const { callWithGasPrice } = useCallWithGasPrice()
 
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
         try {
-          const response = await cakeContract.allowance(account, profileContract.address)
-          return response.gte(minimumCakeRequired)
+          const response = await sobaContract.allowance(account, profileContract.address)
+          return response.gte(minimumSobaRequired)
         } catch (error) {
           return false
         }
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContract, 'approve', [profileContract.address, allowance.toJSON()])
+        return callWithGasPrice(sobaContract, 'approve', [profileContract.address, allowance.toJSON()])
       },
       onConfirm: () => {
         return callWithGasPrice(profileContract, 'createProfile', [

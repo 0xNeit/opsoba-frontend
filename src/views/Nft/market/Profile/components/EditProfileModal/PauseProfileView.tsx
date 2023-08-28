@@ -19,7 +19,7 @@ const PauseProfilePage: React.FC<PauseProfilePageProps> = ({ onDismiss }) => {
   const [isConfirming, setIsConfirming] = useState(false)
   const { profile } = useProfile()
   const {
-    costs: { numberCakeToReactivate },
+    costs: { numberSobaToReactivate },
   } = useGetProfileCosts()
   const { t } = useTranslation()
   const pancakeProfileContract = useProfileContract()
@@ -61,7 +61,7 @@ const PauseProfilePage: React.FC<PauseProfilePageProps> = ({ onDismiss }) => {
         )}
       </Text>
       <Text as="p" color="textSubtle" mb="24px">
-        {t('Cost to reactivate in the future: %cost% SOBA', { cost: formatBigNumber(numberCakeToReactivate) })}
+        {t('Cost to reactivate in the future: %cost% SOBA', { cost: formatBigNumber(numberSobaToReactivate) })}
       </Text>
       <label htmlFor="acknowledgement" style={{ cursor: 'pointer', display: 'block', marginBottom: '24px' }}>
         <Flex alignItems="center">

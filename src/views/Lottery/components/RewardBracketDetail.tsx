@@ -2,12 +2,12 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import { Flex, Skeleton, Text } from 'opsoba-uikit'
 import { useTranslation } from 'contexts/Localization'
-import { usePriceCakeBusd } from 'state/farms/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
 import Balance from 'components/Balance'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 
 interface RewardBracketDetailProps {
-  cakeAmount: BigNumber
+  sobaAmount: BigNumber
   rewardBracket?: number
   numberWinners?: string
   isBurn?: boolean
@@ -17,14 +17,14 @@ interface RewardBracketDetailProps {
 
 const RewardBracketDetail: React.FC<RewardBracketDetailProps> = ({
   rewardBracket,
-  cakeAmount,
+  sobaAmount,
   numberWinners,
   isHistoricRound,
   isBurn,
   isLoading,
 }) => {
   const { t } = useTranslation()
-  const cakePriceBusd = usePriceCakeBusd()
+  const sobaPriceBusd = usePriceSobaBusd()
 
   const getRewardText = () => {
     const numberMatch = rewardBracket + 1
@@ -47,12 +47,12 @@ const RewardBracketDetail: React.FC<RewardBracketDetailProps> = ({
         </Text>
       )}
       <>
-        {isLoading || cakeAmount.isNaN() ? (
+        {isLoading || sobaAmount.isNaN() ? (
           <Skeleton my="4px" mr="10px" height={20} width={110} />
         ) : (
-          <Balance fontSize="20px" bold unit=" SOBA" value={getBalanceNumber(cakeAmount)} decimals={0} />
+          <Balance fontSize="20px" bold unit=" SOBA" value={getBalanceNumber(sobaAmount)} decimals={0} />
         )}
-        {isLoading || cakeAmount.isNaN() ? (
+        {isLoading || sobaAmount.isNaN() ? (
           <>
             <Skeleton mt="4px" mb="16px" height={12} width={70} />
           </>
@@ -61,15 +61,15 @@ const RewardBracketDetail: React.FC<RewardBracketDetailProps> = ({
             fontSize="12px"
             color="textSubtle"
             prefix="~$"
-            value={getBalanceNumber(cakeAmount.times(cakePriceBusd))}
+            value={getBalanceNumber(sobaAmount.times(sobaPriceBusd))}
             decimals={0}
           />
         )}
-        {isHistoricRound && cakeAmount && (
+        {isHistoricRound && sobaAmount && (
           <>
             {numberWinners !== '0' && (
               <Text fontSize="12px" color="textSubtle">
-                {getFullDisplayBalance(cakeAmount.div(parseInt(numberWinners, 10)), 18, 2)} SOBA {t('each')}
+                {getFullDisplayBalance(sobaAmount.div(parseInt(numberWinners, 10)), 18, 2)} SOBA {t('each')}
               </Text>
             )}
             <Text fontSize="12px" color="textSubtle">

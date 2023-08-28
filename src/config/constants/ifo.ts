@@ -3,7 +3,7 @@ import { Token, ChainId } from 'opsoba-sdk'
 import farms from './farms'
 import { Ifo } from './types'
 
-export const cakeBnbLpToken = new Token(ChainId.MAINNET, farms[1].lpAddresses[ChainId.MAINNET], 18, farms[1].lpSymbol)
+export const sobaBnbLpToken = new Token(ChainId.MAINNET, farms[1].lpAddresses[ChainId.MAINNET], 18, farms[1].lpSymbol)
 
 const ifos: Ifo[] = [
   /* {
@@ -23,7 +23,7 @@ const ifos: Ifo[] = [
       cakeToBurn: '$0',
       distributionRatio: 0.7,
     },
-    currency: tokens.cake,
+    currency: tokens.soba,
     token: tokens.froyo,
     releaseBlockNumber: 14297000,
     campaignId: '511170000',
@@ -51,7 +51,7 @@ const ifos: Ifo[] = [
       cakeToBurn: '$0',
       distributionRatio: 0.7,
     },
-    currency: tokens.cake,
+    currency: tokens.soba,
     token: tokens.dpt,
     releaseBlockNumber: 13491500,
     campaignId: '511160000',
@@ -76,7 +76,7 @@ const ifos: Ifo[] = [
       cakeToBurn: '$0',
       distributionRatio: 0.7,
     },
-    currency: tokens.cake,
+    currency: tokens.soba,
     token: tokens.santos,
     releaseBlockNumber: 13097777,
     campaignId: '511150000',
@@ -101,7 +101,7 @@ const ifos: Ifo[] = [
       cakeToBurn: '$0',
       distributionRatio: 0.5,
     },
-    currency: tokens.cake,
+    currency: tokens.soba,
     token: tokens.porto,
     releaseBlockNumber: 12687500,
     campaignId: '511140000',
@@ -126,7 +126,7 @@ const ifos: Ifo[] = [
       cakeToBurn: '$0',
       distributionRatio: 0.5,
     },
-    currency: tokens.cake,
+    currency: tokens.soba,
     token: tokens.dar,
     releaseBlockNumber: 12335455,
     campaignId: '511130000',

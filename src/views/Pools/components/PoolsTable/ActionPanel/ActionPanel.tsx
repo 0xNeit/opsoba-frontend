@@ -16,17 +16,17 @@ import {
 import { BASE_BSC_SCAN_URL } from 'config'
 import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import BigNumber from 'bignumber.js'
 import { DeserializedPool } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
-import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
+import { getAddress, getSobaVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { registerToken } from 'utils/wallet'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { convertSharesToCake, getPoolBlockInfo } from 'views/Pools/helpers'
+import { convertSharesToSoba, getPoolBlockInfo } from 'views/Pools/helpers'
 import Harvest from './Harvest'
 import Stake from './Stake'
 import Apr from '../Apr'
@@ -127,7 +127,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   } = pool
   const { t } = useTranslation()
   const poolContractAddress = getAddress(contractAddress)
-  const cakeVaultContractAddress = getCakeVaultAddress()
+  const sobaVaultContractAddress = getSobaVaultAddress()
   const { currentBlock } = useBlock()
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 0
@@ -139,29 +139,29 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const tokenAddress = earningToken.address || ''
 
   const {
-    totalCakeInVault,
+    totalSobaInVault,
     userData: { userShares },
     fees: { performanceFee },
     pricePerFullShare,
-  } = useCakeVault()
+  } = useSobaVault()
 
   const stakingTokenBalance = userData?.stakingTokenBalance ? new BigNumber(userData.stakingTokenBalance) : BIG_ZERO
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
-  const { cakeAsBigNumber } = convertSharesToCake(userShares, pricePerFullShare)
+  const { sobaAsBigNumber } = convertSharesToSoba(userShares, pricePerFullShare)
   const poolStakingTokenBalance = isAutoVault
-    ? cakeAsBigNumber.plus(stakingTokenBalance)
+    ? sobaAsBigNumber.plus(stakingTokenBalance)
     : stakedBalance.plus(stakingTokenBalance)
 
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-  const isManualCakePool = sousId === 0
+  const isManualSobaPool = sousId === 0
 
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalSobaInVault, stakingToken.decimals)
     }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
+    if (isManualSobaPool) {
+      const manualSobaTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalSobaInVault)
+      return getBalanceNumber(manualSobaTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
@@ -263,7 +263,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {poolContractAddress && (
           <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
             <LinkExternal
-              href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
+              href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? sobaVaultContractAddress : poolContractAddress}`}
               bold={false}
             >
               {t('View Contract')}

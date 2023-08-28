@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 
 export const getEarningsText = (
   numFarmsToCollect: number,
-  hasCakePoolToCollect: boolean,
+  hasSobaPoolToCollect: boolean,
   earningsBusd: BigNumber,
   t: ContextApi['t'],
 ): string => {
@@ -14,7 +14,7 @@ export const getEarningsText = (
 
   let earningsText = t('%earningsBusd% to collect', data)
 
-  if (numFarmsToCollect > 0 && hasCakePoolToCollect) {
+  if (numFarmsToCollect > 0 && hasSobaPoolToCollect) {
     if (numFarmsToCollect > 1) {
       earningsText = t('%earningsBusd% to collect from %count% farms and SOBA pool', data)
     } else {
@@ -26,7 +26,7 @@ export const getEarningsText = (
     } else {
       earningsText = t('%earningsBusd% to collect from %count% farm', data)
     }
-  } else if (hasCakePoolToCollect) {
+  } else if (hasSobaPoolToCollect) {
     earningsText = t('%earningsBusd% to collect from SOBA pool', data)
   }
 

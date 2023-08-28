@@ -4,15 +4,15 @@ import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from 'opsoba-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useCakeVaultContract } from 'hooks/useContract'
+import { useSobaVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import Balance from 'components/Balance'
-import { usePriceCakeBusd } from 'state/farms/hooks'
-import { useCakeVault } from 'state/pools/hooks'
+import { usePriceSobaBusd } from 'state/farms/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 
 interface BountyModalProps {
@@ -32,26 +32,26 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   const { account } = useWeb3React()
   const { theme } = useTheme()
   const { toastError, toastSuccess } = useToast()
-  const cakeVaultContract = useCakeVaultContract()
+  const sobaVaultContract = useSobaVaultContract()
   const [pendingTx, setPendingTx] = useState(false)
   const {
-    estimatedCakeBountyReward,
-    totalPendingCakeHarvest,
+    estimatedSobaBountyReward,
+    totalPendingSobaHarvest,
     fees: { callFee },
-  } = useCakeVault()
+  } = useSobaVault()
   const { callWithGasPrice } = useCallWithGasPrice()
-  const cakePriceBusd = usePriceCakeBusd()
+  const sobaPriceBusd = usePriceSobaBusd()
   const callFeeAsDecimal = callFee / 100
-  const totalYieldToDisplay = getBalanceNumber(totalPendingCakeHarvest, 18)
+  const totalYieldToDisplay = getBalanceNumber(totalPendingSobaHarvest, 18)
 
   const estimatedDollarBountyReward = useMemo(() => {
-    return new BigNumber(estimatedCakeBountyReward).multipliedBy(cakePriceBusd)
-  }, [cakePriceBusd, estimatedCakeBountyReward])
+    return new BigNumber(estimatedSobaBountyReward).multipliedBy(sobaPriceBusd)
+  }, [sobaPriceBusd, estimatedSobaBountyReward])
 
   const hasFetchedDollarBounty = estimatedDollarBountyReward.gte(0)
-  const hasFetchedCakeBounty = estimatedCakeBountyReward ? estimatedCakeBountyReward.gte(0) : false
+  const hasFetchedSobaBounty = estimatedSobaBountyReward ? estimatedSobaBountyReward.gte(0) : false
   const dollarBountyToDisplay = hasFetchedDollarBounty ? getBalanceNumber(estimatedDollarBountyReward, 18) : 0
-  const cakeBountyToDisplay = hasFetchedCakeBounty ? getBalanceNumber(estimatedCakeBountyReward, 18) : 0
+  const sobaBountyToDisplay = hasFetchedSobaBounty ? getBalanceNumber(estimatedSobaBountyReward, 18) : 0
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent fee={callFee} />, {
     placement: 'bottom',
@@ -61,7 +61,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   const handleConfirmClick = async () => {
     setPendingTx(true)
     try {
-      const tx = await callWithGasPrice(cakeVaultContract, 'harvest', undefined, { gasLimit: 300000 })
+      const tx = await callWithGasPrice(sobaVaultContract, 'harvest', undefined, { gasLimit: 300000 })
       const receipt = await tx.wait()
       if (receipt.status) {
         toastSuccess(
@@ -85,7 +85,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       <Flex alignItems="flex-start" justifyContent="space-between">
         <Text>{t('You’ll claim')}</Text>
         <Flex flexDirection="column">
-          <Balance bold value={cakeBountyToDisplay} decimals={7} unit=" SOBA" />
+          <Balance bold value={sobaBountyToDisplay} decimals={7} unit=" SOBA" />
           <Text fontSize="12px" color="textSubtle">
             <Balance
               fontSize="12px"
@@ -116,11 +116,11 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
       {account ? (
         <Button
           isLoading={pendingTx}
-          disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
+          disabled={!dollarBountyToDisplay || !sobaBountyToDisplay || !callFee}
           endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
           onClick={handleConfirmClick}
           mb="28px"
-          id="autoCakeConfirmBounty"
+          id="autoSobaConfirmBounty"
         >
           {pendingTx ? t('Confirming') : t('Confirm')}
         </Button>

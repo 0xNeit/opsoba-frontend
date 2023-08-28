@@ -18,9 +18,9 @@ import {
 } from 'opsoba-uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
 import { useBlock } from 'state/block/hooks'
-import { useCakeVault } from 'state/pools/hooks'
+import { useSobaVault } from 'state/pools/hooks'
 import { DeserializedPool } from 'state/types'
-import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
+import { getAddress, getSobaVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
 import { getBscScanLink } from 'utils'
 import Balance from 'components/Balance'
@@ -42,9 +42,9 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
   const {
-    totalCakeInVault,
+    totalSobaInVault,
     fees: { performanceFee },
-  } = useCakeVault()
+  } = useSobaVault()
 
   const {
     stakingToken,
@@ -60,9 +60,9 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
 
   const tokenAddress = earningToken.address || ''
   const poolContractAddress = getAddress(contractAddress)
-  const cakeVaultContractAddress = getCakeVaultAddress()
+  const sobaVaultContractAddress = getSobaVaultAddress()
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
-  const isManualCakePool = sousId === 0
+  const isManualSobaPool = sousId === 0
 
   const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
     getPoolBlockInfo(pool, currentBlock)
@@ -74,11 +74,11 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
 
   const getTotalStakedBalance = () => {
     if (isAutoVault) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalSobaInVault, stakingToken.decimals)
     }
-    if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalCakeInVault)
-      return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
+    if (isManualSobaPool) {
+      const manualSobaTotalMinusAutoVault = new BigNumber(totalStaked).minus(totalSobaInVault)
+      return getBalanceNumber(manualSobaTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
   }
@@ -163,7 +163,7 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       {poolContractAddress && (
         <Flex mb="2px" justifyContent="flex-end">
           <LinkExternal
-            href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? cakeVaultContractAddress : poolContractAddress}`}
+            href={`${BASE_BSC_SCAN_URL}/address/${isAutoVault ? sobaVaultContractAddress : poolContractAddress}`}
             bold={false}
             small
           >

@@ -52,8 +52,8 @@ export const getVaultPoolAddress = (vaultKey: VaultKey) => {
   return getAddress(addresses[vaultKey])
 }
 
-export const getCakeVaultAddress = () => {
-  return getAddress(addresses.cakeVault)
+export const getSobaVaultAddress = () => {
+  return getAddress(addresses.sobaVault)
 }
 export const getIfoPoolAddress = () => {
   return getAddress(addresses.ifoPool)
@@ -64,8 +64,8 @@ export const getPredictionsAddress = () => {
 export const getChainlinkOracleAddress = () => {
   return getAddress(addresses.chainlinkOracle)
 }
-export const getBunnySpecialCakeVaultAddress = () => {
-  return getAddress(addresses.bunnySpecialCakeVault)
+export const getBunnySpecialSobaVaultAddress = () => {
+  return getAddress(addresses.bunnySpecialSobaVault)
 }
 export const getBunnySpecialPredictionAddress = () => {
   return getAddress(addresses.bunnySpecialPrediction)
