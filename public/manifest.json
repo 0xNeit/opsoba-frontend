@@ -1,7 +1,7 @@
 {
   "short_name": "SobaSwap",
   "name": "SobaSwap",
-  "description": "Farm SOBA with Pancake LP Tokens",
+  "description": "Farm SOBA with Soba LP Tokens",
   "homepage_url": "https://sobaswap.finance",
   "start_url": ".",
   "display": "standalone",

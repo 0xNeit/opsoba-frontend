@@ -19,12 +19,12 @@ export const setupNetwork = async () => {
             chainId: `0x${chainId.toString(16)}`,
             chainName: 'opBNB Testnet',
             nativeCurrency: {
-              name: 'BNB',
-              symbol: 'bnb',
+              name: 'tcBNB',
+              symbol: 'tcbnb',
               decimals: 18,
             },
             rpcUrls: nodes,
-            blockExplorerUrls: [`https://opbnbscan.com`],
+            blockExplorerUrls: [`${BASE_BSC_SCAN_URL}/`],
           },
         ],
       })

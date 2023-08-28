@@ -1,5 +1,5 @@
 import { Token, ChainId } from 'opsoba-sdk'
-import tokens from './tokens'
+// import tokens from './tokens'
 import farms from './farms'
 import { Ifo } from './types'
 
