@@ -1162,16 +1162,16 @@ export const mainnetTokens = defineTokens({
     'KUN',
     'QIAN governance token',
     'https://chemix.io/home',
-  ),
+  ), */
   qsd: new Token(
     MAINNET,
-    '0x07AaA29E63FFEB2EBf59B33eE61437E1a91A3bb2',
+    '0x3F41348F08179c94cA03E6C66956465f7c100C5F',
     18,
     'QSD',
     'QIAN second generation dollar',
     'https://chemix.io/home',
   ),
-  hyfi: new Token(
+  /* hyfi: new Token(
     MAINNET,
     '0x9a319b959e33369C5eaA494a770117eE3e585318',
     18,
@@ -1755,6 +1755,14 @@ export const testnetTokens = defineTokens({
     'SYRUP',
     'SyrupBar Token',
     'https://sobaswap.finance/',
+  ),
+  qsd: new Token(
+    MAINNET,
+    '0x3F41348F08179c94cA03E6C66956465f7c100C5F',
+    18,
+    'QSD',
+    'QIAN second generation dollar',
+    'https://chemix.io/home',
   ),
   /* bake: new Token(
     TESTNET,
