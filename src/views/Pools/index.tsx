@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { ethers } from 'ethers'
 import { formatUnits } from 'ethers/lib/utils'
@@ -17,6 +16,7 @@ import {
   useFetchSobaVault,
   useSobaVault,
 } from 'state/pools/hooks'
+import { useRouter } from 'next/router'
 import { usePollFarmsPublicData } from 'state/farms/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/Layout/Flex'
@@ -85,7 +85,7 @@ const ControlStretch = styled(Flex)`
 const NUMBER_OF_POOLS_VISIBLE = 12
 
 const Pools: React.FC = () => {
-  const location = useLocation()
+  const router = useRouter()
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools()
@@ -151,7 +151,7 @@ const Pools: React.FC = () => {
     }
   }, [isIntersecting])
 
-  const showFinishedPools = location.pathname.includes('history')
+  const showFinishedPools = router.pathname.includes('history')
 
   const handleChangeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)

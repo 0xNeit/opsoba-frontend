@@ -37,3 +37,5 @@ debug.log*
 
 src/config/abi/types
 
+# Sentry
+.sentryclirc

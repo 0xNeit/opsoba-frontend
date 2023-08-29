@@ -21,7 +21,7 @@
     {
       "name": "SobaSwap Token",
       "symbol": "SOBA",
-      "address": "0x5643b96d07e49decc24d8b559a00d63498aea47b",
+      "address": "0x5643b96d07e49DECc24D8b559a00d63498AEa47B",
       "chainId": 5611,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
@@ -29,7 +29,7 @@
     {
       "name": "Binance Pegged BUSD",
       "symbol": "BUSD",
-      "address": "0xb1a54003bf3d37f12c6b78a6b75f951199800ad0",
+      "address": "0xb1A54003bF3D37F12c6b78a6b75F951199800ad0",
       "chainId": 5611,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.png"
