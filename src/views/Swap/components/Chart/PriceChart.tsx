@@ -9,10 +9,10 @@ import {
   TradingViewIcon,
   LineGraphIcon,
   useMatchBreakpoints,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { CurrencyLogo, DoubleCurrencyLogo } from 'components/Logo'
 import { TradingViewLabel } from 'components/TradingView'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import React, { useCallback, useState } from 'react'
 import { ChartViewMode } from 'state/user/actions'
 import { useExchangeChartViewManager } from 'state/user/hooks'

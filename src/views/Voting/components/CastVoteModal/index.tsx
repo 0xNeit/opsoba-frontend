@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Box, Modal } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
-import { useTranslation } from 'contexts/Localization'
+import { Box, Modal } from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
+import { useTranslation } from '@pancakeswap/localization'
 import { SnapshotCommand } from 'state/types'
 import { signMessage } from 'utils/web3React'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import useWeb3Provider from 'hooks/useActiveWeb3React'
 import useTheme from 'hooks/useTheme'
 import { CastVoteModalProps, ConfirmVoteView } from './types'
@@ -87,7 +87,7 @@ const CastVoteModal: React.FC<CastVoteModalProps> = ({ onSuccess, proposalId, vo
       onBack={handleBack}
       onDismiss={onDismiss}
       hideCloseButton={!isStartView}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
     >
       <Box mb="24px" width="320px">
         {view === ConfirmVoteView.MAIN && (

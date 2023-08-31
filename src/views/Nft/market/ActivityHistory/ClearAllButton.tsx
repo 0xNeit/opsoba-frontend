@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, ButtonProps } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Button, ButtonProps } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useAppDispatch } from 'state'
 import { removeAllActivityFilters } from 'state/nftMarket/reducer'
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Box, Text, Flex, Input, OpenNewIcon, useMatchBreakpoints, Spinner } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Modal, Box, Text, Flex, Input, OpenNewIcon, useMatchBreakpoints, Spinner } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { FarmAuctionBidderConfig } from 'config/constants/types'
 import truncateHash from 'utils/truncateHash'
@@ -85,7 +85,7 @@ const WhitelistedBiddersModal: React.FC<WhitelistedBiddersModalProps> = ({ onDis
       p="0"
       title={t('All Whitelisted Project Wallets')}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
     >
       <InputContainer py="16px" px="24px">
         <Input placeholder={t('Search address or token')} value={searchTerm} onChange={handleSearchChange} />

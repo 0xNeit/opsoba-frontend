@@ -10,8 +10,8 @@ import {
   Text,
   useTooltip,
   WaitIcon,
-} from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+} from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import styled from 'styled-components'
 import { useAppDispatch } from 'state'
 import { Bet, PredictionStatus } from 'state/types'
@@ -19,7 +19,7 @@ import { REWARD_RATE } from 'state/predictions/config'
 import { useGetCurrentEpoch, useGetIsClaimable, useGetPredictionsStatus } from 'state/predictions/hooks'
 import { fetchLedgerData, markAsCollected } from 'state/predictions'
 import { getRoundResult, Result } from 'state/predictions/helpers'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { formatBnb, getNetPayout } from './helpers'
 import CollectWinningsButton from '../CollectWinningsButton'
 import ReclaimPositionButton from '../ReclaimPositionButton'

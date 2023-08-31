@@ -14,16 +14,16 @@ import {
   Slider,
   Box,
   AutoRenewIcon,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { ethers } from 'ethers'
 import { parseUnits } from 'ethers/lib/utils'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { useGetMinBetAmount } from 'state/predictions/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { usePredictionsContract } from 'hooks/useContract'
 import { useGetBnbBalance } from 'hooks/useTokenBalance'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { BetPosition } from 'state/types'
 import { formatBigNumber, formatFixedNumber } from 'utils/formatBalance'

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Card, CardBody, Flex, Heading, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Button, Card, CardBody, Flex, Heading, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Link } from 'react-router-dom'
 
 const NoProfileCard = () => {

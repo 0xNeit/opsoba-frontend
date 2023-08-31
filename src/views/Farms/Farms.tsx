@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from 'opsoba-uikit'
-import { ChainId } from 'opsoba-sdk'
+import { useWeb3React } from 'hooks/useWeb3React'
+import { Image, Heading, RowType, Toggle, Text, Button, ArrowForwardIcon, Flex } from '@pancakeswap/uikit'
+import { ChainId } from '@pancakeswap/sdk'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 import styled from 'styled-components'
 import FlexLayout from 'components/Layout/Flex'
@@ -10,7 +10,7 @@ import Page from 'components/Layout/Page'
 import { useFarms, usePollFarmsWithUserData, usePriceSobaBusd } from 'state/farms/hooks'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { DeserializedFarm } from 'state/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
@@ -114,7 +114,7 @@ export const getDisplayApr = (sobaRewardsApr?: number, lpRewardsApr?: number) =>
   return null
 }
 
-const Farms: React.FC = ({ children }) => {
+const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { pathname } = useRouter()
   const { t } = useTranslation()
   const { data: farmsLP, userDataLoaded } = useFarms()

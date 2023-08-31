@@ -11,11 +11,11 @@ import {
   BinanceIcon,
   Skeleton,
   useModal,
-} from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+} from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { NftLocation, NftToken } from 'state/nftMarket/types'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import ExpandableCard from '../shared/ExpandableCard'
 import SellModal from '../../../components/BuySellModals/SellModal'
 import ProfileNftModal from '../../../components/ProfileNftModal'

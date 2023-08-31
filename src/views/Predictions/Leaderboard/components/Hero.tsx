@@ -1,6 +1,6 @@
 import React from 'react'
-import { Heading } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Heading } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import PageHeader from 'components/PageHeader'
 import Crumbs from './Crumbs'
 

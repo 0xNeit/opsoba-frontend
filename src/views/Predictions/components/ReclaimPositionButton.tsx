@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react'
-import { AutoRenewIcon, Button, ButtonProps } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { AutoRenewIcon, Button, ButtonProps } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { usePredictionsContract } from 'hooks/useContract'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { ToastDescriptionWithTx } from 'components/Toast'
 

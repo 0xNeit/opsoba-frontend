@@ -1,13 +1,13 @@
-import { AddIcon, Button, Heading, IconButton, MinusIcon, Skeleton, Text, useModal } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+import { AddIcon, Button, Heading, IconButton, MinusIcon, Skeleton, Text, useModal } from '@pancakeswap/uikit'
+import { useWeb3React } from 'hooks/useWeb3React'
 import { BigNumber } from 'bignumber.js'
 import Balance from 'components/Balance'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useERC20 } from 'hooks/useContract'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
 import { useAppDispatch } from 'state'
@@ -91,6 +91,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         )
       },
     )
+    // @ts-ignore
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
@@ -117,6 +118,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         )
       },
     )
+    // @ts-ignore
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
@@ -172,6 +174,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           )
         },
       )
+      // @ts-ignore
       dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
     } catch (e) {
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))

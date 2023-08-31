@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Card, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, Card, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import PreviousBetsTable from '../PreviousBetsTable'
 
 interface DesktopBetsTableProps {

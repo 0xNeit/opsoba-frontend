@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { InjectedModalProps } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+import { InjectedModalProps } from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { parseUnits } from 'ethers/lib/utils'
 import useTheme from 'hooks/useTheme'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import { useTranslation } from 'contexts/Localization'
-import { ContextApi } from 'contexts/Localization/types'
+import { useTranslation } from '@pancakeswap/localization'
+import { ContextApi } from '@pancakeswap/localization/types'
 import { isAddress } from 'utils'
 import { useErc721CollectionContract, useNftMarketContract } from 'hooks/useContract'
 import { useAppDispatch } from 'state'
@@ -242,7 +242,7 @@ const SellModal: React.FC<SellModalProps> = ({ variant, nftToSell, onDismiss }) 
       stage={stage}
       onDismiss={onDismiss}
       onBack={showBackButton ? goBack : null}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
     >
       {stage === SellingStage.SELL && (
         <SellStage

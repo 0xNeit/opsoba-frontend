@@ -9,8 +9,8 @@ import {
   TimerIcon,
   BlockIcon,
   VoteIcon,
-} from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 const CoreTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()

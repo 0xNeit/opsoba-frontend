@@ -1,10 +1,10 @@
 import React from 'react'
-import { InjectedModalProps, Modal, Flex, Text, Button, Link, BinanceIcon, Box } from 'opsoba-uikit'
-import { Price } from 'opsoba-sdk'
+import { InjectedModalProps, Modal, Flex, Text, Button, Link, BinanceIcon, Box } from '@pancakeswap/uikit'
+import { Price } from '@pancakeswap/sdk'
 import useTheme from 'hooks/useTheme'
 import { Activity, NftToken } from 'state/nftMarket/types'
 import { LightGreyCard } from 'components/Card'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import truncateHash from 'utils/truncateHash'
 import { multiplyPriceByAmount } from 'utils/prices'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -35,7 +35,7 @@ const MobileModal: React.FC<MobileModalProps> = ({
   const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, priceAsFloat)
 
   return (
-    <Modal title={t('Transaction Details')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <Modal title={t('Transaction Details')} onDismiss={onDismiss} headerBackground={theme.colors.gradientCardHeader}>
       <Flex flexDirection="column" maxWidth="350px">
         <Flex alignItems="center" mb="16px" justifyContent="space-between">
           <Box width={68} mr="16px">

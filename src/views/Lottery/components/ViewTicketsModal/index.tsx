@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Modal } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { LotteryStatus } from 'config/constants/types'
 import { useLottery } from 'state/lottery/hooks'
 import useTheme from 'hooks/useTheme'
@@ -29,7 +29,7 @@ const ViewTicketsModal: React.FC<ViewTicketsModalProps> = ({ onDismiss, roundId,
     <StyledModal
       title={`${t('Round')} ${roundId}`}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
     >
       {isPreviousRound ? <PreviousRoundTicketsInner roundId={roundId} /> : <CurrentRoundTicketsInner />}
     </StyledModal>

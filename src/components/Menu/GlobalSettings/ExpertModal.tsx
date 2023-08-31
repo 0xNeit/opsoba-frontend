@@ -1,16 +1,29 @@
 import React, { useState } from 'react'
-import { Button, Text, Flex, Message, Modal, InjectedModalProps, Checkbox } from 'opsoba-uikit'
+import {
+  Button,
+  Text,
+  Flex,
+  Message,
+  Modal,
+  InjectedModalProps,
+  Checkbox,
+  useMatchBreakpoints,
+} from '@pancakeswap/uikit'
 import { useExpertModeManager } from 'state/user/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 
 interface ExpertModalProps extends InjectedModalProps {
   setShowConfirmExpertModal: (boolean) => void
   setShowExpertModeAcknowledgement: (boolean) => void
 }
 
-const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, setShowExpertModeAcknowledgement }) => {
+const ExpertModal: React.FC<React.PropsWithChildren<ExpertModalProps>> = ({
+  setShowConfirmExpertModal,
+  setShowExpertModeAcknowledgement,
+}) => {
   const [, toggleExpertMode] = useExpertModeManager()
   const [isRememberChecked, setIsRememberChecked] = useState(false)
+  const { isMobile } = useMatchBreakpoints()
 
   const { t } = useTranslation()
 
@@ -19,8 +32,8 @@ const ExpertModal: React.FC<ExpertModalProps> = ({ setShowConfirmExpertModal, se
       title={t('Expert Mode')}
       onBack={() => setShowConfirmExpertModal(false)}
       onDismiss={() => setShowConfirmExpertModal(false)}
-      headerBackground="gradients.cardHeader"
-      style={{ maxWidth: '360px' }}
+      headerBackground="gradientCardHeader"
+      style={{ width: isMobile ? '100%' : '436px' }}
     >
       <Message variant="warning" mb="24px">
         <Text>

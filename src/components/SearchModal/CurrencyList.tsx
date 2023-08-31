@@ -1,12 +1,12 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from 'opsoba-sdk'
-import { Text } from 'opsoba-uikit'
+import { Currency, CurrencyAmount, Token } from '@pancakeswap/sdk'
+import { Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { FixedSizeList } from 'react-window'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { LightGreyCard } from 'components/Card'
 import QuestionHelper from 'components/QuestionHelper'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCombinedActiveList } from '../../state/lists/hooks'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
@@ -17,9 +17,10 @@ import { CurrencyLogo } from '../Logo'
 import CircleLoader from '../Loader/CircleLoader'
 import { isTokenOnList } from '../../utils'
 import ImportRow from './ImportRow'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 
 function currencyKey(currency: Currency): string {
-  return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
+  return currency?.isToken ? currency.address : currency?.isNative ? currency.symbol : ''
 }
 
 const StyledBalanceText = styled(Text)`
@@ -37,7 +38,7 @@ const FixedContentRow = styled.div`
   align-items: center;
 `
 
-function Balance({ balance }: { balance: CurrencyAmount }) {
+function Balance({ balance }: { balance: CurrencyAmount<Currency> }) {
   return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
 }
 
@@ -101,6 +102,7 @@ function CurrencyRow({
 export default function CurrencyList({
   height,
   currencies,
+  inactiveCurrencies,
   selectedCurrency,
   onCurrencySelect,
   otherCurrency,
@@ -112,6 +114,7 @@ export default function CurrencyList({
 }: {
   height: number
   currencies: Currency[]
+  inactiveCurrencies: Currency[]
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherCurrency?: Currency | null
@@ -121,13 +124,17 @@ export default function CurrencyList({
   setImportToken: (token: Token) => void
   breakIndex: number | undefined
 }) {
+  const native = useNativeCurrency()
+
   const itemData: (Currency | undefined)[] = useMemo(() => {
-    let formatted: (Currency | undefined)[] = showETH ? [Currency.ETHER, ...currencies] : currencies
+    let formatted: (Currency | undefined)[] = showETH
+     ? [native, ...currencies, ...inactiveCurrencies]
+     : [...currencies, ...inactiveCurrencies]
     if (breakIndex !== undefined) {
       formatted = [...formatted.slice(0, breakIndex), undefined, ...formatted.slice(breakIndex, formatted.length)]
     }
     return formatted
-  }, [breakIndex, currencies, showETH])
+  }, [breakIndex, currencies, inactiveCurrencies, showETH, native])
 
   const { chainId } = useActiveWeb3React()
 
@@ -140,8 +147,8 @@ export default function CurrencyList({
   const Row = useCallback(
     ({ data, index, style }) => {
       const currency: Currency = data[index]
-      const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
-      const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
+      const isSelected = Boolean(selectedCurrency && selectedCurrency.equals(currency))
+      const otherSelected = Boolean(otherCurrency && otherCurrency.equals(currency))
       const handleSelect = () => onCurrencySelect(currency)
 
       const token = wrappedCurrency(currency, chainId)

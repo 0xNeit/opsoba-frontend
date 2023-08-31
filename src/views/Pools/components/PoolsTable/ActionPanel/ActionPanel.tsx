@@ -12,14 +12,14 @@ import {
   Text,
   TimerIcon,
   useTooltip,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
 import { getBscScanLink } from 'utils'
 import { useBlock } from 'state/block/hooks'
 import { useSobaVault } from 'state/pools/hooks'
 import BigNumber from 'bignumber.js'
 import { DeserializedPool } from 'state/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import Balance from 'components/Balance'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import { getAddress, getSobaVaultAddress } from 'utils/addressHelpers'

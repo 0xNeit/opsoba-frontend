@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Heading } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Card, Heading } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
 import ActivityHistory from '../ActivityHistory/ActivityHistory'

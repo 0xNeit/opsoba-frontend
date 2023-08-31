@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { InjectedModalProps } from 'opsoba-uikit'
+import { InjectedModalProps } from '@pancakeswap/uikit'
 import { ethers } from 'ethers'
 import useTheme from 'hooks/useTheme'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import tokens from 'config/constants/tokens'
 import { parseUnits, formatEther } from 'ethers/lib/utils'
 import { useERC20, useNftMarketContract } from 'hooks/useContract'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { useAppDispatch } from 'state'
 import { addUserNft } from 'state/nftMarket/reducer'
@@ -146,7 +146,7 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
       stage={stage}
       onDismiss={onDismiss}
       onBack={showBackButton ? goBack : null}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
     >
       {stage === BuyingStage.REVIEW && (
         <ReviewStage

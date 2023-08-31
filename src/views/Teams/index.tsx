@@ -1,9 +1,9 @@
 import React from 'react'
-import { AutoRenewIcon, Flex, Heading } from 'opsoba-uikit'
+import { AutoRenewIcon, Flex, Heading } from '@pancakeswap/uikit'
 import orderBy from 'lodash/orderBy'
 import { useTeams } from 'state/teams/hooks'
 import Page from 'components/Layout/Page'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import TeamListCard from './components/TeamListCard'
 import TeamHeader from './components/TeamHeader'
 

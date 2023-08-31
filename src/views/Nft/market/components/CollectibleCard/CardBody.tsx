@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, CardBody, Flex, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, CardBody, Flex, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import PreviewImage from './PreviewImage'
 import { CostLabel, LowestPriceMetaRow, MetaRow } from './styles'

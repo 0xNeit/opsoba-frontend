@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import {
   ArrowBackIcon,
   ArrowForwardIcon,
@@ -10,7 +10,7 @@ import {
   ChartIcon,
   HistoryIcon,
   IconButton,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { useAppDispatch } from 'state'
 import { PredictionStatus } from 'state/types'
 import { useGetPredictionsStatus, useIsChartPaneOpen, useIsHistoryPaneOpen } from 'state/predictions/hooks'

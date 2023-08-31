@@ -1,6 +1,6 @@
 import React from 'react'
 import Select, { OptionProps } from 'components/Select/Select'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useAppDispatch } from 'state'
 import { setOrdering } from 'state/nftMarket/reducer'
 import { useGetNftOrdering } from 'state/nftMarket/hooks'

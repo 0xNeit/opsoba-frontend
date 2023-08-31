@@ -1,11 +1,25 @@
 import { useContext } from 'react'
+import Cookie from 'js-cookie'
 import { ThemeContext as StyledThemeContext } from 'styled-components'
-import { useThemeManager } from 'state/user/hooks'
+import { useTheme as useNextTheme } from 'next-themes'
+
+export const COOKIE_THEME_KEY = 'theme'
+export const THEME_DOMAIN = '.sobaswap.finance'
 
 const useTheme = () => {
-  const [isDark, toggleTheme] = useThemeManager()
+  const { resolvedTheme, setTheme } = useNextTheme()
   const theme = useContext(StyledThemeContext)
-  return { isDark, theme, toggleTheme }
+
+  const handleSwitchTheme = (themeValue: 'light' | 'dark') => {
+    try {
+      setTheme(themeValue)
+      Cookie.set(COOKIE_THEME_KEY, themeValue, { domain: THEME_DOMAIN })
+    } catch (err) {
+      // ignore set cookie error for perp theme
+    }
+  }
+
+  return { isDark: resolvedTheme === 'dark', theme, setTheme: handleSwitchTheme }
 }
 
 export default useTheme

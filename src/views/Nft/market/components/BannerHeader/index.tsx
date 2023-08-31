@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Flex, Box, FlexProps } from 'opsoba-uikit'
+import { Flex, Box, FlexProps } from '@pancakeswap/uikit'
 import BannerImage from './BannerImage'
 
 interface BannerHeaderProps extends FlexProps {

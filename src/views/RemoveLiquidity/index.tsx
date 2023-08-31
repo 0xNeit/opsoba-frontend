@@ -4,10 +4,11 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useRouter } from 'next/router'
-import { Currency, currencyEquals, ETHER, Percent, WETH } from 'opsoba-sdk'
-import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from 'opsoba-uikit'
+import { Currency, Percent, WNATIVE } from '@pancakeswap/sdk'
+import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@pancakeswap/uikit'
 import { BigNumber } from '@ethersproject/bignumber'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
+import { useWeb3LibraryContext } from '@pancakeswap/wagmi'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -33,7 +34,6 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
 import Dots from '../../components/Loader/Dots'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
-
 import { Field } from '../../state/burn/actions'
 import { useGasPrice, useUserSlippageTolerance } from '../../state/user/hooks'
 import Page from '../Page'
@@ -48,7 +48,8 @@ export default function RemoveLiquidity() {
   const router = useRouter()
   const [currencyIdA, currencyIdB] = router.query.currency || []
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
-  const { account, chainId, library } = useActiveWeb3React()
+  const { account, chainId, isWrongNetwork } = useActiveWeb3React()
+  const library = useWeb3LibraryContext()
   const [tokenA, tokenB] = useMemo(
     () => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)],
     [currencyA, currencyB, chainId],
@@ -190,8 +191,8 @@ export default function RemoveLiquidity() {
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
     if (!liquidityAmount) throw new Error('missing liquidity amount')
 
-    const currencyBIsETH = currencyB === ETHER
-    const oneCurrencyIsETH = currencyA === ETHER || currencyBIsETH
+    const currencyBIsETH = currencyB.isNative
+    const oneCurrencyIsETH = currencyA.isNative || currencyBIsETH
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
 
@@ -393,11 +394,11 @@ export default function RemoveLiquidity() {
     [onUserInput],
   )
 
-  const oneCurrencyIsETH = currencyA === ETHER || currencyB === ETHER
+  const oneCurrencyIsETH = currencyA.isNative|| currencyB.isNative
   const oneCurrencyIsWETH = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
-        (currencyB && currencyEquals(WETH[chainId], currencyB))),
+      ((currencyA && WNATIVE[chainId]?.equals(currencyA)) ||
+        (currencyB && WNATIVE[chainId]?.equals(currencyB))),
   )
 
   const handleSelectCurrencyA = useCallback(
@@ -535,8 +536,8 @@ export default function RemoveLiquidity() {
                     <RowBetween style={{ justifyContent: 'flex-end', fontSize: '14px' }}>
                       {oneCurrencyIsETH ? (
                         <StyledInternalLink
-                          href={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${
-                            currencyB === ETHER ? WETH[chainId].address : currencyIdB
+                          href={`/remove/${currencyA.isNative ? WNATIVE[chainId].address : currencyIdA}/${
+                            currencyB.isNative ? WNATIVE[chainId].address : currencyIdB
                           }`}
                         >
                           {t('Receive WBNB')}
@@ -544,8 +545,8 @@ export default function RemoveLiquidity() {
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
                           href={`/remove/${
-                            currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'BNB' : currencyIdA
-                          }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'BNB' : currencyIdB}`}
+                            currencyA && currencyA.equals(WNATIVE[chainId]) ? 'BNB' : currencyIdA
+                          }/${currencyB && currencyB.equals(WNATIVE[chainId]) ? 'BNB' : currencyIdB}`}
                         >
                           {t('Receive BNB')}
                         </StyledInternalLink>

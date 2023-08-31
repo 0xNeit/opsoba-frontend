@@ -11,9 +11,9 @@ import {
   Text,
   WalletFilledIcon,
   Skeleton,
-} from 'opsoba-uikit'
-import { Price } from 'opsoba-sdk'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import { Price } from '@pancakeswap/sdk'
+import { useTranslation } from '@pancakeswap/localization'
 import { multiplyPriceByAmount } from 'utils/prices'
 import styled from 'styled-components'
 

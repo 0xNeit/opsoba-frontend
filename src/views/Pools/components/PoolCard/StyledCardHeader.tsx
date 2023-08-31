@@ -1,8 +1,8 @@
 import React from 'react'
-import { CardHeader, Heading, Text, Flex } from 'opsoba-uikit'
-import { Token } from 'opsoba-sdk'
+import { CardHeader, Heading, Text, Flex } from '@pancakeswap/uikit'
+import { Token } from '@pancakeswap/sdk'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { TokenPairImage } from 'components/TokenImage'
 import SobaVaultTokenPairImage from '../SobaVaultCard/SobaVaultTokenPairImage'
 

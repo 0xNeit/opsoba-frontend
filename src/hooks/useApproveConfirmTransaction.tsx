@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useRef } from 'react'
 import { noop } from 'lodash'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { ethers } from 'ethers'
-import useToast from 'hooks/useToast'
-import { useTranslation } from 'contexts/Localization'
+import { useToast } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { logError } from 'utils/sentry'
 import { ToastDescriptionWithTx } from 'components/Toast'
 

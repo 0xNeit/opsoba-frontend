@@ -14,7 +14,7 @@ import {
   useMatchBreakpoints,
   Skeleton,
   Heading,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { useGetProfileAvatar } from 'state/profile/hooks'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'
@@ -25,7 +25,7 @@ import {
   useGetLeaderboardLoadingState,
   useGetSelectedAddress,
 } from 'state/predictions/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { FetchStatus } from 'config/constants/types'
 import { NetWinnings } from './Results/styles'
 import MobileBetsTable from './MobileBetsTable'
@@ -65,7 +65,7 @@ const WalletStatsModal: React.FC<WalletStatsModalProps> = ({ account, onDismiss,
 
   return (
     <ModalContainer minWidth="320px">
-      <ModalHeader background={theme.colors.gradients.bubblegum}>
+      <ModalHeader background={theme.colors.gradientBubblegum}>
         <Flex alignItems="center" style={{ flex: 1 }}>
           <Box width={['64px', null, null, null, null, null, '96px']} mr="16px">
             <ProfileAvatar src={profileAvatar.nft?.image?.thumbnail} height={96} width={96} />

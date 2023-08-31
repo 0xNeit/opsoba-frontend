@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Button, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useAppDispatch } from 'state'
 import { setHistoryPaneState } from 'state/predictions'
 import Notification from './Notification'

@@ -1,5 +1,5 @@
 import { LotteryStatus } from 'config/constants/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useEffect, useState } from 'react'
 
 interface LotteryEvent {

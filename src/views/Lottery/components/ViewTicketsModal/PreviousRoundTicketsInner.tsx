@@ -11,16 +11,16 @@ import {
   InfoIcon,
   useTooltip,
   useModal,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { LotteryTicket, LotteryTicketClaimData } from 'config/constants/types'
 import { fetchLottery } from 'state/lottery/helpers'
 import { getWinningTickets } from 'state/lottery/fetchUnclaimedUserRewards'
 import { fetchUserTicketsForOneRound } from 'state/lottery/getUserTicketsData'
 import { LotteryRound } from 'state/types'
 import { useGetUserLotteryGraphRoundById } from 'state/lottery/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import WinningNumbers from '../WinningNumbers'
 import { processLotteryResponse } from '../../helpers'

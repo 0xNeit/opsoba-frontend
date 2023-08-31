@@ -1,5 +1,5 @@
 import React from 'react'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { Redirect } from 'react-router'
 import Page from 'components/Layout/Page'
 import { useProfile } from 'state/profile/hooks'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import orderBy from 'lodash/orderBy'
-import { BunnyPlaceholderIcon, Button, Flex, Grid, Text } from 'opsoba-uikit'
+import { BunnyPlaceholderIcon, Button, Flex, Grid, Text } from '@pancakeswap/uikit'
 import {
   useGetNftFilterLoadingState,
   useGetNftOrdering,
@@ -8,7 +8,7 @@ import {
   useNftsFromCollection,
 } from 'state/nftMarket/hooks'
 import { Collection } from 'state/nftMarket/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { FetchStatus } from 'config/constants/types'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'

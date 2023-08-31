@@ -12,8 +12,8 @@ import {
   BunnyPlaceholderIcon,
   Spinner,
   useMatchBreakpoints,
-} from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import useAuctionHistory from '../hooks/useAuctionHistory'
 import AuctionLeaderboardTable from './AuctionLeaderboard/AuctionLeaderboardTable'
 

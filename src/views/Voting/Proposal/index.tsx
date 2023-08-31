@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { ArrowBackIcon, Box, Button, Flex, Heading } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+import { ArrowBackIcon, Box, Button, Flex, Heading } from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch } from 'state'
 import { ProposalState } from 'state/types'
@@ -11,7 +11,7 @@ import {
   useGetProposalLoadingStatus,
 } from 'state/voting/hooks'
 import { fetchProposal, fetchVotes } from 'state/voting'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import Container from 'components/Layout/Container'
 import ReactMarkdown from 'components/ReactMarkdown'
 import PageLoader from 'components/Loader/PageLoader'

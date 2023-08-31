@@ -1,4 +1,4 @@
-import { InjectedModalProps } from 'opsoba-uikit'
+import { InjectedModalProps } from '@pancakeswap/uikit'
 
 export enum ConfirmVoteView {
   MAIN = 'main',

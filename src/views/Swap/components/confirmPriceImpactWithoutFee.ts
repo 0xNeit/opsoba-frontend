@@ -1,5 +1,5 @@
-import { Percent } from 'opsoba-sdk'
-import { ContextApi } from 'contexts/Localization/types'
+import { Percent } from '@pancakeswap/sdk'
+import { ContextApi } from '@pancakeswap/localization/types'
 import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from '../../../config/constants'
 
 /**

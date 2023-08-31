@@ -13,8 +13,8 @@ import {
   Button,
   CheckmarkCircleIcon,
   useModal,
-} from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Auction, AuctionStatus, ConnectedBidder } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import PlaceBidModal from '../PlaceBidModal'

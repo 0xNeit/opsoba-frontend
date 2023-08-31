@@ -1,5 +1,5 @@
-import { Box, ButtonMenu, ButtonMenuItem, Flex, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, ButtonMenu, ButtonMenuItem, Flex, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import React, { lazy, Suspense, useState } from 'react'
 import { useFetchPairPrices } from 'state/swap/hooks'
 import { PairDataTimeWindowEnum } from 'state/swap/types'

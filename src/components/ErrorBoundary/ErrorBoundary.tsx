@@ -1,8 +1,8 @@
 import React from 'react'
 import * as Sentry from '@sentry/react'
 import Page from 'components/Layout/Page'
-import { useTranslation } from 'contexts/Localization'
-import { Button, Text, LogoIcon, Flex } from 'opsoba-uikit'
+import { useTranslation } from '@pancakeswap/localization'
+import { Button, Text, LogoIcon, Flex } from '@pancakeswap/uikit'
 
 export default function ErrorBoundary({ children }) {
   const { t } = useTranslation()

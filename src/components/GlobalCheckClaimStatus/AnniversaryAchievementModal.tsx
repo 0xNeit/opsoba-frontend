@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { AutoRenewIcon, Box, Button, Flex, InjectedModalProps, Modal, Text } from 'opsoba-uikit'
+import { AutoRenewIcon, Box, Button, Flex, InjectedModalProps, Modal, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import confetti from 'canvas-confetti'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useAnniversaryAchievementContract } from 'hooks/useContract'
 import { delay } from 'lodash'
 

@@ -1,7 +1,13 @@
-import { ChainId, JSBI, Percent, Token } from 'opsoba-sdk'
+import { ChainId, JSBI, Percent, Token } from '@pancakeswap/sdk'
 import { mainnetTokens, testnetTokens } from './tokens'
+import { ChainMap } from './types'
 
 export const ROUTER_ADDRESS = '0x323c0B48F48Da849c95AD7b6C9A3DF79A05884A2'
+
+export const ROUTER_ADDRESS_BY_CHAIN: ChainMap<string> = {
+  [ChainId.MAINNET]: '',
+  [ChainId.TESTNET]: '0x323c0B48F48Da849c95AD7b6C9A3DF79A05884A2',
+}
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -53,6 +59,7 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
+    [testnetTokens.soba, testnetTokens.wbnb],
     [mainnetTokens.soba, mainnetTokens.wbnb],
     [mainnetTokens.busd, mainnetTokens.usdt],
     [mainnetTokens.dai, mainnetTokens.usdt],
@@ -87,6 +94,8 @@ export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSB
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
+export const EXCHANGE_PAGE_PATHS = ['/swap', '/limit-orders', 'liquidity', '/add', '/find', '/remove']
+
 // SDN OFAC addresses
 export const BLOCKED_ADDRESSES: string[] = [
   '0x7F367cC41522cE07553e823bf3be79A889DEbe1B',
@@ -99,3 +108,9 @@ export const BLOCKED_ADDRESSES: string[] = [
 export { default as farmsConfig } from './farms'
 export { default as poolsConfig } from './pools'
 export { default as ifosConfig } from './ifo'
+
+export const EXCHANGE_DOCS_URLS = 'https://docs.pancakeswap.finance/products/pancakeswap-exchange'
+
+
+export const FAST_INTERVAL = 10000
+export const SLOW_INTERVAL = 60000

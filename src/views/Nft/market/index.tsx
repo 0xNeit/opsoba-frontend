@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { useFetchCollections, useGetNFTInitializationState } from 'state/nftMarket/hooks'
 import PageLoader from 'components/Loader/PageLoader'
 import { NFTMarketInitializationState } from 'state/nftMarket/types'

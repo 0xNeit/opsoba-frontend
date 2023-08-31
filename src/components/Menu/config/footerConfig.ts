@@ -1,5 +1,5 @@
-import { FooterLinkType } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { FooterLinkType } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization'
 
 export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
   {
@@ -7,31 +7,31 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     items: [
       {
         label: t('Contact'),
-        href: 'https://docs.sobaswap.finance/contact-us',
+        href: 'https://docs.pancakeswap.finance/contact-us',
+        isHighlighted: true,
       },
       {
         label: t('Brand'),
-        href: 'https://docs.sobaswap.finance/brand',
+        href: 'https://docs.pancakeswap.finance/brand',
       },
       {
         label: t('Blog'),
-        href: 'https://medium.com/sobaswap',
+        href: 'https://medium.com/pancakeswap',
       },
       {
         label: t('Community'),
-        href: 'https://docs.sobaswap.finance/contact-us/telegram',
+        href: 'https://docs.pancakeswap.finance/contact-us/telegram',
       },
       {
-        label: t('SOBA token'),
-        href: 'https://docs.sobaswap.finance/tokenomics/soba',
+        label: t('Litepaper'),
+        href: 'https://v2litepaper.pancakeswap.finance/',
       },
       {
         label: '—',
       },
       {
         label: t('Online Store'),
-        href: 'https://sobaswap.creator-spring.com/',
-        isHighlighted: true,
+        href: 'https://pancakeswap.creator-spring.com/',
       },
     ],
   },
@@ -40,15 +40,15 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     items: [
       {
         label: t('Customer Support'),
-        href: 'https://docs.sobaswap.finance/contact-us/customer-support',
+        href: 'https://docs.pancakeswap.finance/contact-us/customer-support',
       },
       {
         label: t('Troubleshooting'),
-        href: 'https://docs.sobaswap.finance/help/troubleshooting',
+        href: 'https://docs.pancakeswap.finance/help/troubleshooting',
       },
       {
         label: t('Guides'),
-        href: 'https://docs.sobaswap.finance/get-started',
+        href: 'https://docs.pancakeswap.finance/get-started',
       },
     ],
   },
@@ -57,23 +57,23 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     items: [
       {
         label: 'Github',
-        href: 'https://github.com/sobaswap',
+        href: 'https://github.com/pancakeswap',
       },
       {
         label: t('Documentation'),
-        href: 'https://docs.sobaswap.finance',
+        href: 'https://docs.pancakeswap.finance',
       },
       {
         label: t('Bug Bounty'),
-        href: 'https://docs.sobaswap.finance/code/bug-bounty',
+        href: 'https://docs.pancakeswap.finance/code/bug-bounty',
       },
       {
         label: t('Audits'),
-        href: 'https://docs.sobaswap.finance/help/faq#is-sobaswap-safe-has-sobaswap-been-audited',
+        href: 'https://docs.pancakeswap.finance/help/faq#is-pancakeswap-safe-has-pancakeswap-been-audited',
       },
       {
         label: t('Careers'),
-        href: 'https://docs.sobaswap.finance/hiring/become-a-chef',
+        href: 'https://docs.pancakeswap.finance/hiring/become-a-chef',
       },
     ],
   },

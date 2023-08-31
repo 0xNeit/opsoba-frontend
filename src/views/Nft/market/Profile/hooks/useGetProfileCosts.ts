@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { multicallv2 } from 'utils/multicall'
 import profileABI from 'config/abi/pancakeProfile.json'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 
 const useGetProfileCosts = () => {
   const { t } = useTranslation()

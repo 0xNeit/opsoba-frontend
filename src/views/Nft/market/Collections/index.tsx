@@ -12,11 +12,11 @@ import {
   ArrowBackIcon,
   Text,
   ArrowForwardIcon,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useGetCollections } from 'state/nftMarket/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
 import { nftsBaseUrl } from 'views/Nft/market/constants'

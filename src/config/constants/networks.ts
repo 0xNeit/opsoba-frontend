@@ -1,4 +1,4 @@
-import { ChainId } from 'opsoba-sdk'
+import { ChainId } from '@pancakeswap/sdk'
 
 const NETWORK_URLS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: 'https://opbnb-mainnet-rpc.bnbchain.org',

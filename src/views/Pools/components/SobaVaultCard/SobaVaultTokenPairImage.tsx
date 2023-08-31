@@ -1,5 +1,5 @@
 import React from 'react'
-import { TokenPairImage, ImageProps } from 'opsoba-uikit'
+import { TokenPairImage, ImageProps } from '@pancakeswap/uikit'
 import { mainnetTokens } from 'config/constants/tokens'
 
 const SobaVaultTokenPairImage: React.FC<Omit<ImageProps, 'src'>> = (props) => {

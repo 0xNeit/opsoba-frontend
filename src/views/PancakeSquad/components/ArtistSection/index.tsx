@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Button, Flex, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, Button, Flex, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { LandingBodyWrapper, StyledWaveContainer } from 'views/PancakeSquad/styles'
 import { useTheme } from 'styled-components'
 import artistConfigBuilder from './config'

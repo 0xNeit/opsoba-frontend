@@ -1,5 +1,5 @@
-import { useMatchBreakpoints, useModal } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+import { useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { PageMeta } from 'components/Layout/Page'
 import PageLoader from 'components/Loader/PageLoader'
 import React, { useEffect, useRef } from 'react'

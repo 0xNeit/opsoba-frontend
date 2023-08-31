@@ -1,10 +1,10 @@
 import React, { useMemo, useEffect } from 'react'
-import { Text, Heading, Card } from 'opsoba-uikit'
+import { Text, Heading, Card } from '@pancakeswap/uikit'
 import Page from 'components/Layout/Page'
 import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import { useAllTokenData, useTokenDatas } from 'state/info/hooks'
 import { useWatchlistTokens } from 'state/user/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import TopTokenMovers from 'views/Info/components/TopTokenMovers'
 
 const TokensOverview: React.FC = () => {

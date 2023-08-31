@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text } from 'opsoba-uikit'
+import { Text } from '@pancakeswap/uikit'
 import { toDate, format } from 'date-fns'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { ProposalState } from 'state/types'
 
 interface TimeFrameProps {

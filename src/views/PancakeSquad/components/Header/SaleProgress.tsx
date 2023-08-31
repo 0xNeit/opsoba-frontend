@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, lightColors, Progress, Text } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { Box, lightColors, Progress, Text } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 import { SaleStatusEnum, UserStatusEnum } from '../../types'
 
 type PreEventProps = {

@@ -1,10 +1,10 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from 'opsoba-uikit'
+import { Button, Modal } from '@pancakeswap/uikit'
 import { ModalActions, ModalInput } from 'components/Modal'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { logError } from 'utils/sentry'
 
 interface WithdrawModalProps {

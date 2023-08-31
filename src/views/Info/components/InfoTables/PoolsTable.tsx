@@ -1,12 +1,12 @@
 import React, { useCallback, useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Text, Flex, Box, Skeleton, ArrowBackIcon, ArrowForwardIcon } from 'opsoba-uikit'
+import { Text, Flex, Box, Skeleton, ArrowBackIcon, ArrowForwardIcon } from '@pancakeswap/uikit'
 import { formatAmount } from 'views/Info/utils/formatInfoNumbers'
 import { PoolData } from 'state/info/types'
 import { ITEMS_PER_INFO_TABLE_PAGE } from 'config/constants/info'
 import { DoubleCurrencyLogo } from 'views/Info/components/CurrencyLogo'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { ClickableColumnHeader, TableWrapper, PageButtons, Arrow, Break } from './shared'
 
 /**

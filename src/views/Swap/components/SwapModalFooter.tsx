@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Trade, TradeType } from 'opsoba-sdk'
-import { Button, Text, AutoRenewIcon } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Trade, TradeType } from '@pancakeswap/sdk'
+import { Button, Text, AutoRenewIcon } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Field } from 'state/swap/actions'
 import {
   computeSlippageAdjustedAmounts,

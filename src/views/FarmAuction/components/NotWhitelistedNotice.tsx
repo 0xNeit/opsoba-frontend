@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text, Flex, Message, Box, HelpIcon } from 'opsoba-uikit'
+import { Text, Flex, Message, Box, HelpIcon } from '@pancakeswap/uikit'
 import { Auction, ConnectedBidder } from 'config/constants/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 
 const NotWhitelistedNotice: React.FC<{ connectedBidder: ConnectedBidder; auction: Auction }> = ({
   connectedBidder,

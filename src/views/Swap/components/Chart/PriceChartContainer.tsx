@@ -1,4 +1,4 @@
-import { Currency } from 'opsoba-sdk'
+import { Currency } from '@pancakeswap/sdk'
 import useTheme from 'hooks/useTheme'
 import React, { useCallback, useState } from 'react'
 import BnbWbnbNotice from './BnbWbnbNotice'

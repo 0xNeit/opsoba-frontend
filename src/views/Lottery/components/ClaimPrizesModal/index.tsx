@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading, ModalContainer, ModalHeader, ModalTitle, ModalBody, ModalCloseButton } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
-import { useTranslation } from 'contexts/Localization'
+import { Heading, ModalContainer, ModalHeader, ModalTitle, ModalBody, ModalCloseButton } from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
+import { useTranslation } from '@pancakeswap/localization'
 import { delay } from 'lodash'
 import confetti from 'canvas-confetti'
 import { LotteryTicketClaimData } from 'config/constants/types'
@@ -21,7 +21,7 @@ const StyledModal = styled(ModalContainer)`
 `
 
 const StyledModalHeader = styled(ModalHeader)`
-  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  background: ${({ theme }) => theme.colors.gradientCardHeader};
   border-top-right-radius: 32px;
   border-top-left-radius: 32px;
 `

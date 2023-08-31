@@ -15,15 +15,15 @@ import {
   Box,
   ModalCloseButton,
   Skeleton,
-} from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+} from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { useAppDispatch } from 'state'
 import { REWARD_RATE } from 'state/predictions/config'
 import { fetchNodeHistory, markAsCollected } from 'state/predictions'
 import { Bet } from 'state/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { usePredictionsContract } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { ToastDescriptionWithTx } from 'components/Toast'

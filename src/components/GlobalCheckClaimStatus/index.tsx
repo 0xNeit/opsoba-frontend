@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useModal } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+import { useModal } from '@pancakeswap/uikit'
+import { useWeb3React } from 'hooks/useWeb3React'
 import { getAnniversaryAchievementContract } from 'utils/contractHelpers'
 import AnniversaryAchievementModal from './AnniversaryAchievementModal'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ethers } from 'ethers'
-import { CheckmarkCircleIcon, CheckmarkCircleFillIcon, Tag, useTooltip } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { CheckmarkCircleIcon, CheckmarkCircleFillIcon, Tag, useTooltip } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { formatBnbv2 } from '../../helpers'
 
 interface EnteredTagProps {

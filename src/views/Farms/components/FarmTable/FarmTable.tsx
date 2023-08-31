@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import { useTable, Button, ChevronUpIcon, ColumnType } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { useTable, Button, ChevronUpIcon, ColumnType } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 import Row, { RowProps } from './Row'
 

@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from 'opsoba-sdk'
-import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from 'opsoba-uikit'
+import { Currency, CurrencyAmount, Token, WNATIVE } from '@pancakeswap/sdk'
+import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from '@pancakeswap/uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { useRouterContract } from 'utils/exchange'
 import { AppDispatch } from '../../state'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
@@ -30,7 +31,7 @@ import { useDerivedMintInfo, useMintActionHandlers, useMintState } from '../../s
 
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { useGasPrice, useIsExpertMode, useUserSlippageTolerance } from '../../state/user/hooks'
-import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
+import { calculateGasMargin, calculateSlippageAmount } from '../../utils'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import Dots from '../../components/Loader/Dots'
@@ -38,12 +39,13 @@ import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 
 export default function AddLiquidity() {
   const router = useRouter()
   const [currencyIdA, currencyIdB] = router.query.currency || []
 
-  const { account, chainId, library } = useActiveWeb3React()
+  const { account, chainId, isWrongNetwork } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const { t } = useTranslation()
   const gasPrice = useGasPrice()
@@ -59,8 +61,8 @@ export default function AddLiquidity() {
 
   const oneCurrencyIsWETH = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId]))),
+      ((currencyA && currencyA.equals(WNATIVE[chainId])) ||
+        (currencyB && currencyB.equals(WNATIVE[chainId]))),
   )
 
   const expertMode = useIsExpertMode()
@@ -100,7 +102,7 @@ export default function AddLiquidity() {
   }
 
   // get the max amounts user can add
-  const maxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+  const maxAmounts: { [field in Field]?: CurrencyAmount<Token> } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
         ...accumulator,
@@ -110,7 +112,7 @@ export default function AddLiquidity() {
     {},
   )
 
-  const atMaxAmounts: { [field in Field]?: TokenAmount } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
+  const atMaxAmounts: { [field in Field]?: CurrencyAmount<Token> } = [Field.CURRENCY_A, Field.CURRENCY_B].reduce(
     (accumulator, field) => {
       return {
         ...accumulator,
@@ -125,10 +127,10 @@ export default function AddLiquidity() {
   const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS)
 
   const addTransaction = useTransactionAdder()
+  const routerContract = useRouterContract()
 
   async function onAdd() {
-    if (!chainId || !library || !account) return
-    const routerContract = getRouterContract(chainId, library, account)
+    if (!chainId || !account || !routerContract) return
 
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB || !deadline) {
@@ -144,8 +146,8 @@ export default function AddLiquidity() {
     let method: (...args: any) => Promise<TransactionResponse>
     let args: Array<string | string[] | number>
     let value: BigNumber | null
-    if (currencyA === ETHER || currencyB === ETHER) {
-      const tokenBIsETH = currencyB === ETHER
+    if (currencyA.isNative || currencyB.isNative) {
+      const tokenBIsETH = currencyB.isNative
       estimate = routerContract.estimateGas.addLiquidityETH
       method = routerContract.addLiquidityETH
       args = [

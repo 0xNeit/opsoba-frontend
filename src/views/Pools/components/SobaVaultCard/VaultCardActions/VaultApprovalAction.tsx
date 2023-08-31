@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, AutoRenewIcon, Skeleton } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Button, AutoRenewIcon, Skeleton } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useVaultApprove } from '../../../hooks/useApprove'
 
 interface ApprovalActionProps {

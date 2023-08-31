@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link, Text } from 'opsoba-uikit'
+import { Link, Text } from '@pancakeswap/uikit'
 import { getBscScanLink } from 'utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import truncateHash from 'utils/truncateHash'
 
 interface DescriptionWithTxProps {
@@ -10,7 +10,7 @@ interface DescriptionWithTxProps {
   txHash?: string
 }
 
-const DescriptionWithTx: React.FC<DescriptionWithTxProps> = ({ txHash, children }) => {
+const DescriptionWithTx: React.FC<React.PropsWithChildren<DescriptionWithTxProps>> = ({ txHash, children }) => {
   const { chainId } = useActiveWeb3React()
   const { t } = useTranslation()
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Heading, Flex, Button, Grid, ChevronRightIcon } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Heading, Flex, Button, Grid, ChevronRightIcon } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Link } from 'react-router-dom'
 import { NftToken } from 'state/nftMarket/types'
 import { getLatestListedNfts, getNftsFromDifferentCollectionsApi } from 'state/nftMarket/helpers'

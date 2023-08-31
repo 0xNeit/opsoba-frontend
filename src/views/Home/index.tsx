@@ -1,8 +1,8 @@
 import React from 'react'
-import { Flex } from 'opsoba-uikit'
+import { Flex } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import PageSection from 'components/PageSection'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import useTheme from 'hooks/useTheme'
 import Container from 'components/Layout/Container'
 import { PageMeta } from 'components/Layout/Page'
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
       </PageSection>
       <PageSection
         innerProps={{ style: HomeSectionContainerStyles }}
-        background={theme.colors.gradients.cardHeader}
+        background={theme.colors.gradientCardHeader}
         index={2}
         hasCurvedDivider={false}
       >

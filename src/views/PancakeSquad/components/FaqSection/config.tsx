@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { Text } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 
 type FAQsType = {
   t: ContextApi['t']

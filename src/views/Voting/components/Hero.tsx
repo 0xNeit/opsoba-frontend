@@ -1,13 +1,13 @@
 import React from 'react'
-import { Box, Button, Flex, Heading, ProposalIcon } from 'opsoba-uikit'
+import { Box, Button, Flex, Heading, ProposalIcon } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import Container from 'components/Layout/Container'
 import DesktopImage from './DesktopImage'
 
 const StyledHero = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradientBubblegum};
   padding-bottom: 32px;
   padding-top: 32px;
 `

@@ -1,6 +1,6 @@
 import React from 'react'
-import { IconButton, Text, Skeleton, Button, AutoRenewIcon, ChevronRightIcon } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { IconButton, Text, Skeleton, Button, AutoRenewIcon, ChevronRightIcon } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { formatNumber } from 'utils/formatBalance'
 import TextEllipsis from '../TextEllipsis'
 import { VotingBox, ModalInner } from './styles'

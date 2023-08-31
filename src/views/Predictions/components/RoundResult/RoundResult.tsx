@@ -1,7 +1,7 @@
 import React from 'react'
-import { BoxProps, Text } from 'opsoba-uikit'
+import { BoxProps, Text } from '@pancakeswap/uikit'
 import { NodeRound } from 'state/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { getRoundPosition } from '../../helpers'
 import { LockPriceRow, PrizePoolRow, RoundPrice, RoundResultBox } from './styles'
 

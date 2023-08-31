@@ -2,7 +2,7 @@ import React from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import {
   Flex,
   MetamaskIcon,
@@ -15,7 +15,7 @@ import {
   Button,
   Link,
   HelpIcon,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { BASE_BSC_SCAN_URL } from 'config'
 import { useBlock } from 'state/block/hooks'
 import { useSobaVault } from 'state/pools/hooks'

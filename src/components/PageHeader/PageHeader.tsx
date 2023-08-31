@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from 'opsoba-uikit'
+import { Box } from '@pancakeswap/uikit'
 import Container from '../Layout/Container'
 import { PageHeaderProps } from './types'
 
 const Outer = styled(Box)<{ background?: string }>`
-  background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
+  background: ${({ theme, background }) => background || theme.colors.gradientBubblegum};
 `
 
 const Inner = styled(Container)`

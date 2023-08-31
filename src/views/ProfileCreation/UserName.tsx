@@ -14,17 +14,17 @@ import {
   useModal,
   Skeleton,
   Checkbox,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { parseISO, formatDistance } from 'date-fns'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { formatUnits } from '@ethersproject/units'
 import { API_PROFILE } from 'config/constants/endpoints'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { useGetSobaBalance } from 'hooks/useTokenBalance'
 import { signMessage } from 'utils/web3React'
 import fetchWithTimeout from 'utils/fetchWithTimeout'
 import useWeb3Provider from 'hooks/useActiveWeb3React'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { FetchStatus } from 'config/constants/types'
 import ConfirmProfileCreationModal from './ConfirmProfileCreationModal'
 import useProfileCreation from './contexts/hook'

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Price } from 'opsoba-sdk'
-import { Flex, Text } from 'opsoba-uikit'
+import { Price } from '@pancakeswap/sdk'
+import { Flex, Text } from '@pancakeswap/uikit'
 import { multiplyPriceByAmount } from 'utils/prices'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { formatBnb } from '../helpers'
 
 type SummaryType = 'won' | 'lost' | 'entered'

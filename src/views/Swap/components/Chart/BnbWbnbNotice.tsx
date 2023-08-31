@@ -1,5 +1,5 @@
-import { Flex, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Flex, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import React from 'react'
 import { StyledPriceChart } from './styles'
 

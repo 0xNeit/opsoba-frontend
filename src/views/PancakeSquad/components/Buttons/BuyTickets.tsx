@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, useModal } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { Button, useModal } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 import { ethers, BigNumber } from 'ethers'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { useSoba, useNftSaleContract } from 'hooks/useContract'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { DefaultTheme } from 'styled-components'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import { PancakeSquadContext } from 'views/PancakeSquad/context'
@@ -104,7 +104,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     <ConfirmModal
       title={t('Confirm')}
       isLoading={isConfirming}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
       txHash={txHashBuyingResult}
       loadingText={t('Please confirm your transaction in wallet.')}
       loadingButtonLabel={t('Confirming...')}
@@ -118,7 +118,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     <ConfirmModal
       title={t('Enable')}
       isLoading={isApproving}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
       txHash={txHashEnablingResult}
       loadingText={t('Please enable SOBA spending in your wallet')}
       loadingButtonLabel={t('Enabling...')}
@@ -132,7 +132,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
     <BuyTicketsModal
       title={t('Buy Minting Tickets')}
       buyTicketCallBack={handleConfirm}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
       sobaBalance={sobaBalance}
       maxPerAddress={maxPerAddress}
       maxPerTransaction={maxPerTransaction}

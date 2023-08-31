@@ -1,8 +1,8 @@
 import React from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Button, Card, CommunityIcon, Flex, Heading, PrizeIcon, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Button, Card, CommunityIcon, Flex, Heading, PrizeIcon, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Team } from 'config/constants/types'
 
 interface TeamCardProps {

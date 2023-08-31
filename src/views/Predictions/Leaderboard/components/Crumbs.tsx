@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Breadcrumbs, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, Breadcrumbs, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 const Crumbs = () => {
   const { t } = useTranslation()

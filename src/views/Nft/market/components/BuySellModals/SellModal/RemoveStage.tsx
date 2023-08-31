@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, Box, Text, Button } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Flex, Box, Text, Button } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { Divider } from '../shared/styles'
 
 interface RemoveStageProps {

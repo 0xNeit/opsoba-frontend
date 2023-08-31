@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { getLowestPriceInCollection } from 'state/nftMarket/helpers'
 import { StatBoxItem, StatBoxItemProps } from '../components/StatBox'
 

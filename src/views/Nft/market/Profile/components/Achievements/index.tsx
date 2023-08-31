@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, CardBody, Heading, PrizeIcon } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Card, CardBody, Heading, PrizeIcon } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import IconStatBox from 'views/Teams/components/IconStatBox'
 import { Achievement } from 'state/types'
 import AchievementsList from './AchievementsList'

@@ -1,13 +1,13 @@
-import { TokenAmount, Pair, Currency } from 'opsoba-sdk'
+import { CurrencyAmount, Pair, Currency } from '@pancakeswap/sdk'
 import { useMemo } from 'react'
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
+import IPancakePairABI from 'config/abi/IPancakePair.json'
 import { Interface } from '@ethersproject/abi'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
-const PAIR_INTERFACE = new Interface(IUniswapV2Pair.abi)
+const PAIR_INTERFACE = new Interface(IPancakePairABI)
 
 export enum PairState {
   LOADING,
@@ -31,7 +31,18 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
   const pairAddresses = useMemo(
     () =>
       tokens.map(([tokenA, tokenB]) => {
-        return tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(tokenA, tokenB) : undefined
+        try {
+          return tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(tokenA, tokenB) : undefined
+        } catch (error: any) {
+          // Debug Invariant failed related to this line
+          console.error(
+            error.msg,
+            `- pairAddresses: ${tokenA?.address}-${tokenB?.address}`,
+            `chainId: ${tokenA?.chainId}`,
+          )
+
+          return undefined
+        }
       }),
     [tokens],
   )
@@ -51,12 +62,16 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
       const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]
       return [
         PairState.EXISTS,
-        new Pair(new TokenAmount(token0, reserve0.toString()), new TokenAmount(token1, reserve1.toString())),
+        new Pair(
+          CurrencyAmount.fromRawAmount(token0, reserve0.toString()),
+          CurrencyAmount.fromRawAmount(token1, reserve1.toString()),
+        ),
       ]
     })
   }, [results, tokens])
 }
 
 export function usePair(tokenA?: Currency, tokenB?: Currency): [PairState, Pair | null] {
-  return usePairs([[tokenA, tokenB]])[0]
+  const pairCurrencies = useMemo<[Currency, Currency][]>(() => [[tokenA, tokenB]], [tokenA, tokenB])
+  return usePairs(pairCurrencies)[0]
 }

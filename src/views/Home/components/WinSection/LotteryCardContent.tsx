@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Flex, Text, Skeleton, Button, ArrowForwardIcon } from 'opsoba-uikit'
+import { Flex, Text, Skeleton, Button, ArrowForwardIcon } from '@pancakeswap/uikit'
 import { NextLinkFromReactRouter } from 'components/NextLink'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useSlowFresh } from 'hooks/useRefresh'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { usePriceSobaBusd } from 'state/farms/hooks'
@@ -16,7 +16,7 @@ const StyledLink = styled(NextLinkFromReactRouter)`
 `
 
 const StyledBalance = styled(Balance)`
-  background: ${({ theme }) => theme.colors.gradients.gold};
+  background: ${({ theme }) => theme.colors.gradientGold};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `

@@ -1,6 +1,6 @@
 import React from 'react'
-import { InstagramIcon, TwitterIcon } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { InstagramIcon, TwitterIcon } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 
 type ArtistConfigType = {
   t: ContextApi['t']

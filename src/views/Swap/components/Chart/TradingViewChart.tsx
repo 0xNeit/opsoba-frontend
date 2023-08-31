@@ -1,6 +1,6 @@
-import { Box, BunnyPlaceholderIcon, Flex, Text } from 'opsoba-uikit'
+import { Box, BunnyPlaceholderIcon, Flex, Text } from '@pancakeswap/uikit'
 import TradingView, { useTradingViewEvent } from 'components/TradingView'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import useDebounce from 'hooks/useDebounce'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'

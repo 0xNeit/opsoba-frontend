@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { JSBI, Pair, Percent } from 'opsoba-sdk'
-import { Button, Text, ChevronUpIcon, ChevronDownIcon, Card, CardBody, Flex, CardProps, AddIcon } from 'opsoba-uikit'
+import { JSBI, Pair, Percent } from '@pancakeswap/sdk'
+import { Button, Text, ChevronUpIcon, ChevronDownIcon, Card, CardBody, Flex, CardProps, AddIcon } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { NextLinkFromReactRouter } from 'components/NextLink'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTotalSupply from '../../hooks/useTotalSupply'
 

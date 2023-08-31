@@ -1,7 +1,7 @@
 import React from 'react'
 import { NftLocation } from 'state/nftMarket/types'
-import { Text, Flex, WalletFilledIcon, CameraIcon, SellIcon } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, Flex, WalletFilledIcon, CameraIcon, SellIcon } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 const LocationTag: React.FC<{ nftLocation: NftLocation }> = ({ nftLocation }) => {
   const { t } = useTranslation()

@@ -11,13 +11,13 @@ import {
   Skeleton,
   Tag,
   CheckmarkCircleIcon,
-} from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+} from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import times from 'lodash/times'
 import { Vote } from 'state/types'
 import { useGetVotingStateLoadingStatus } from 'state/voting/hooks'
 import { formatNumber } from 'utils/formatBalance'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { FetchStatus } from 'config/constants/types'
 import { calculateVoteResults, getTotalFromVotes } from '../helpers'
 import TextEllipsis from '../components/TextEllipsis'

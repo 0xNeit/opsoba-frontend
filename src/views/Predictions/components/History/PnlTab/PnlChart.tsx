@@ -1,6 +1,6 @@
 import React from 'react'
-import { useTranslation } from 'contexts/Localization'
-import { Text } from 'opsoba-uikit'
+import { useTranslation } from '@pancakeswap/localization'
+import { Text } from '@pancakeswap/uikit'
 import { SVG, WonSlice, LostSlice, Wrapper, Info } from './PnlChartStyles'
 
 /**

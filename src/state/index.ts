@@ -22,6 +22,7 @@ import teamsReducer from './teams'
 import transactions from './transactions/reducer'
 import user from './user/reducer'
 import votingReducer from './voting'
+import globalReducer from './global/reducer'
 
 const PERSISTED_KEYS: string[] = ['user', 'transactions', 'lists', 'profile']
 
@@ -34,6 +35,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
+    global: globalReducer,
     achievements: achievementsReducer,
     block: blockReducer,
     farms: farmsReducer,
@@ -108,7 +110,7 @@ store = initializeStore()
  */
 export type AppDispatch = typeof store.dispatch
 export type AppState = ReturnType<typeof store.getState>
-export const useAppDispatch = () => useDispatch()
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 export default store
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Box, Text } from 'opsoba-uikit'
+import { Box, Text } from '@pancakeswap/uikit'
 import { PredictionUser } from 'state/types'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { NetWinningsRow, Row } from './styles'
 import ResultAvatar from './ResultAvatar'
 

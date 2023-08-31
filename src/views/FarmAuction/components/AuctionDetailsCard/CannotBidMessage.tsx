@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, Flex, HelpIcon, useTooltip } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, Flex, HelpIcon, useTooltip } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 const CannotBidMessage: React.FC = () => {
   const { t } = useTranslation()

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from 'opsoba-uikit'
+import { Heading, Text } from '@pancakeswap/uikit'
 import { useProfile } from 'state/profile/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import NoProfileCard from './NoProfileCard'
 
 const HeaderWrapper = styled.div`

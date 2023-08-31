@@ -1,4 +1,5 @@
-import { CurrencyAmount, Fraction, JSBI, Percent, Price, TokenAmount, Trade } from 'opsoba-sdk'
+import { Currency, CurrencyAmount, Fraction, JSBI, Percent, Price, Trade, TradeType } from '@pancakeswap/sdk'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,
@@ -14,9 +15,9 @@ const ONE_HUNDRED_PERCENT = new Percent(JSBI.BigInt(10000), JSBI.BigInt(10000))
 const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 
 // computes price breakdown for the trade
-export function computeTradePriceBreakdown(trade?: Trade | null): {
+export function computeTradePriceBreakdown(trade?: Trade<Currency, Currency, TradeType> | null): {
   priceImpactWithoutFee: Percent | undefined
-  realizedLPFee: CurrencyAmount | undefined | null
+  realizedLPFee: CurrencyAmount<Currency> | undefined | null
 } {
   // for each hop in our trade, take away the x*y=k price impact from 0.3% fees
   // e.g. for 3 tokens/2 hops: 1 - ((1 - .03) * (1-.03))
@@ -36,23 +37,24 @@ export function computeTradePriceBreakdown(trade?: Trade | null): {
   const priceImpactWithoutFeePercent = priceImpactWithoutFeeFraction
     ? new Percent(priceImpactWithoutFeeFraction?.numerator, priceImpactWithoutFeeFraction?.denominator)
     : undefined
-
+        
+  const native = useNativeCurrency()
   // the amount of the input that accrues to LPs
   const realizedLPFeeAmount =
     realizedLPFee &&
     trade &&
-    (trade.inputAmount instanceof TokenAmount
-      ? new TokenAmount(trade.inputAmount.token, realizedLPFee.multiply(trade.inputAmount.raw).quotient)
-      : CurrencyAmount.ether(realizedLPFee.multiply(trade.inputAmount.raw).quotient))
-
+    CurrencyAmount.fromRawAmount(
+      trade.inputAmount.currency,
+      realizedLPFee.multiply(trade.inputAmount.quotient).quotient,
+    )
   return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
 }
 
 // computes the minimum amount out and maximum amount in for a trade given a user specified allowed slippage in bips
 export function computeSlippageAdjustedAmounts(
-  trade: Trade | undefined,
+  trade: Trade<Currency, Currency, TradeType> | undefined,
   allowedSlippage: number,
-): { [field in Field]?: CurrencyAmount } {
+): { [field in Field]?: CurrencyAmount<Currency> } {
   const pct = basisPointsToPercent(allowedSlippage)
   return {
     [Field.INPUT]: trade?.maximumAmountIn(pct),
@@ -68,7 +70,7 @@ export function warningSeverity(priceImpact: Percent | undefined): 0 | 1 | 2 | 3
   return 0
 }
 
-export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string {
+export function formatExecutionPrice(trade?: Trade<Currency, Currency, TradeType>, inverted?: boolean): string {
   if (!trade) {
     return ''
   }
@@ -84,7 +86,7 @@ export function formatExecutionPrice(trade?: Trade, inverted?: boolean): string 
 /**
  * Helper to multiply a Price object by an arbitrary amount
  */
-export const multiplyPriceByAmount = (price: Price, amount: number, significantDigits = 18) => {
+export const multiplyPriceByAmount = (price: Price<Currency, Currency>, amount: number, significantDigits = 18) => {
   if (!price) {
     return 0
   }

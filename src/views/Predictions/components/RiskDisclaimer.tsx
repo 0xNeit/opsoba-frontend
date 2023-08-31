@@ -11,8 +11,8 @@ import {
   ModalTitle,
   Heading,
   Box,
-} from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
 
 interface RiskDisclaimerProps extends InjectedModalProps {
@@ -20,7 +20,7 @@ interface RiskDisclaimerProps extends InjectedModalProps {
 }
 
 const GradientModalHeader = styled(ModalHeader)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradientBubblegum};
   padding-bottom: 24px;
   padding-top: 24px;
 `

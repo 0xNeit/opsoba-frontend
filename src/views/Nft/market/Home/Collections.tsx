@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, ChevronRightIcon, Flex, Grid, Heading, Text } from 'opsoba-uikit'
+import { Button, ChevronRightIcon, Flex, Grid, Heading, Text } from '@pancakeswap/uikit'
 import { Link } from 'react-router-dom'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { Collection } from 'state/nftMarket/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { CollectionCard } from '../components/CollectibleCard'
 import { BNBAmountLabel } from '../components/CollectibleCard/styles'
 

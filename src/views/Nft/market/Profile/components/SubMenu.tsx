@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { useLocation, useParams } from 'react-router'
 import BaseSubMenu from '../../components/BaseSubMenu'
 import { nftsBaseUrl } from '../../constants'

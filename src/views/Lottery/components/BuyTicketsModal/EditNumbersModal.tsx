@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Button, ArrowBackIcon, AutoRenewIcon } from 'opsoba-uikit'
+import { Modal, Text, Flex, Button, ArrowBackIcon, AutoRenewIcon } from '@pancakeswap/uikit'
 import useTheme from 'hooks/useTheme'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import TicketInput from './TicketInput'
 import { UpdateTicketAction, Ticket } from './useTicketsReducer'
 
@@ -39,7 +39,7 @@ const EditNumbersModal: React.FC<{
     <StyledModal
       title={t('Edit numbers')}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
       onBack={onDismiss}
     >
       <ScrollableContainer>

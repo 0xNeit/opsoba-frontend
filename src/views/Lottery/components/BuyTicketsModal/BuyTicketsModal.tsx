@@ -13,9 +13,9 @@ import {
   Skeleton,
   Button,
   ArrowForwardIcon,
-} from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
-import { useWeb3React } from '@web3-react/core'
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import tokens from 'config/constants/tokens'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { BIG_ZERO, ethersToBigNumber } from 'utils/bigNumber'
@@ -29,7 +29,7 @@ import { FetchStatus } from 'config/constants/types'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useSoba, useLotteryV2Contract } from 'hooks/useContract'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import ApproveConfirmButtons, { ButtonArrangement } from 'components/ApproveConfirmButtons'
@@ -309,7 +309,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   }
 
   return (
-    <StyledModal title={t('Buy Tickets')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <StyledModal title={t('Buy Tickets')} onDismiss={onDismiss} headerBackground={theme.colors.gradientCardHeader}>
       {tooltipVisible && tooltip}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text color="textSubtle">{t('Buy')}:</Text>

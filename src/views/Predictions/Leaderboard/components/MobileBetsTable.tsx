@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Flex, Text, ChevronUpIcon, ChevronDownIcon } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Flex, Text, ChevronUpIcon, ChevronDownIcon } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import PreviousBetsTable from './PreviousBetsTable'
 
 interface MobileBetsTableProps {

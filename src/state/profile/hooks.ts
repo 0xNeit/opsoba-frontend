@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useWeb3React } from '@web3-react/core'
+import { useWeb3React } from 'hooks/useWeb3React'
 import { useSelector } from 'react-redux'
 import { isAddress } from 'utils'
 import { useAppDispatch } from 'state'
@@ -10,16 +10,6 @@ import { State, ProfileState } from '../types'
 import { fetchProfile, fetchProfileAvatar, fetchProfileUsername } from '.'
 import { getProfile } from './helpers'
 
-export const useFetchProfile = () => {
-  const { account } = useWeb3React()
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (account) {
-      dispatch(fetchProfile(account))
-    }
-  }, [account, dispatch])
-}
 
 export const useProfileForAddress = (address: string) => {
   const { data, status } = useSWRImmutable([address, 'profile'], () => getProfile(address))
@@ -44,7 +34,7 @@ export const useProfile = () => {
   return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
 }
 
-export const useGetProfileAvatar = (account: string) => {
+/* export const useGetProfileAvatar = (account: string) => {
   const profileAvatar = useSelector((state: State) => state.profile.profileAvatars[account])
   const { username, nft, hasRegistered, usernameFetchStatus, avatarFetchStatus } = profileAvatar || {}
   const dispatch = useAppDispatch()
@@ -67,4 +57,4 @@ export const useGetProfileAvatar = (account: string) => {
   }, [account, nft, username, hasRegistered, avatarFetchStatus, usernameFetchStatus, dispatch])
 
   return { username, nft, usernameFetchStatus, avatarFetchStatus }
-}
+} */

@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useRouteMatch } from 'react-router-dom'
-import { Box, Flex, ButtonMenu, ButtonMenuItem } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, Flex, ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import Search from 'views/Info/components/InfoSearch'
 
 const NavWrapper = styled(Flex)`
-  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  background: ${({ theme }) => theme.colors.gradientCardHeader};
   justify-content: space-between;
   padding: 20px 16px;
   flex-direction: column;

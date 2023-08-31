@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, HelpIcon, Skeleton, useTooltip } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, HelpIcon, Skeleton, useTooltip } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 const ReferenceElement = styled.div`
   display: inline-block;

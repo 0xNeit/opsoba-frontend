@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, useTooltip } from 'opsoba-uikit'
+import { Flex, useTooltip } from '@pancakeswap/uikit'
 import { useLoadingState } from 'state/nftMarket/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import CountdownCircle from './CountdownCircle'
 
 const UpdateIndicator = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, useMatchBreakpoints } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { ChevronDownIcon, useMatchBreakpoints } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 interface DetailsProps {
   actionPanelToggled: boolean

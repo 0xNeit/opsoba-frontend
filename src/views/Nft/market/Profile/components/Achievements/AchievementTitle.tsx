@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TextProps } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, TextProps } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { TranslatableText as AchievementTitleType } from 'config/constants/types'
 
 interface AchievementTitleProps extends TextProps {

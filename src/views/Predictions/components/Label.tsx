@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { useCountUp } from 'react-countup'
 import styled from 'styled-components'
-import { BnbUsdtPairTokenIcon, Box, Flex, PocketWatchIcon, Text } from 'opsoba-uikit'
+import { BnbUsdtPairTokenIcon, Box, Flex, PocketWatchIcon, Text } from '@pancakeswap/uikit'
 import { ROUND_BUFFER } from 'state/predictions/config'
 import { formatBigNumberToFixed } from 'utils/formatBalance'
 import { useGetCurrentRoundLockTimestamp, useGetLastOraclePrice } from 'state/predictions/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { formatRoundTime } from '../helpers'
 import useCountdown from '../hooks/useCountdown'
 

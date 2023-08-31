@@ -1,4 +1,4 @@
-import { Box } from 'opsoba-uikit'
+import { Box } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 
 export const StyledPriceChart = styled(Box)<{ $isDark: boolean; $isExpanded: boolean }>`

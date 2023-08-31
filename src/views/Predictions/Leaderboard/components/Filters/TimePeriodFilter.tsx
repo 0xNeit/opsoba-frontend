@@ -1,6 +1,6 @@
 import React from 'react'
-import { ButtonMenu, ButtonMenuItem } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useAppDispatch } from 'state'
 import { setLeaderboardFilter } from 'state/predictions'
 import { useGetLeaderboardFilters } from 'state/predictions/hooks'

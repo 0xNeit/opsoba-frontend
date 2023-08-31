@@ -1,11 +1,11 @@
 import React from 'react'
-import { Box, Flex, FlexProps, Link, ProfileAvatar, SubMenu, SubMenuItem, useModal, Text } from 'opsoba-uikit'
+import { Box, Flex, FlexProps, Link, ProfileAvatar, SubMenu, SubMenuItem, useModal, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { getBscScanLink } from 'utils'
 import { PredictionUser } from 'state/types'
 import { useGetProfileAvatar } from 'state/profile/hooks'
 import truncateHash from 'utils/truncateHash'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import WalletStatsModal from '../WalletStatsModal'
 
 interface ResultAvatarProps extends FlexProps {

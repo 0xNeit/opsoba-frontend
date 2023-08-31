@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { Button } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 import { UserStatusEnum } from 'views/PancakeSquad/types'
 
 type ActivateProfileButtonProps = {

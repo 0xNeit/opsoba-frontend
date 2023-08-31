@@ -1,4 +1,4 @@
-import { Flex, lightColors } from 'opsoba-uikit'
+import { Flex, lightColors } from '@pancakeswap/uikit'
 import styled, { keyframes } from 'styled-components'
 
 const flyingAnim = () => keyframes`

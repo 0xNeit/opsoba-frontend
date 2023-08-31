@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import uniqBy from 'lodash/uniqBy'
-import { AutoRenewIcon, Button, Flex, Grid, Text } from 'opsoba-uikit'
+import { AutoRenewIcon, Button, Flex, Grid, Text } from '@pancakeswap/uikit'
 import { useAppDispatch } from 'state'
 import {
   useGetNftFilterLoadingState,
@@ -11,7 +11,7 @@ import {
 import { Collection, NftToken, TokenMarketData } from 'state/nftMarket/types'
 import { fetchNftsFromCollections } from 'state/nftMarket/reducer'
 import { getNftApi, getNftsMarketData } from 'state/nftMarket/helpers'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { FetchStatus } from 'config/constants/types'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'

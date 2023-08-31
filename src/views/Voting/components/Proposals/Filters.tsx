@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
-import { Flex, Radio, Text } from 'opsoba-uikit'
+import { Flex, Radio, Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { ProposalState } from 'state/types'
 
 interface FiltersProps {

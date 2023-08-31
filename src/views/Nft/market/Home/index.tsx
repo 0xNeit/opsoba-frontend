@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Button, Heading, Flex } from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+import { Box, Button, Heading, Flex } from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import PageHeader from 'components/PageHeader'
 import SectionsWithFoldableText from 'components/FoldableSection/SectionsWithFoldableText'
 import PageSection from 'components/PageSection'
@@ -18,7 +18,7 @@ import Newest from './Newest'
 import config from './config'
 
 const Gradient = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.cardHeader};
+  background: ${({ theme }) => theme.colors.gradientCardHeader};
 `
 
 const StyledPageHeader = styled(PageHeader)`

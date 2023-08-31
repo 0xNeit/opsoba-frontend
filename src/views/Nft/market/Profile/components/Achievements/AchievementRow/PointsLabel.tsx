@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, FlexProps, PrizeIcon, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Flex, FlexProps, PrizeIcon, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 interface PointsLabelProps extends FlexProps {
   points: number

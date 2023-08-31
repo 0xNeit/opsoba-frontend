@@ -1,5 +1,10 @@
 import BigNumber from 'bignumber.js'
-import { Token } from 'opsoba-sdk'
+import { Token, ChainId } from '@pancakeswap/sdk'
+
+// a list of tokens by chain
+export type ChainMap<T> = {
+  readonly [chainId in ChainId]: T
+}
 
 export type TranslatableText =
   | string

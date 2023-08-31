@@ -12,13 +12,13 @@ import {
   BinanceIcon,
   Skeleton,
   useModal,
-} from 'opsoba-uikit'
-import { useWeb3React } from '@web3-react/core'
+} from '@pancakeswap/uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { useUserNfts } from 'state/nftMarket/hooks'
 import { NftLocation, NftToken, UserNftInitializationState } from 'state/nftMarket/types'
 import { formatNumber } from 'utils/formatBalance'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import ExpandableCard from '../shared/ExpandableCard'
 import useFetchUserNfts from '../../../Profile/hooks/useFetchUserNfts'
 import SellModal from '../../../components/BuySellModals/SellModal'

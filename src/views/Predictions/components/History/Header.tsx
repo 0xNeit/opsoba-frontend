@@ -1,11 +1,11 @@
 import React from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { ArrowForwardIcon, Box, Button, Radio, Flex, Heading, Text, ButtonMenu, ButtonMenuItem } from 'opsoba-uikit'
+import { useWeb3React } from '@pancakeswap/wagmi'
+import { ArrowForwardIcon, Box, Button, Radio, Flex, Heading, Text, ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
 import { useAppDispatch } from 'state'
 import { HistoryFilter } from 'state/types'
 import { setHistoryFilter, setHistoryPaneState } from 'state/predictions'
 import { useGetHistoryFilter, useGetIsFetchingHistory } from 'state/predictions/hooks'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
 
 const Filter = styled.label`
@@ -16,7 +16,7 @@ const Filter = styled.label`
 `
 
 const StyledHeader = styled(Box)`
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.gradientBubblegum};
   flex: none;
   padding: 16px;
 `

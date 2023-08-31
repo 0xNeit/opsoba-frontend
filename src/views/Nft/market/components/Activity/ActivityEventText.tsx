@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TextProps } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, TextProps } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { MarketEvent } from '../../../../../state/nftMarket/types'
 
 interface ActivityEventTextProps extends TextProps {

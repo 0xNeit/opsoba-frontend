@@ -1,6 +1,6 @@
 import React from 'react'
-import { ButtonMenu, ButtonMenuItem } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { ButtonMenu, ButtonMenuItem } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 const HistoryTabMenu = ({ setActiveIndex, activeIndex }) => {
   const { t } = useTranslation()

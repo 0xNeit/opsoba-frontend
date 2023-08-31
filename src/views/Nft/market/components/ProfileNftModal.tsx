@@ -1,9 +1,9 @@
 import React from 'react'
-import { InjectedModalProps, Modal, Flex, Text, Button, useModal, Link, Grid, LinkExternal } from 'opsoba-uikit'
+import { InjectedModalProps, Modal, Flex, Text, Button, useModal, Link, Grid, LinkExternal } from '@pancakeswap/uikit'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'
 import { NftToken } from 'state/nftMarket/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { getBscScanLinkForNft } from 'utils'
 import { HorizontalDivider, RoundedImage } from './BuySellModals/shared/styles'
 import EditProfileModal from '../Profile/components/EditProfileModal'
@@ -31,7 +31,7 @@ const ProfileNftModal: React.FC<ProfileNftModalProps> = ({ nft, onDismiss }) => 
   const itemPageUrlId = nft.collectionAddress === pancakeBunniesAddress ? nft.attributes[0].value : nft.tokenId
 
   return (
-    <StyledModal title={t('Details')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <StyledModal title={t('Details')} onDismiss={onDismiss} headerBackground={theme.colors.gradientCardHeader}>
       <Flex flexDirection="column" maxWidth="350px">
         <Flex p="16px">
           <RoundedImage src={nft.image.thumbnail} height={68} width={68} mr="16px" />

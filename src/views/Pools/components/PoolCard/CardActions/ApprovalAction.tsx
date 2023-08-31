@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, AutoRenewIcon, Skeleton } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Button, AutoRenewIcon, Skeleton } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useERC20 } from 'hooks/useContract'
 import { DeserializedPool } from 'state/types'
 import { useApprovePool } from '../../../hooks/useApprove'

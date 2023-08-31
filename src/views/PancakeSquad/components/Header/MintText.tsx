@@ -1,5 +1,5 @@
-import { Flex, lightColors, Text } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { Flex, lightColors, Text } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 import React from 'react'
 import { SaleStatusEnum, UserStatusEnum } from '../../types'
 

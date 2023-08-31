@@ -1,8 +1,8 @@
 import React from 'react'
-import { Token } from 'opsoba-sdk'
-import { Modal, InjectedModalProps } from 'opsoba-uikit'
+import { Token } from '@pancakeswap/sdk'
+import { Modal, InjectedModalProps } from '@pancakeswap/uikit'
 import ImportToken from 'components/SearchModal/ImportToken'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 
 interface Props extends InjectedModalProps {
   tokens: Token[]

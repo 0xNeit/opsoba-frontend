@@ -11,7 +11,7 @@ import {
   Input,
   ArrowUpIcon,
   ArrowDownIcon,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { useAppDispatch } from 'state'
 import { Collection } from 'state/nftMarket/types'
 import { useGetCollections, useGetNftActivityFilters } from 'state/nftMarket/hooks'
@@ -20,7 +20,7 @@ import {
   removeActivityCollectionFilters,
   removeAllActivityCollectionFilters,
 } from 'state/nftMarket/reducer'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { CloseButton, FilterButton, ListOrderState, SearchWrapper, TriggerButton } from '../ListFilter/styles'
 import { CollectionItemRow } from './styles'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Flex, useMatchBreakpoints, AutoRenewIcon } from 'opsoba-uikit'
+import { Box, Button, Grid, Flex, useMatchBreakpoints, AutoRenewIcon } from '@pancakeswap/uikit'
 import { useAppDispatch } from 'state'
 import {
   useGetLeaderboardHasMoreResults,
@@ -9,7 +9,7 @@ import {
 } from 'state/predictions/hooks'
 import { filterNextPageLeaderboard } from 'state/predictions'
 import { LEADERBOARD_RESULTS_PER_PAGE } from 'state/predictions/helpers'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import Container from 'components/Layout/Container'
 import { FetchStatus } from 'config/constants/types'
 import DesktopResults from './DesktopResults'

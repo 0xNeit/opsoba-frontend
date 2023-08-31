@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronDownIcon, ChevronUpIcon, Text } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { ChevronDownIcon, ChevronUpIcon, Text } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 
 export interface ExpandableSectionButtonProps {
   onClick?: () => void

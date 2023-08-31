@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, Flex } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, Flex } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { formatNumber } from 'utils/formatBalance'
 import { VotingBox, ModalInner } from './styles'
 

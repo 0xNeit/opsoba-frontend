@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from 'opsoba-uikit'
+import { Grid } from '@pancakeswap/uikit'
 import orderBy from 'lodash/orderBy'
 import { Collection } from 'state/nftMarket/types'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'

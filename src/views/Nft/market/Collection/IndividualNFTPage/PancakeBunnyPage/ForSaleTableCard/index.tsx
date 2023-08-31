@@ -13,8 +13,8 @@ import {
   ArrowDownIcon,
   Button,
   Spinner,
-} from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+} from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'
 import ForSaleTableRows from './ForSaleTableRows'

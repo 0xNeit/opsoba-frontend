@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Box, Flex, InjectedModalProps, Modal, Button, Spinner } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Box, Flex, InjectedModalProps, Modal, Button, Spinner } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
 import useGetVotingPower from '../hooks/useGetVotingPower'
 import DetailsView from './CastVoteModal/DetailsView'
@@ -30,7 +30,7 @@ const VoteDetailsModal: React.FC<VoteDetailsModalProps> = ({ block, onDismiss })
   }
 
   return (
-    <Modal title={t('Voting Power')} onDismiss={handleDismiss} headerBackground={theme.colors.gradients.cardHeader}>
+    <Modal title={t('Voting Power')} onDismiss={handleDismiss} headerBackground={theme.colors.gradientCardHeader}>
       <Box mb="24px" width="320px">
         {isLoading ? (
           <Flex height="450px" alignItems="center" justifyContent="center">

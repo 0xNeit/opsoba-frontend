@@ -1,8 +1,8 @@
 import React from 'react'
-import { Box, ChevronLeftIcon, Flex } from 'opsoba-uikit'
+import { Box, ChevronLeftIcon, Flex } from '@pancakeswap/uikit'
 import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
 import SearchBar from '../components/SearchBar'
 

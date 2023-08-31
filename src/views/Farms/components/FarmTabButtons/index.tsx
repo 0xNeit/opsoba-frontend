@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, NotificationDot } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { ButtonMenu, ButtonMenuItem, NotificationDot } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useRouter } from 'next/router'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 

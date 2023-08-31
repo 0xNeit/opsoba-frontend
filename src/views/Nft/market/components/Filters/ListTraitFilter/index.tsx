@@ -12,9 +12,9 @@ import {
   InputGroup,
   SearchIcon,
   CloseIcon,
-} from 'opsoba-uikit'
+} from '@pancakeswap/uikit'
 import { FetchStatus } from 'config/constants/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import orderBy from 'lodash/orderBy'
 import { useAppDispatch } from 'state'
 import { useGetNftFilterLoadingState, useGetNftFilters } from 'state/nftMarket/hooks'

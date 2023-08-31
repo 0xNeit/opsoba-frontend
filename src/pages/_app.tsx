@@ -1,12 +1,13 @@
-import { ResetCSS } from 'opsoba-uikit'
+import { ResetCSS } from '@pancakeswap/uikit'
 import Script from 'next/script'
 import BigNumber from 'bignumber.js'
 import EasterEgg from 'components/EasterEgg'
-import GlobalCheckClaimStatus from 'components/GlobalCheckClaimStatus'
+// import GlobalCheckClaimStatus from 'components/GlobalCheckClaimStatus'
 import SubgraphHealthIndicator from 'components/SubgraphHealthIndicator'
 import { ToastListener } from 'contexts/ToastsContext'
+import { useAccountEventListener } from 'hooks/useAccountEventListener'
 import useEagerConnect from 'hooks/useEagerConnect'
-import { useInactiveListener } from 'hooks/useInactiveListener'
+import useThemeCookie from 'hooks/useThemeCookie'
 import useSentryUser from 'hooks/useSentryUser'
 import useUserAgent from 'hooks/useUserAgent'
 import type { AppProps } from 'next/app'
@@ -17,7 +18,7 @@ import { useStore, persistor } from 'state'
 import { usePollBlockNumber } from 'state/block/hooks'
 import { usePollCoreFarmData } from 'state/farms/hooks'
 import { NextPage } from 'next'
-import { useFetchProfile } from 'state/profile/hooks'
+// import { useFetchProfile } from 'state/profile/hooks'
 import { Blocklist, Updaters } from '..'
 import ErrorBoundary from '../components/ErrorBoundary'
 import Menu from '../components/Menu'
@@ -33,17 +34,17 @@ BigNumber.config({
 function GlobalHooks() {
   usePollBlockNumber()
   useEagerConnect()
-  useFetchProfile()
+  // useFetchProfile()
   usePollCoreFarmData()
   useUserAgent()
-  useInactiveListener()
+  useAccountEventListener()
   useSentryUser()
+  useThemeCookie()
   return null
 }
 
-function MyApp(props: AppProps) {
+function MyApp(props: AppProps<{ initialReduxState: any }>) {
   const { pageProps } = props
-  // @ts-ignore
   const store = useStore(pageProps.initialReduxState)
 
   return (
@@ -68,7 +69,7 @@ function MyApp(props: AppProps) {
           name="twitter:title"
           content="🥞 PancakeSwap - A next evolution DeFi exchange on Binance Smart Chain (BSC)"
         />
-        <title>PancakeSwap</title>
+        <title>SobaSwap</title>
       </Head>
       <Providers store={store}>
         <Blocklist>
@@ -76,7 +77,6 @@ function MyApp(props: AppProps) {
           <Updaters />
           <ResetCSS />
           <GlobalStyle />
-          <GlobalCheckClaimStatus excludeLocations={[]} />
           <PersistGate loading={null} persistor={persistor}>
             <App {...props} />
           </PersistGate>

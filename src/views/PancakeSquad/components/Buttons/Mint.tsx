@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { BigNumber } from 'ethers'
 import React, { useEffect, useState } from 'react'
-import { AutoRenewIcon, Button, useModal } from 'opsoba-uikit'
-import { ContextApi } from 'contexts/Localization/types'
+import { AutoRenewIcon, Button, useModal } from '@pancakeswap/uikit'
+import { ContextApi } from '@pancakeswap/localization/types'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { useNftSaleContract } from 'hooks/useContract'
-import useToast from 'hooks/useToast'
+import { useToast } from '@pancakeswap/uikit'
 import { DefaultTheme } from 'styled-components'
 import { logError } from 'utils/sentry'
 import { SaleStatusEnum } from '../../types'
@@ -38,7 +38,7 @@ const MintButton: React.FC<PreEventProps> = ({ t, theme, saleStatus, numberTicke
     <ConfirmModal
       title={t('Mint')}
       isLoading={isLoading}
-      headerBackground={theme.colors.gradients.cardHeader}
+      headerBackground={theme.colors.gradientCardHeader}
       txHash={txHashMintingResult}
       loadingText={t('Please confirm your transaction in wallet.')}
       loadingButtonLabel={t('Minting...')}

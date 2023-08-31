@@ -1,6 +1,6 @@
-import { Text } from 'opsoba-uikit'
+import { Text } from '@pancakeswap/uikit'
 import { Auction, AuctionStatus } from 'config/constants/types'
-import { useTranslation } from 'contexts/Localization'
+import { useTranslation } from '@pancakeswap/localization'
 import React from 'react'
 import styled from 'styled-components'
 

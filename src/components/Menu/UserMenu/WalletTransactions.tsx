@@ -1,25 +1,32 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Box, Button, Flex, Text } from 'opsoba-uikit'
-import { AppDispatch } from 'state'
-import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
-import { useTranslation } from 'contexts/Localization'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import styled from 'styled-components'
+import { Box, Button, Flex, Text } from '@pancakeswap/uikit'
+import { useAppDispatch } from 'state'
+import { useAllSortedRecentTransactions } from 'state/transactions/hooks'
+import { useTranslation } from '@pancakeswap/localization'
 import { clearAllTransactions } from 'state/transactions/actions'
-import { orderBy } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 import TransactionRow from './TransactionRow'
+import { chains } from '../../../utils/wagmi'
 
-const WalletTransactions: React.FC = () => {
-  const { chainId } = useActiveWeb3React()
-  const dispatch = useDispatch<AppDispatch>()
+const TransactionsContainer = styled(Box)`
+  max-height: 300px;
+  overflow-y: auto;
+`
+
+interface WalletTransactionsProps {
+  onDismiss: () => void
+}
+
+const WalletTransactions: React.FC<React.PropsWithChildren<WalletTransactionsProps>> = ({ onDismiss }) => {
+  const dispatch = useAppDispatch()
   const { t } = useTranslation()
-  const allTransactions = useAllTransactions()
-  const sortedTransactions = orderBy(Object.values(allTransactions).filter(isTransactionRecent), 'addedTime', 'desc')
+  const sortedTransactions = useAllSortedRecentTransactions()
+
+  const hasTransactions = !isEmpty(sortedTransactions)
 
   const handleClearAll = () => {
-    if (chainId) {
-      dispatch(clearAllTransactions({ chainId }))
-    }
+    dispatch(clearAllTransactions())
   }
 
   return (
@@ -28,14 +35,34 @@ const WalletTransactions: React.FC = () => {
         <Text color="secondary" fontSize="12px" textTransform="uppercase" fontWeight="bold">
           {t('Recent Transactions')}
         </Text>
-        {sortedTransactions.length > 0 && (
+        {hasTransactions && (
           <Button scale="sm" onClick={handleClearAll} variant="text" px="0">
             {t('Clear all')}
           </Button>
         )}
       </Flex>
-      {sortedTransactions.length > 0 ? (
-        sortedTransactions.map((txn) => <TransactionRow key={txn.hash} txn={txn} />)
+      {hasTransactions ? (
+        <TransactionsContainer>
+          {Object.entries(sortedTransactions).map(([chainId, transactions]) => {
+            const chainIdNumber = Number(chainId)
+            return (
+              <Box key={chainId}>
+                <Text fontSize="12px" color="textSubtle" mb="4px">
+                  {chains.find((c) => c.id === chainIdNumber)?.name ?? 'Unknown network'}
+                </Text>
+                {Object.values(transactions).map((txn) => (
+                  <TransactionRow
+                    key={txn.hash}
+                    txn={txn}
+                    chainId={chainIdNumber}
+                    type={txn.type}
+                    onDismiss={onDismiss}
+                  />
+                ))}
+              </Box>
+            )
+          })}
+        </TransactionsContainer>
       ) : (
         <Text textAlign="center">{t('No recent transactions')}</Text>
       )}

@@ -1,5 +1,5 @@
-import { ChainId } from 'opsoba-sdk'
-import BigNumber from 'bignumber.js/bignumber'
+import { ChainId } from '@pancakeswap/sdk'
+import BigNumber from 'bignumber.js'
 import { BIG_TEN } from 'utils/bigNumber'
 
 BigNumber.config({

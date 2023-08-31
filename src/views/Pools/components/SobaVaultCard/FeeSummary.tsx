@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, Flex, useTooltip, TooltipText } from 'opsoba-uikit'
-import { useTranslation } from 'contexts/Localization'
+import { Text, Flex, useTooltip, TooltipText } from '@pancakeswap/uikit'
+import { useTranslation } from '@pancakeswap/localization'
 import { useSobaVault } from 'state/pools/hooks'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 
