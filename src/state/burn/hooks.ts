@@ -57,8 +57,8 @@ export function useDerivedBurnInfo(
     userLiquidity &&
     tokenA &&
     // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-    JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
-      ? new TokenAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).raw)
+    JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
+      ? new TokenAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).quotient)
       : undefined
   const liquidityValueB =
     pair &&
@@ -66,8 +66,8 @@ export function useDerivedBurnInfo(
     userLiquidity &&
     tokenB &&
     // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-    JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
-      ? new TokenAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).raw)
+    JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
+      ? new TokenAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).quotient)
       : undefined
   const liquidityValues: { [Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount } = {
     [Field.CURRENCY_A]: liquidityValueA,
@@ -84,7 +84,7 @@ export function useDerivedBurnInfo(
     if (pair?.liquidityToken) {
       const independentAmount = tryParseAmount(typedValue, pair.liquidityToken)
       if (independentAmount && userLiquidity && !independentAmount.greaterThan(userLiquidity)) {
-        percentToRemove = new Percent(independentAmount.raw, userLiquidity.raw)
+        percentToRemove = new Percent(independentAmount.quotient, userLiquidity.quotient)
       }
     }
   }
@@ -93,7 +93,7 @@ export function useDerivedBurnInfo(
     const independentAmount = tryParseAmount(typedValue, tokens[independentField])
     const liquidityValue = liquidityValues[independentField]
     if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
-      percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
+      percentToRemove = new Percent(independentAmount.quotient, liquidityValue.quotient)
     }
   }
 
@@ -106,15 +106,15 @@ export function useDerivedBurnInfo(
     [Field.LIQUIDITY_PERCENT]: percentToRemove,
     [Field.LIQUIDITY]:
       userLiquidity && percentToRemove && percentToRemove.greaterThan('0')
-        ? new TokenAmount(userLiquidity.token, percentToRemove.multiply(userLiquidity.raw).quotient)
+        ? new TokenAmount(userLiquidity.token, percentToRemove.multiply(userLiquidity.quotient).quotient)
         : undefined,
     [Field.CURRENCY_A]:
       tokenA && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueA
-        ? new TokenAmount(tokenA, percentToRemove.multiply(liquidityValueA.raw).quotient)
+        ? new TokenAmount(tokenA, percentToRemove.multiply(liquidityValueA.quotient).quotient)
         : undefined,
     [Field.CURRENCY_B]:
       tokenB && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueB
-        ? new TokenAmount(tokenB, percentToRemove.multiply(liquidityValueB.raw).quotient)
+        ? new TokenAmount(tokenB, percentToRemove.multiply(liquidityValueB.quotient).quotient)
         : undefined,
   }
 
