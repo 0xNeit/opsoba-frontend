@@ -5,8 +5,9 @@ import ERC20_INTERFACE from 'config/abi/erc20'
 import { useAllTokens } from 'hooks/Tokens'
 import { useMulticallContract } from 'hooks/useContract'
 import { isAddress } from 'utils'
-import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 import useNativeCurrency from 'hooks/useNativeCurrency'
+import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
+
 
 /**
  * Returns a map of the given addresses to their eventually consistent BNB balances.
@@ -41,7 +42,7 @@ export function useBNBBalances(uncheckedAddresses?: (string | undefined)[]): {
         if (value) memo[address] = CurrencyAmount.fromRawAmount(native, JSBI.BigInt(value.toString()))
         return memo
       }, {}),
-    [addresses, results],
+    [addresses, results, native],
   )
 }
 

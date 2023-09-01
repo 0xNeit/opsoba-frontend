@@ -48,7 +48,9 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
       } else {
         await sousStake(sousChefContract, amount, decimals)
       }
+      // @ts-ignore
       dispatch(updateUserStakedBalance(sousId, account))
+      // @ts-ignore
       dispatch(updateUserBalance(sousId, account))
     },
     [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],

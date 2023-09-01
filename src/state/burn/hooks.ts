@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, JSBI, Pair, Percent, TokenAmount } from '@pancakeswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Pair, Percent, Token } from '@pancakeswap/sdk'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -23,9 +23,9 @@ export function useDerivedBurnInfo(
   pair?: Pair | null
   parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent
-    [Field.LIQUIDITY]?: TokenAmount
-    [Field.CURRENCY_A]?: CurrencyAmount
-    [Field.CURRENCY_B]?: CurrencyAmount
+    [Field.LIQUIDITY]?: CurrencyAmount<Token>
+    [Field.CURRENCY_A]?: CurrencyAmount<Currency>
+    [Field.CURRENCY_B]?: CurrencyAmount<Currency>
   }
   error?: string
 } {
@@ -40,7 +40,7 @@ export function useDerivedBurnInfo(
 
   // balances
   const relevantTokenBalances = useTokenBalances(account ?? undefined, [pair?.liquidityToken])
-  const userLiquidity: undefined | TokenAmount = relevantTokenBalances?.[pair?.liquidityToken?.address ?? '']
+  const userLiquidity: undefined | CurrencyAmount<Token> = relevantTokenBalances?.[pair?.liquidityToken?.address ?? '']
 
   const [tokenA, tokenB] = [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
   const tokens = {
@@ -58,7 +58,7 @@ export function useDerivedBurnInfo(
     tokenA &&
     // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
     JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
-      ? new TokenAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).quotient)
+      ? CurrencyAmount.fromRawAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).quotient)
       : undefined
   const liquidityValueB =
     pair &&
@@ -67,9 +67,9 @@ export function useDerivedBurnInfo(
     tokenB &&
     // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
     JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
-      ? new TokenAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).quotient)
+      ? CurrencyAmount.fromRawAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).quotient)
       : undefined
-  const liquidityValues: { [Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount } = {
+  const liquidityValues: { [Field.CURRENCY_A]?: CurrencyAmount<Token>; [Field.CURRENCY_B]?: CurrencyAmount<Token> } = {
     [Field.CURRENCY_A]: liquidityValueA,
     [Field.CURRENCY_B]: liquidityValueB,
   }
@@ -99,22 +99,22 @@ export function useDerivedBurnInfo(
 
   const parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent
-    [Field.LIQUIDITY]?: TokenAmount
-    [Field.CURRENCY_A]?: TokenAmount
-    [Field.CURRENCY_B]?: TokenAmount
+    [Field.LIQUIDITY]?: CurrencyAmount<Token>
+    [Field.CURRENCY_A]?: CurrencyAmount<Token>
+    [Field.CURRENCY_B]?: CurrencyAmount<Token>
   } = {
     [Field.LIQUIDITY_PERCENT]: percentToRemove,
     [Field.LIQUIDITY]:
       userLiquidity && percentToRemove && percentToRemove.greaterThan('0')
-        ? new TokenAmount(userLiquidity.token, percentToRemove.multiply(userLiquidity.quotient).quotient)
+        ? CurrencyAmount.fromRawAmount(userLiquidity.currency, percentToRemove.multiply(userLiquidity.quotient).quotient)
         : undefined,
     [Field.CURRENCY_A]:
       tokenA && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueA
-        ? new TokenAmount(tokenA, percentToRemove.multiply(liquidityValueA.quotient).quotient)
+        ? CurrencyAmount.fromRawAmount(tokenA, percentToRemove.multiply(liquidityValueA.quotient).quotient)
         : undefined,
     [Field.CURRENCY_B]:
       tokenB && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueB
-        ? new TokenAmount(tokenB, percentToRemove.multiply(liquidityValueB.quotient).quotient)
+        ? CurrencyAmount.fromRawAmount(tokenB, percentToRemove.multiply(liquidityValueB.quotient).quotient)
         : undefined,
   }
 

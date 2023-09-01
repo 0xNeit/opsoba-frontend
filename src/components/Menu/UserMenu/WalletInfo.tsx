@@ -29,7 +29,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
   const { t } = useTranslation()
   const { account, chainId, chain } = useActiveWeb3React()
   const isBSC = chainId === ChainId.MAINNET
-  const bnbBalance = isBSC ? useBalance({ addressOrName: account, chainId: ChainId.MAINNET }) : useBalance({ addressOrName: account, chainId: ChainId.TESTNET })
+  const bnbBalance = useBalance({ addressOrName: account, chainId: ChainId.TESTNET })
   const nativeBalance = useBalance({ addressOrName: account, enabled: !isBSC })
   const native = useNativeCurrency()
   const { balance: cakeBalance, fetchStatus: cakeFetchStatus } = useGetSobaBalance()

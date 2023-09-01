@@ -10,10 +10,10 @@ import {
   ButtonMenuItem,
   HelpIcon,
   useTooltip,
+  useToast
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
-import { useToast } from '@pancakeswap/uikit'
 import { Token } from '@pancakeswap/sdk'
 import { formatNumber } from 'utils/formatBalance'
 import useHarvestPool from '../../../hooks/useHarvestPool'

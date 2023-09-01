@@ -1,10 +1,10 @@
-import { Currency, Token } from '@pancakeswap/sdk'
+import { Currency } from '@pancakeswap/sdk'
 import { BinanceIcon } from '@pancakeswap/uikit'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
-import getTokenLogoURL, { getTokenPath } from '../../utils/getTokenLogoURL'
+import { getTokenPath } from '../../utils/getTokenLogoURL'
 import Logo from './Logo'
 
 const StyledLogo = styled(Logo)<{ size: string }>`

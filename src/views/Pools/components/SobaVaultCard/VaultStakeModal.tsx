@@ -11,6 +11,7 @@ import {
   AutoRenewIcon,
   CalculateIcon,
   IconButton,
+  useToast
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { useWeb3React } from '@pancakeswap/wagmi'
@@ -23,7 +24,6 @@ import useTheme from 'hooks/useTheme'
 import useWithdrawalFeeTimer from 'views/Pools/hooks/useWithdrawalFeeTimer'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
-import { useToast } from '@pancakeswap/uikit'
 import { fetchSobaVaultUserData } from 'state/pools'
 import { DeserializedPool } from 'state/types'
 import { getInterestBreakdown } from 'utils/compoundApyHelpers'

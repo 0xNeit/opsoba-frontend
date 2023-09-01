@@ -11,13 +11,16 @@ const Spacer: React.FC<SpacerProps> = ({ size = 'md' }) => {
   let s: number
   switch (size) {
     case 'lg':
+      // @ts-ignore
       s = spacing[6]
       break
     case 'sm':
+      // @ts-ignore
       s = spacing[2]
       break
     case 'md':
     default:
+      // @ts-ignore
       s = spacing[4]
   }
 

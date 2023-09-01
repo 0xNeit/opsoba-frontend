@@ -38,7 +38,7 @@ import {
 import { getMulticallAddress } from 'utils/addressHelpers'
 import { VaultKey } from 'state/types'
 import {
-  Soba,
+  // Soba,
   SobaVault,
   EnsPublicResolver,
   EnsRegistrar,

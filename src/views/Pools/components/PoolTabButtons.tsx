@@ -1,4 +1,3 @@
-import React from 'react'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 import { ViewMode } from 'state/user/actions'
 import styled from 'styled-components'

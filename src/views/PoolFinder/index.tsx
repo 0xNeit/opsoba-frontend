@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Currency, JSBI } from '@pancakeswap/sdk'
 import { Button, ChevronDownIcon, Text, AddIcon, useModal } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from '@pancakeswap/localization'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import { CurrencyLogo } from '../../components/Logo'
@@ -18,7 +19,7 @@ import { currencyId } from '../../utils/currencyId'
 import Dots from '../../components/Loader/Dots'
 import { AppHeader, AppBody } from '../../components/App'
 import Page from '../Page'
-import useNativeCurrency from 'hooks/useNativeCurrency'
+
 
 enum Fields {
   TOKEN0 = 0,

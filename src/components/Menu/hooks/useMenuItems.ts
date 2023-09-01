@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { LinkStatus } from '@pancakeswap/uikit'
+import { LinkStatus } from '@pancakeswap/uikit/src/widgets/Menu/types'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTheme } from 'styled-components'
 import { useTranslation } from '@pancakeswap/localization'

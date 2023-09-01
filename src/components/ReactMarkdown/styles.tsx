@@ -1,4 +1,3 @@
-import React from 'react'
 import { Heading, Text } from '@pancakeswap/uikit'
 import { NormalComponents, SpecialComponents } from 'react-markdown/src/ast-to-react'
 import styled from 'styled-components'
@@ -54,6 +53,7 @@ const markdownComponents: Partial<NormalComponents & SpecialComponents> = {
   h5: Title,
   h6: Title,
   p: (props) => {
+    // @ts-ignore
     return <Text as="p" my="16px" {...props} />
   },
   table: ({ ...props }) => {

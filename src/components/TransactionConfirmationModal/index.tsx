@@ -66,7 +66,6 @@ function TransactionSubmittedContent({
   chainId: ChainId
   currencyToAdd?: Currency | undefined
 }) {
-  const { library } = useActiveWeb3React()
 
   const { t } = useTranslation()
 
@@ -85,7 +84,7 @@ function TransactionSubmittedContent({
               {t('View on BscScan')}
             </Link>
           )}
-          {currencyToAdd && library?.provider?.isMetaMask && (
+          {currencyToAdd && (
             <Button
               variant="tertiary"
               mt="12px"

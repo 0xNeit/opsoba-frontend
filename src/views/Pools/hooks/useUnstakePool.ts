@@ -40,8 +40,11 @@ const useUnstakePool = (sousId: number, enableEmergencyWithdraw = false) => {
       } else {
         await sousUnstake(sousChefContract, amount, decimals)
       }
+      // @ts-ignore
       dispatch(updateUserStakedBalance(sousId, account))
+      // @ts-ignore
       dispatch(updateUserBalance(sousId, account))
+      // @ts-ignore
       dispatch(updateUserPendingReward(sousId, account))
     },
     [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],

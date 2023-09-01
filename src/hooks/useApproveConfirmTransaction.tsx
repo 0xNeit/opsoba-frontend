@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer, useRef } from 'react'
-import { noop } from 'lodash'
+import { useEffect, useReducer, useRef } from 'react'
+import noop from 'lodash/noop'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import { ethers } from 'ethers'
 import { useToast } from '@pancakeswap/uikit'

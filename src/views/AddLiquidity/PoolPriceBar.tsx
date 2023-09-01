@@ -1,5 +1,4 @@
 import { Currency, Percent, Price } from '@pancakeswap/sdk'
-import React from 'react'
 import { Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { AutoColumn } from '../../components/Layout/Column'
@@ -16,7 +15,7 @@ function PoolPriceBar({
   currencies: { [field in Field]?: Currency }
   noLiquidity?: boolean
   poolTokenPercentage?: Percent
-  price?: Price
+  price?: Price<Currency, Currency>
 }) {
   const { t } = useTranslation()
   return (

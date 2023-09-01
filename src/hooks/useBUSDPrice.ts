@@ -1,4 +1,4 @@
-import { ChainId, Currency, JSBI, Price, WNATIVE, WBNB } from '@pancakeswap/sdk'
+import { ChainId, Currency, JSBI, Price, WNATIVE } from '@pancakeswap/sdk'
 import tokens, { mainnetTokens } from 'config/constants/tokens'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useMemo } from 'react'
@@ -32,12 +32,6 @@ export default function useBUSDPrice(currency?: Currency): Price<Currency, Curre
       return undefined
     }
 
-    const isBUSDPairExist =
-      busdPair &&
-      busdPairState === PairState.EXISTS &&
-      busdPair.reserve0.greaterThan('0') &&
-      busdPair.reserve1.greaterThan('0')
-
     // handle weth/eth
     if (wrapped.equals(wnative)) {
       if (busdPair) {
@@ -56,12 +50,6 @@ export default function useBUSDPrice(currency?: Currency): Price<Currency, Curre
       ethPairState === PairState.EXISTS &&
       ethPair.reserve0.greaterThan('0') &&
       ethPair.reserve1.greaterThan('0')
-    const isBusdBnbPairExist =
-      busdEthPair &&
-      busdEthPairState === PairState.EXISTS &&
-      busdEthPair.reserve0.greaterThan('0') &&
-      busdEthPair.reserve1.greaterThan('0')
-
 
     const ethPairETHAmount = isBnbPairExist && ethPair?.reserveOf(wnative)
     const ethPairETHBUSDValue: JSBI =
@@ -87,7 +75,7 @@ export default function useBUSDPrice(currency?: Currency): Price<Currency, Curre
     }
 
     return undefined
-  }, [chainId, currency, ethPair, ethPairState, busdEthPair, busdEthPairState, busdPair, busdPairState, wrapped])
+  }, [chainId, currency, ethPair, ethPairState, busdEthPair, busdEthPairState, busdPair, busdPairState, wrapped, wnative])
 }
 
 export const useSobaBusdPrice = (): Price<Currency, Currency> | undefined => {

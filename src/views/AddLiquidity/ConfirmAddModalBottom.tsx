@@ -1,5 +1,4 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from '@pancakeswap/sdk'
-import React from 'react'
 import { Button, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import { RowBetween, RowFixed } from '../../components/Layout/Row'
@@ -17,7 +16,7 @@ function ConfirmAddModalBottom({
   noLiquidity?: boolean
   price?: Fraction
   currencies: { [field in Field]?: Currency }
-  parsedAmounts: { [field in Field]?: CurrencyAmount }
+  parsedAmounts: { [field in Field]?: CurrencyAmount<Currency> }
   poolTokenPercentage?: Percent
   onAdd: () => void
 }) {

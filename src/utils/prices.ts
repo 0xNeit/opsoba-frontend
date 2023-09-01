@@ -1,5 +1,5 @@
 import { Currency, CurrencyAmount, Fraction, JSBI, Percent, Price, Trade, TradeType } from '@pancakeswap/sdk'
-import useNativeCurrency from 'hooks/useNativeCurrency'
+// import useNativeCurrency from 'hooks/useNativeCurrency'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,
@@ -38,7 +38,6 @@ export function computeTradePriceBreakdown(trade?: Trade<Currency, Currency, Tra
     ? new Percent(priceImpactWithoutFeeFraction?.numerator, priceImpactWithoutFeeFraction?.denominator)
     : undefined
         
-  const native = useNativeCurrency()
   // the amount of the input that accrues to LPs
   const realizedLPFeeAmount =
     realizedLPFee &&

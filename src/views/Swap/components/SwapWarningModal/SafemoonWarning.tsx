@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { Text, Link } from '@pancakeswap/uikit'
 

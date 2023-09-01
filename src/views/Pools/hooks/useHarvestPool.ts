@@ -40,7 +40,9 @@ const useHarvestPool = (sousId, isUsingBnb = false) => {
     } else {
       await harvestPool(sousChefContract)
     }
+    // @ts-ignore
     dispatch(updateUserPendingReward(sousId, account))
+    // @ts-ignore
     dispatch(updateUserBalance(sousId, account))
   }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId])
 

@@ -1,7 +1,7 @@
 import Image from 'next/future/image'
 import { HelpIcon } from '@pancakeswap/uikit'
 import { isChainSupported } from 'utils/wagmi'
-import React, { memo } from 'react'
+import { memo } from 'react'
 
 export const ChainLogo = memo(
   ({ chainId, width = 24, height = 24 }: { chainId: number; width?: number; height?: number }) => {

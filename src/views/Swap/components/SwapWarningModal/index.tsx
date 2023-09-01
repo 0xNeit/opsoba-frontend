@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { ModalBody, ModalContainer, Message, ModalHeader, Box, Heading } from '@pancakeswap/uikit'
 import useTheme from 'hooks/useTheme'
@@ -63,7 +63,7 @@ const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDis
   const SWAP_WARNING = TOKEN_WARNINGS[swapCurrency.address]
 
   return (
-    <StyledModalContainer minWidth="280px">
+    <StyledModalContainer $minWidth="280px">
       <ModalHeader background={theme.colors.gradientCardHeader}>
         <Heading p="12px 24px">{t('Notice for trading %symbol%', { symbol: SWAP_WARNING.symbol })}</Heading>
       </ModalHeader>

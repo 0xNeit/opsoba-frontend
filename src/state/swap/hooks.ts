@@ -3,7 +3,7 @@ import { Currency, CurrencyAmount, JSBI, Token, Trade, TradeType } from '@pancak
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useENS from 'hooks/ENS/useENS'
+// import useENS from 'hooks/ENS/useENS'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useCurrency } from 'hooks/Tokens'
 import { useTradeExactIn, useTradeExactOut } from 'hooks/Trades'
@@ -12,7 +12,9 @@ import { useTranslation } from '@pancakeswap/localization'
 import { isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
 import getLpAddress from 'utils/getLpAddress'
-import { getTokenAddress } from 'views/Swap/components/Chart/utils'
+// import { getTokenAddress } from 'views/Swap/components/Chart/utils'
+// import useNativeCurrency from 'hooks/useNativeCurrency'
+import { useWeb3React } from '@pancakeswap/wagmi'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import {
@@ -23,24 +25,18 @@ import {
   switchCurrencies,
   typeInput,
   updateDerivedPairData,
-  updatePairData,
 } from './actions'
 import { SwapState } from './reducer'
 import { useUserSlippageTolerance } from '../user/hooks'
-import fetchPairPriceData from './fetch/fetchPairPriceData'
 import {
-  normalizeChartData,
-  normalizeDerivedChartData,
   normalizeDerivedPairDataByActiveToken,
   normalizePairDataByActiveToken,
 } from './normalizers'
 import { PairDataTimeWindowEnum } from './types'
 import { derivedPairByDataIdSelector, pairByDataIdSelector } from './selectors'
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from './constants'
-import fetchDerivedPriceData from './fetch/fetchDerivedPriceData'
-import { pairHasEnoughLiquidity } from './fetch/utils'
-import useNativeCurrency from 'hooks/useNativeCurrency'
-import { useWeb3React } from '@pancakeswap/wagmi'
+
+
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -98,11 +94,8 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   }
   try {
     const typedValueParsed = parseUnits(value, currency.decimals).toString()
-    const native = useNativeCurrency()
     if (typedValueParsed !== '0') {
-      return currency instanceof Token
-        ? CurrencyAmount.fromRawAmount(currency, JSBI.BigInt(typedValueParsed))
-        : CurrencyAmount.fromRawAmount(native, JSBI.BigInt(typedValueParsed))
+      return CurrencyAmount.fromRawAmount(currency, JSBI.BigInt(typedValueParsed))
     }
   } catch (error) {
     // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
@@ -131,6 +124,21 @@ function involvesAddress(
     trade.route.path.some((token) => token.address === checksummedAddress) ||
     trade.route.pairs.some((pair) => pair.liquidityToken.address === checksummedAddress)
   )
+}
+
+const BNB_ADDRESS = '0x4200000000000000000000000000000000000006'
+
+
+export const getTokenAddress = (tokenAddress: undefined | string) => {
+  if (!tokenAddress) {
+    return ''
+  }
+  const lowerCaseAddress = tokenAddress.toLowerCase()
+  if (lowerCaseAddress === 'bnb') {
+    return BNB_ADDRESS
+  }
+
+  return lowerCaseAddress
 }
 
 // Get swap price for single token disregarding slippage and price impact
@@ -370,46 +378,14 @@ export const useFetchPairPrices = ({
         // Try to get at least derived data for chart
         // This is used when there is no direct data for pool
         // i.e. when multihops are necessary
-        const derivedData = await fetchDerivedPriceData(token0Address, token1Address, timeWindow)
-        if (derivedData) {
-          const normalizedDerivedData = normalizeDerivedChartData(derivedData)
-          dispatch(updateDerivedPairData({ pairData: normalizedDerivedData, pairId, timeWindow }))
-        } else {
-          dispatch(updateDerivedPairData({ pairData: [], pairId, timeWindow }))
-        }
+        // const derivedData = await fetchDerivedPriceData(token0Address, token1Address, timeWindow)
+        
       } catch (error) {
         console.error('Failed to fetch derived prices for chart', error)
         dispatch(updateDerivedPairData({ pairData: [], pairId, timeWindow }))
       } finally {
         setIsLoading(false)
       }
-    }
-
-    const fetchAndUpdatePairPrice = async () => {
-      setIsLoading(true)
-      const { data } = await fetchPairPriceData({ pairId, timeWindow })
-      if (data) {
-        // Find out if Liquidity Pool has enough liquidity
-        // low liquidity pool might mean that the price is incorrect
-        // in that case try to get derived price
-        const hasEnoughLiquidity = pairHasEnoughLiquidity(data, timeWindow)
-        const newPairData = normalizeChartData(data, timeWindow) || []
-        if (newPairData.length > 0 && hasEnoughLiquidity) {
-          dispatch(updatePairData({ pairData: newPairData, pairId, timeWindow }))
-          setIsLoading(false)
-        } else {
-          console.info(`[Price Chart]: Liquidity too low for ${pairId}`)
-          dispatch(updatePairData({ pairData: [], pairId, timeWindow }))
-          fetchDerivedData()
-        }
-      } else {
-        dispatch(updatePairData({ pairData: [], pairId, timeWindow }))
-        fetchDerivedData()
-      }
-    }
-
-    if (!pairData && !derivedPairData && pairId && !isLoading) {
-      fetchAndUpdatePairPrice()
     }
   }, [
     pairId,

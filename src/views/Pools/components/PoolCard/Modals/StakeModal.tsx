@@ -12,10 +12,10 @@ import {
   Link,
   CalculateIcon,
   IconButton,
+  useToast
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import useTheme from 'hooks/useTheme'
-import { useToast } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
 import RoiCalculatorModal from 'components/RoiCalculatorModal'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'

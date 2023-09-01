@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import { ethers, Contract } from 'ethers'
 import { useAppDispatch } from 'state'
@@ -24,7 +24,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
       setRequestedApproval(true)
       const tx = await callWithGasPrice(lpContract, 'approve', [sousChefContract.address, ethers.constants.MaxUint256])
       const receipt = await tx.wait()
-
+      // @ts-ignore
       dispatch(updateUserAllowance(sousId, account))
       if (receipt.status) {
         toastSuccess(

@@ -5,8 +5,9 @@ import {
   SwapFillIcon,
   EarnFillIcon,
   EarnIcon,
-  DropdownMenuItems,
 } from '@pancakeswap/uikit'
+
+import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
 import { ContextApi } from '@pancakeswap/localization'
 // import { perpLangMap } from 'utils/getPerpetualLanguageCode'
 // import { perpTheme } from 'utils/getPerpetualTheme'

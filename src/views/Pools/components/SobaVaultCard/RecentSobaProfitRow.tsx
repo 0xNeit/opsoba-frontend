@@ -1,4 +1,3 @@
-import React from 'react'
 import { Flex, Text } from '@pancakeswap/uikit'
 import { useWeb3React } from '@pancakeswap/wagmi'
 import { useTranslation } from '@pancakeswap/localization'

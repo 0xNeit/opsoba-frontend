@@ -36,6 +36,7 @@ export const useFetchUserPools = (account) => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (account) {
+      // @ts-ignore
       dispatch(fetchPoolsUserDataAsync(account))
     }
   }, [account, dispatch, fastRefresh])

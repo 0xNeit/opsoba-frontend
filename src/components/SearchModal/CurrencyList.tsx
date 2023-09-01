@@ -1,4 +1,4 @@
-import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
+import { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { Currency, CurrencyAmount, Token } from '@pancakeswap/sdk'
 import { Text } from '@pancakeswap/uikit'
 import styled from 'styled-components'
@@ -8,6 +8,7 @@ import { LightGreyCard } from 'components/Card'
 import QuestionHelper from 'components/QuestionHelper'
 import { useTranslation } from '@pancakeswap/localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useNativeCurrency from 'hooks/useNativeCurrency'
 import { useCombinedActiveList } from '../../state/lists/hooks'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { useIsUserAddedToken, useAllInactiveTokens } from '../../hooks/Tokens'
@@ -17,7 +18,7 @@ import { CurrencyLogo } from '../Logo'
 import CircleLoader from '../Loader/CircleLoader'
 import { isTokenOnList } from '../../utils'
 import ImportRow from './ImportRow'
-import useNativeCurrency from 'hooks/useNativeCurrency'
+
 
 function currencyKey(currency: Currency): string {
   return currency?.isToken ? currency.address : currency?.isNative ? currency.symbol : ''

@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-import { Trade, TradeType } from '@pancakeswap/sdk'
+import { useMemo } from 'react'
+import { Currency, Trade, TradeType } from '@pancakeswap/sdk'
 import { Button, Text, ErrorIcon, ArrowDownIcon } from '@pancakeswap/uikit'
 import { Field } from 'state/swap/actions'
 import { useTranslation } from '@pancakeswap/localization'
@@ -17,7 +17,7 @@ export default function SwapModalHeader({
   showAcceptChanges,
   onAcceptChanges,
 }: {
-  trade: Trade
+  trade: Trade<Currency, Currency, TradeType>
   allowedSlippage: number
   recipient: string | null
   showAcceptChanges: boolean

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, CurrencyAmount, Token, WNATIVE } from '@pancakeswap/sdk'
@@ -39,13 +39,13 @@ import ConfirmAddModalBottom from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
-import useNativeCurrency from 'hooks/useNativeCurrency'
+// import useNativeCurrency from 'hooks/useNativeCurrency'
 
 export default function AddLiquidity() {
   const router = useRouter()
   const [currencyIdA, currencyIdB] = router.query.currency || []
 
-  const { account, chainId, isWrongNetwork } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const { t } = useTranslation()
   const gasPrice = useGasPrice()
