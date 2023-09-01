@@ -1,4 +1,5 @@
-import { HistoryIcon, Button, useModal } from '@pancakeswap/uikit'
+import React from 'react'
+import { HistoryIcon, Button, useModal } from 'opsoba-uikit'
 import TransactionsModal from './TransactionsModal'
 
 const Transactions = () => {

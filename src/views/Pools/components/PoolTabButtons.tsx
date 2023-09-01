@@ -1,9 +1,10 @@
+import React from 'react'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 import { ViewMode } from 'state/user/actions'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
-import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { ButtonMenu, ButtonMenuItem, Toggle, Text, NotificationDot } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import ToggleView from './ToggleView/ToggleView'
 
 const ToggleWrapper = styled.div`

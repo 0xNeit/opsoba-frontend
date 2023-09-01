@@ -1,5 +1,6 @@
-import { Text } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import React from 'react'
+import { Text } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const BondlyWarning = () => {
   const { t } = useTranslation()

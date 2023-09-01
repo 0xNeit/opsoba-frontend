@@ -1,8 +1,8 @@
-import { useMemo } from 'react'
-import { Currency, Trade, TradeType } from '@pancakeswap/sdk'
-import { Button, Text, ErrorIcon, ArrowDownIcon } from '@pancakeswap/uikit'
+import React, { useMemo } from 'react'
+import { Trade, TradeType } from 'opsoba-sdk'
+import { Button, Text, ErrorIcon, ArrowDownIcon } from 'opsoba-uikit'
 import { Field } from 'state/swap/actions'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import { AutoColumn } from 'components/Layout/Column'
 import { CurrencyLogo } from 'components/Logo'
@@ -17,7 +17,7 @@ export default function SwapModalHeader({
   showAcceptChanges,
   onAcceptChanges,
 }: {
-  trade: Trade<Currency, Currency, TradeType>
+  trade: Trade
   allowedSlippage: number
   recipient: string | null
   showAcceptChanges: boolean

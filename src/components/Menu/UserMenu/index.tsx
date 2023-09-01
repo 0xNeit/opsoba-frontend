@@ -1,101 +1,46 @@
-/* eslint-disable no-sparse-arrays */
-import { useTranslation } from '@pancakeswap/localization'
-import {
-  Box,
-  Flex,
-  LogoutIcon,
-  RefreshIcon,
-  useModal,
-  UserMenu as UIKitUserMenu,
-  UserMenuDivider,
-  UserMenuItem,
-  UserMenuVariant,
-} from '@pancakeswap/uikit'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import Trans from 'components/Trans'
-import { useActiveChainId } from 'hooks/useActiveChainId'
+import React from 'react'
+import { useWeb3React } from '@web3-react/core'
+import { Flex, LogoutIcon, useModal, UserMenu as UIKitUserMenu, UserMenuDivider, UserMenuItem } from 'opsoba-uikit'
 import useAuth from 'hooks/useAuth'
-import { useEffect, useState } from 'react'
-import { usePendingTransactions } from 'state/transactions/hooks'
-import { useAccount } from 'wagmi'
-import WalletModal, { WalletView } from './WalletModal'
+import ConnectWalletButton from 'components/ConnectWalletButton'
+import { useGetBnbBalance } from 'hooks/useTokenBalance'
+import { useTranslation } from 'contexts/Localization'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
+import { FetchStatus } from 'config/constants/types'
+import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
+// import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
 
 const UserMenu = () => {
   const { t } = useTranslation()
-  const { address: account } = useAccount()
-  const { isWrongNetwork } = useActiveChainId()
+  const { account } = useWeb3React()
   const { logout } = useAuth()
-  const { hasPendingTransactions, pendingNumber } = usePendingTransactions()
+  const { balance, fetchStatus } = useGetBnbBalance()
+  // const { profile } = useProfile()
   const [onPresentWalletModal] = useModal(<WalletModal initialView={WalletView.WALLET_INFO} />)
   const [onPresentTransactionModal] = useModal(<WalletModal initialView={WalletView.TRANSACTIONS} />)
-  const [onPresentWrongNetworkModal] = useModal(<WalletModal initialView={WalletView.WRONG_NETWORK} />)
+  // const hasProfile = isInitialized && !!profile
   // const avatarSrc = profile?.nft?.image?.thumbnail
-  const [userMenuText, setUserMenuText] = useState<string>('')
-  const [userMenuVariable, setUserMenuVariable] = useState<UserMenuVariant>('default')
+  const hasLowBnbBalance = fetchStatus === FetchStatus.Fetched && balance.lte(LOW_BNB_BALANCE)
 
-  useEffect(() => {
-    if (hasPendingTransactions) {
-      setUserMenuText(t('%num% Pending', { num: pendingNumber }))
-      setUserMenuVariable('pending')
-    } else {
-      setUserMenuText('')
-      setUserMenuVariable('default')
-    }
-  }, [hasPendingTransactions, pendingNumber, t])
-
-  const onClickWalletMenu = (): void => {
-    if (isWrongNetwork) {
-      onPresentWrongNetworkModal()
-    } else {
-      onPresentWalletModal()
-    }
-  }
-
-  const UserMenuItems = () => {
-    return (
-      <>
-        <WalletUserMenuItem isWrongNetwork={isWrongNetwork} onPresentWalletModal={onClickWalletMenu} />
-        <UserMenuItem as="button" disabled={isWrongNetwork} onClick={onPresentTransactionModal}>
-          {t('Recent Transactions')}
-          {hasPendingTransactions && <RefreshIcon spin />}
-        </UserMenuItem>
-        <UserMenuDivider />
-        <UserMenuItem as="button" onClick={logout}>
-          <Flex alignItems="center" justifyContent="space-between" width="100%">
-            {t('Disconnect')}
-            <LogoutIcon />
-          </Flex>
-        </UserMenuItem>
-      </>
-    )
-  }
-
-  if (account) {
-    return (
-      <UIKitUserMenu account={account} text={userMenuText} variant={userMenuVariable}>
-        {({ isOpen }) => (isOpen ? <UserMenuItems /> : null)}
-      </UIKitUserMenu>
-    )
-  }
-
-  if (isWrongNetwork) {
-    return (
-      <UIKitUserMenu text={t('Network')} variant="danger">
-        {({ isOpen }) => (isOpen ? <UserMenuItems /> : null)}
-      </UIKitUserMenu>
-    )
+  if (!account) {
+    return <ConnectWalletButton scale="sm" />
   }
 
   return (
-    <ConnectWalletButton scale="sm">
-      <Box display={['none', , , 'block']}>
-        <Trans>Connect Wallet</Trans>
-      </Box>
-      <Box display={['block', , , 'none']}>
-        <Trans>Connect</Trans>
-      </Box>
-    </ConnectWalletButton>
+    <UIKitUserMenu account={account} >
+      <WalletUserMenuItem hasLowBnbBalance={hasLowBnbBalance} onPresentWalletModal={onPresentWalletModal} />
+      <UserMenuItem as="button" onClick={onPresentTransactionModal}>
+        {t('Transactions')}
+      </UserMenuItem>
+      <UserMenuDivider />
+      <UserMenuItem as="button" onClick={logout}>
+        <Flex alignItems="center" justifyContent="space-between" width="100%">
+          {t('Disconnect')}
+          <LogoutIcon />
+        </Flex>
+      </UserMenuItem>
+    </UIKitUserMenu>
   )
 }
 

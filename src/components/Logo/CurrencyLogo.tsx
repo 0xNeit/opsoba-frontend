@@ -1,10 +1,10 @@
-import { Currency } from '@pancakeswap/sdk'
-import { BinanceIcon } from '@pancakeswap/uikit'
-import { useMemo } from 'react'
+import { Currency, ETHER, Token } from 'opsoba-sdk'
+import { BinanceIcon } from 'opsoba-uikit'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
-import { getTokenPath } from '../../utils/getTokenLogoURL'
+import getTokenLogoURL from '../../utils/getTokenLogoURL'
 import Logo from './Logo'
 
 const StyledLogo = styled(Logo)<{ size: string }>`
@@ -24,22 +24,18 @@ export default function CurrencyLogo({
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
   const srcs: string[] = useMemo(() => {
-    if (currency.isNative) return []
+    if (currency === ETHER) return []
 
-    if (currency?.isToken) {
-      // const tokenLogoURL = getTokenLogoURL(currency.address)
-      const tokenLogoPath = getTokenPath(currency)
-
+    if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        if (!tokenLogoPath) return [...uriLocations]
-        return [...uriLocations, tokenLogoPath]
+        return [...uriLocations, getTokenLogoURL(currency.address)]
       }
-      return [tokenLogoPath]
+      return [getTokenLogoURL(currency.address)]
     }
     return []
   }, [currency, uriLocations])
 
-  if (currency.isNative) {
+  if (currency === ETHER) {
     return <BinanceIcon width={size} style={style} />
   }
 

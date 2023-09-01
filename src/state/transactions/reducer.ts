@@ -6,8 +6,6 @@ import {
   clearAllTransactions,
   finalizeTransaction,
   SerializableTransactionReceipt,
-  TransactionType,
-  NonBscFarmTransactionType,
 } from './actions'
 
 const now = () => new Date().getTime()
@@ -15,17 +13,13 @@ const now = () => new Date().getTime()
 export interface TransactionDetails {
   hash: string
   approval?: { tokenAddress: string; spender: string }
-  type?: TransactionType
-  order?: any
   summary?: string
-  translatableSummary?: { text: string; data?: Record<string, string | number> }
   claim?: { recipient: string }
   receipt?: SerializableTransactionReceipt
   lastCheckedBlockNumber?: number
   addedTime: number
   confirmedTime?: number
   from: string
-  nonBscFarm?: NonBscFarmTransactionType
 }
 
 export interface TransactionState {

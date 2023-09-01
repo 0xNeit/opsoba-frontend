@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { escapeRegExp } from 'utils'
-import { Text, Button, Input, Flex, Box } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Text, Button, Input, Flex, Box } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
 import QuestionHelper from '../../QuestionHelper'
 
@@ -16,7 +16,6 @@ enum DeadlineError {
 }
 
 const inputRegex = RegExp(`^\\d*(?:\\\\[.])?\\d*$`) // match escaped "." characters via in a non-capturing group
-const THREE_DAYS_IN_SECONDS = 60 * 60 * 24 * 3
 
 const SlippageTabs = () => {
   const [userSlippageTolerance, setUserSlippageTolerance] = useUserSlippageTolerance()
@@ -68,10 +67,8 @@ const SlippageTabs = () => {
 
     try {
       const valueAsInt: number = Number.parseInt(value) * 60
-      if (!Number.isNaN(valueAsInt) && valueAsInt > 60 && valueAsInt < THREE_DAYS_IN_SECONDS) {
+      if (!Number.isNaN(valueAsInt) && valueAsInt > 0) {
         setTtl(valueAsInt)
-      } else {
-        deadlineError = DeadlineError.InvalidInput
       }
     } catch (error) {
       console.error(error)
@@ -178,7 +175,7 @@ const SlippageTabs = () => {
               scale="sm"
               inputMode="numeric"
               pattern="^[0-9]+$"
-              isWarning={!!deadlineError}
+              color={deadlineError ? 'red' : undefined}
               onBlur={() => {
                 parseCustomDeadline((ttl / 60).toString())
               }}

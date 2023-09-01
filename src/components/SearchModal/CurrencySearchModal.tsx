@@ -1,5 +1,5 @@
-import { useCallback, useState, useRef, useEffect } from 'react'
-import { Currency, Token } from '@pancakeswap/sdk'
+import React, { useCallback, useState } from 'react'
+import { Currency, Token } from 'opsoba-sdk'
 import {
   ModalContainer,
   ModalHeader,
@@ -10,13 +10,11 @@ import {
   InjectedModalProps,
   Heading,
   Button,
-  useMatchBreakpoints,
-  MODAL_SWIPE_TO_CLOSE_VELOCITY,
-} from '@pancakeswap/uikit'
+} from 'opsoba-uikit'
 import styled from 'styled-components'
-import { usePreviousValue } from '@pancakeswap/hooks'
+import usePrevious from 'hooks/usePreviousValue'
 import { TokenList } from '@uniswap/token-lists'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import CurrencySearch from './CurrencySearch'
 import ImportToken from './ImportToken'
 import Manage from './Manage'
@@ -28,14 +26,10 @@ const Footer = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
   text-align: center;
 `
+
 const StyledModalContainer = styled(ModalContainer)`
+  max-width: 420px;
   width: 100%;
-  min-width: 320px;
-  max-width: 420px !important;
-  min-height: calc(var(--vh, 1vh) * 90);
-  ${({ theme }) => theme.mediaQueries.md} {
-    min-height: auto;
-  }
 `
 
 const StyledModalBody = styled(ModalBody)`
@@ -48,12 +42,11 @@ const StyledModalBody = styled(ModalBody)`
   }
 `
 
-export interface CurrencySearchModalProps extends InjectedModalProps {
+interface CurrencySearchModalProps extends InjectedModalProps {
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
   showCommonBases?: boolean
-  commonBasesType?: string
 }
 
 export default function CurrencySearchModal({
@@ -61,21 +54,20 @@ export default function CurrencySearchModal({
   onCurrencySelect,
   selectedCurrency,
   otherSelectedCurrency,
-  showCommonBases = true,
-  commonBasesType,
+  showCommonBases = false,
 }: CurrencySearchModalProps) {
   const [modalView, setModalView] = useState<CurrencyModalView>(CurrencyModalView.search)
 
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
-      onDismiss?.()
+      onDismiss()
       onCurrencySelect(currency)
     },
     [onDismiss, onCurrencySelect],
   )
 
   // for token import view
-  const prevView = usePreviousValue(modalView)
+  const prevView = usePrevious(modalView)
 
   // used for import token flow
   const [importToken, setImportToken] = useState<Token | undefined>()
@@ -96,29 +88,9 @@ export default function CurrencySearchModal({
     },
     [CurrencyModalView.importList]: { title: t('Import List'), onBack: () => setModalView(CurrencyModalView.search) },
   }
-  const { isMobile } = useMatchBreakpoints()
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const [height, setHeight] = useState(undefined)
-  useEffect(() => {
-    if (!wrapperRef.current) return
-    setHeight(wrapperRef.current.offsetHeight - 330)
-  }, [])
 
   return (
-    <StyledModalContainer
-      drag={isMobile ? 'y' : false}
-      dragConstraints={{ top: 0, bottom: 600 }}
-      dragElastic={{ top: 0 }}
-      dragSnapToOrigin
-      onDragStart={() => {
-        if (wrapperRef.current) wrapperRef.current.style.animation = 'none'
-      }}
-      // @ts-ignore
-      onDragEnd={(e, info) => {
-        if (info.velocity.y > MODAL_SWIPE_TO_CLOSE_VELOCITY && onDismiss) onDismiss()
-      }}
-      ref={wrapperRef}
-    >
+    <StyledModalContainer minWidth="320px">
       <ModalHeader>
         <ModalTitle>
           {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
@@ -133,10 +105,8 @@ export default function CurrencySearchModal({
             selectedCurrency={selectedCurrency}
             otherSelectedCurrency={otherSelectedCurrency}
             showCommonBases={showCommonBases}
-            commonBasesType={commonBasesType}
             showImportView={() => setModalView(CurrencyModalView.importToken)}
             setImportToken={setImportToken}
-            height={height}
           />
         ) : modalView === CurrencyModalView.importToken && importToken ? (
           <ImportToken tokens={[importToken]} handleCurrencySelect={handleCurrencySelect} />

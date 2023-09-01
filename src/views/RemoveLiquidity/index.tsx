@@ -1,14 +1,13 @@
-import { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { useRouter } from 'next/router'
-import { Currency, Percent, WNATIVE } from '@pancakeswap/sdk'
-import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from '@pancakeswap/uikit'
+import { Currency, currencyEquals, ETHER, Percent, WETH } from 'opsoba-sdk'
+import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useModal } from 'opsoba-uikit'
 import { BigNumber } from '@ethersproject/bignumber'
-import { useTranslation } from '@pancakeswap/localization'
-import { useWeb3LibraryContext } from '@pancakeswap/wagmi'
+import { useTranslation } from 'contexts/Localization'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -34,6 +33,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
 import Dots from '../../components/Loader/Dots'
 import { useBurnActionHandlers, useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
+
 import { Field } from '../../state/burn/actions'
 import { useGasPrice, useUserSlippageTolerance } from '../../state/user/hooks'
 import Page from '../Page'
@@ -48,8 +48,7 @@ export default function RemoveLiquidity() {
   const router = useRouter()
   const [currencyIdA, currencyIdB] = router.query.currency || []
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
-  const { account, chainId } = useActiveWeb3React()
-  const library = useWeb3LibraryContext()
+  const { account, chainId, library } = useActiveWeb3React()
   const [tokenA, tokenB] = useMemo(
     () => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)],
     [currencyA, currencyB, chainId],
@@ -126,7 +125,7 @@ export default function RemoveLiquidity() {
     const message = {
       owner: account,
       spender: ROUTER_ADDRESS,
-      value: liquidityAmount.quotient.toString(),
+      value: liquidityAmount.raw.toString(),
       nonce: nonce.toHexString(),
       deadline: deadline.toNumber(),
     }
@@ -191,8 +190,8 @@ export default function RemoveLiquidity() {
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
     if (!liquidityAmount) throw new Error('missing liquidity amount')
 
-    const currencyBIsETH = currencyB.isNative
-    const oneCurrencyIsETH = currencyA.isNative || currencyBIsETH
+    const currencyBIsETH = currencyB === ETHER
+    const oneCurrencyIsETH = currencyA === ETHER || currencyBIsETH
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
 
@@ -205,7 +204,7 @@ export default function RemoveLiquidity() {
         methodNames = ['removeLiquidityETH', 'removeLiquidityETHSupportingFeeOnTransferTokens']
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
-          liquidityAmount.quotient.toString(),
+          liquidityAmount.raw.toString(),
           amountsMin[currencyBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(),
           amountsMin[currencyBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(),
           account,
@@ -218,7 +217,7 @@ export default function RemoveLiquidity() {
         args = [
           tokenA.address,
           tokenB.address,
-          liquidityAmount.quotient.toString(),
+          liquidityAmount.raw.toString(),
           amountsMin[Field.CURRENCY_A].toString(),
           amountsMin[Field.CURRENCY_B].toString(),
           account,
@@ -233,7 +232,7 @@ export default function RemoveLiquidity() {
         methodNames = ['removeLiquidityETHWithPermit', 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens']
         args = [
           currencyBIsETH ? tokenA.address : tokenB.address,
-          liquidityAmount.quotient.toString(),
+          liquidityAmount.raw.toString(),
           amountsMin[currencyBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(),
           amountsMin[currencyBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(),
           account,
@@ -250,7 +249,7 @@ export default function RemoveLiquidity() {
         args = [
           tokenA.address,
           tokenB.address,
-          liquidityAmount.quotient.toString(),
+          liquidityAmount.raw.toString(),
           amountsMin[Field.CURRENCY_A].toString(),
           amountsMin[Field.CURRENCY_B].toString(),
           account,
@@ -394,11 +393,11 @@ export default function RemoveLiquidity() {
     [onUserInput],
   )
 
-  const oneCurrencyIsETH = currencyA.isNative|| currencyB.isNative
+  const oneCurrencyIsETH = currencyA === ETHER || currencyB === ETHER
   const oneCurrencyIsWETH = Boolean(
     chainId &&
-      ((currencyA && WNATIVE[chainId]?.equals(currencyA)) ||
-        (currencyB && WNATIVE[chainId]?.equals(currencyB))),
+      ((currencyA && currencyEquals(WETH[chainId], currencyA)) ||
+        (currencyB && currencyEquals(WETH[chainId], currencyB))),
   )
 
   const handleSelectCurrencyA = useCallback(
@@ -536,8 +535,8 @@ export default function RemoveLiquidity() {
                     <RowBetween style={{ justifyContent: 'flex-end', fontSize: '14px' }}>
                       {oneCurrencyIsETH ? (
                         <StyledInternalLink
-                          href={`/remove/${currencyA.isNative ? WNATIVE[chainId].address : currencyIdA}/${
-                            currencyB.isNative ? WNATIVE[chainId].address : currencyIdB
+                          href={`/remove/${currencyA === ETHER ? WETH[chainId].address : currencyIdA}/${
+                            currencyB === ETHER ? WETH[chainId].address : currencyIdB
                           }`}
                         >
                           {t('Receive WBNB')}
@@ -545,8 +544,8 @@ export default function RemoveLiquidity() {
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
                           href={`/remove/${
-                            currencyA && currencyA.equals(WNATIVE[chainId]) ? 'BNB' : currencyIdA
-                          }/${currencyB && currencyB.equals(WNATIVE[chainId]) ? 'BNB' : currencyIdB}`}
+                            currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'BNB' : currencyIdA
+                          }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'BNB' : currencyIdB}`}
                         >
                           {t('Receive BNB')}
                         </StyledInternalLink>

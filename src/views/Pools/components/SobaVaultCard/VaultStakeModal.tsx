@@ -11,10 +11,9 @@ import {
   AutoRenewIcon,
   CalculateIcon,
   IconButton,
-  useToast
-} from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
-import { useWeb3React } from '@pancakeswap/wagmi'
+} from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
+import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { BIG_TEN } from 'utils/bigNumber'
 import { usePriceSobaBusd } from 'state/farms/hooks'
@@ -24,6 +23,7 @@ import useTheme from 'hooks/useTheme'
 import useWithdrawalFeeTimer from 'views/Pools/hooks/useWithdrawalFeeTimer'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
+import useToast from 'hooks/useToast'
 import { fetchSobaVaultUserData } from 'state/pools'
 import { DeserializedPool } from 'state/types'
 import { getInterestBreakdown } from 'utils/compoundApyHelpers'
@@ -237,7 +237,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradientCardHeader}
+      headerBackground={theme.colors.gradients.cardHeader}
     >
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>

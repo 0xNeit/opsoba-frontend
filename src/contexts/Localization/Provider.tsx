@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
-import { Language } from '@pancakeswap/uikit'
+import { Language } from 'opsoba-uikit'
 import { EN, languages } from 'config/localization/languages'
 import translations from 'config/localization/translations.json'
 import { ContextApi, ContextData, ProviderState } from './types'
@@ -16,7 +16,7 @@ languageMap.set(EN.locale, translations)
 
 export const LanguageContext = createContext<ContextApi>(undefined)
 
-export const LanguageProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const LanguageProvider: React.FC = ({ children }) => {
   const [state, setState] = useState<ProviderState>(() => {
     const codeFromStorage = getLanguageCodeFromLS()
 

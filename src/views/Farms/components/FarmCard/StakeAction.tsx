@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react'
-import { useWeb3React } from 'hooks/useWeb3React'
+import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal, useToast } from '@pancakeswap/uikit'
+import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from 'opsoba-uikit'
+import useToast from 'hooks/useToast'
 import Balance from 'components/Balance'
 import { ToastDescriptionWithTx } from 'components/Toast'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
 import { useRouter } from 'next/router'
@@ -80,7 +81,6 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         )
       },
     )
-    // @ts-ignore
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
@@ -107,7 +107,6 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
         )
       },
     )
-    // @ts-ignore
     dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 

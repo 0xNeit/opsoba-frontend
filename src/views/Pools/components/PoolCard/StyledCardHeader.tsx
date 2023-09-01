@@ -1,14 +1,14 @@
 import React from 'react'
-import { CardHeader, Heading, Text, Flex } from '@pancakeswap/uikit'
-import { Token } from '@pancakeswap/sdk'
+import { CardHeader, Heading, Text, Flex } from 'opsoba-uikit'
+import { Token } from 'opsoba-sdk'
 import styled from 'styled-components'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { TokenPairImage } from 'components/TokenImage'
 import SobaVaultTokenPairImage from '../SobaVaultCard/SobaVaultTokenPairImage'
 
 const Wrapper = styled(CardHeader)<{ isFinished?: boolean; background?: string }>`
   background: ${({ isFinished, background, theme }) =>
-    isFinished ? theme.colors.backgroundDisabled : theme.colors[background]};
+    isFinished ? theme.colors.backgroundDisabled : theme.colors.gradients[background]};
   border-radius: ${({ theme }) => `${theme.radii.card} ${theme.radii.card} 0 0`};
 `
 

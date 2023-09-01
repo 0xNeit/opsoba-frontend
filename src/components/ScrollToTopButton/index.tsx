@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronUpIcon } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Button, ChevronUpIcon } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const FixedContainer = styled.div`
   position: fixed;

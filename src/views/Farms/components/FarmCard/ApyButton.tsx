@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Flex, IconButton, useModal, CalculateIcon } from '@pancakeswap/uikit'
+import { Flex, IconButton, useModal, CalculateIcon } from 'opsoba-uikit'
 import RoiCalculatorModal from 'components/RoiCalculatorModal'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { useFarmUser, useLpTokenPrice } from 'state/farms/hooks'
 
 const ApyLabelContainer = styled(Flex)`

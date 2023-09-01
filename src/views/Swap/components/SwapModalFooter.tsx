@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Currency, Trade, TradeType } from '@pancakeswap/sdk'
-import { Button, Text, AutoRenewIcon } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Trade, TradeType } from 'opsoba-sdk'
+import { Button, Text, AutoRenewIcon } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { Field } from 'state/swap/actions'
 import {
   computeSlippageAdjustedAmounts,
@@ -31,7 +31,7 @@ export default function SwapModalFooter({
   swapErrorMessage,
   disabledConfirm,
 }: {
-  trade: Trade<Currency, Currency, TradeType>
+  trade: Trade
   allowedSlippage: number
   onConfirm: () => void
   swapErrorMessage: string | undefined

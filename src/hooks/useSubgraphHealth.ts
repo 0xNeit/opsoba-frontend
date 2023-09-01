@@ -35,7 +35,6 @@ const useSubgraphHealth = () => {
   useEffect(() => {
     const getSubgraphHealth = async () => {
       try {
-        // @ts-ignore
         const { indexingStatusForCurrentVersion } = await request(
           GRAPH_HEALTH,
           gql`

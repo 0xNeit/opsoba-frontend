@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CardProps, CardHeader, Card, Flex, Heading, IconButton, ChevronUpIcon, ChevronDownIcon } from '@pancakeswap/uikit'
+import { CardProps, CardHeader, Card, Flex, Heading, IconButton, ChevronUpIcon, ChevronDownIcon } from 'opsoba-uikit'
 
 interface CollapsibleCardProps extends CardProps {
   initialOpenState?: boolean

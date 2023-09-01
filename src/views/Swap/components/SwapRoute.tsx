@@ -1,9 +1,9 @@
-import { Fragment, memo } from 'react'
-import { Currency, Trade, TradeType } from '@pancakeswap/sdk'
-import { Text, Flex, ChevronRightIcon } from '@pancakeswap/uikit'
+import React, { Fragment, memo } from 'react'
+import { Trade } from 'opsoba-sdk'
+import { Text, Flex, ChevronRightIcon } from 'opsoba-uikit'
 import { unwrappedToken } from 'utils/wrappedCurrency'
 
-export default memo(function SwapRoute({ trade }: { trade: Trade<Currency, Currency, TradeType> }) {
+export default memo(function SwapRoute({ trade }: { trade: Trade }) {
   return (
     <Flex flexWrap="wrap" width="100%" justifyContent="flex-end" alignItems="center">
       {trade.route.path.map((token, i, path) => {

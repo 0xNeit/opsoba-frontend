@@ -1,10 +1,8 @@
-import { CHAIN_IDS } from 'utils/wagmi'
+import React from 'react'
 import Swap from '../views/Swap'
 
 const SwapPage = () => {
   return <Swap />
 }
-
-SwapPage.chains = CHAIN_IDS
 
 export default SwapPage

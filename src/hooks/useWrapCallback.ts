@@ -1,4 +1,4 @@
-import { Currency, WNATIVE } from '@pancakeswap/sdk'
+import { Currency, currencyEquals, ETHER, WETH } from 'opsoba-sdk'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { tryParseAmount } from '../state/swap/hooks'
@@ -38,7 +38,7 @@ export default function useWrapCallback(
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
-    if (inputCurrency?.isNative && WNATIVE[chainId]?.equals(outputCurrency)) {
+    if (inputCurrency === ETHER && currencyEquals(WETH[chainId], outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
         execute:
@@ -46,7 +46,7 @@ export default function useWrapCallback(
             ? async () => {
                 try {
                   const txReceipt = await callWithGasPrice(wethContract, 'deposit', undefined, {
-                    value: `0x${inputAmount.quotient.toString(16)}`,
+                    value: `0x${inputAmount.raw.toString(16)}`,
                   })
                   addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} BNB to WBNB` })
                 } catch (error) {
@@ -57,7 +57,7 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : 'Insufficient BNB balance',
       }
     }
-    if (WNATIVE[chainId]?.equals(inputCurrency) && outputCurrency?.isNative) {
+    if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHER) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:
@@ -65,7 +65,7 @@ export default function useWrapCallback(
             ? async () => {
                 try {
                   const txReceipt = await callWithGasPrice(wethContract, 'withdraw', [
-                    `0x${inputAmount.quotient.toString(16)}`,
+                    `0x${inputAmount.raw.toString(16)}`,
                   ])
                   addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WBNB to BNB` })
                 } catch (error) {

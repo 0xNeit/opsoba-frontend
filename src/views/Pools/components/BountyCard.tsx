@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import {
@@ -13,8 +13,8 @@ import {
   useModal,
   Box,
   useTooltip,
-} from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+} from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { usePriceSobaBusd } from 'state/farms/hooks'
 import { useSobaVault } from 'state/pools/hooks'

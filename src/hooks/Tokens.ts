@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, Token } from '@pancakeswap/sdk'
+import { Currency, ETHER, Token, currencyEquals } from 'opsoba-sdk'
 import { useMemo } from 'react'
 import { arrayify } from 'ethers/lib/utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -18,7 +18,6 @@ import { isAddress } from '../utils'
 
 import { useBytes32TokenContract, useTokenContract } from './useContract'
 import { filterTokens } from '../components/SearchModal/filtering'
-import useNativeCurrency from './useNativeCurrency'
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
@@ -120,7 +119,7 @@ export function useIsUserAddedToken(currency: Currency | undefined | null): bool
     return false
   }
 
-  return !!userAddedTokens.find((token) => currency.equals(token))
+  return !!userAddedTokens.find((token) => currencyEquals(currency, token))
 }
 
 // parse a name or symbol from a token response
@@ -189,8 +188,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const native = useNativeCurrency()
   const isBNB = currencyId?.toUpperCase() === 'BNB'
   const token = useToken(isBNB ? undefined : currencyId)
-  return isBNB ? native : token
+  return isBNB ? ETHER : token
 }

@@ -1,10 +1,9 @@
-import React, { memo } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, LinkExternal, Flex, Svg, Image, Button } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
-import { EXCHANGE_DOCS_URLS } from 'config/constants'
+import { ButtonMenu, ButtonMenuItem, LinkExternal, Flex, Svg, Image, Button } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 
-const Wrapper = memo(styled.div<{ $isSide: boolean }>`
+const Wrapper = styled.div<{ $isSide: boolean }>`
   width: 100%;
   height: ${({ $isSide }) => ($isSide ? '100%' : 'auto')};
   display: flex;
@@ -17,7 +16,7 @@ const Wrapper = memo(styled.div<{ $isSide: boolean }>`
     justify-content: space-between;
     flex-direction: ${({ $isSide }) => ($isSide ? 'column' : 'row')};
   }
-`)
+`
 
 const BubbleWrapper = styled(Flex)`
   svg {
@@ -38,10 +37,7 @@ const BubbleWrapper = styled(Flex)`
 
 type FooterVariant = 'default' | 'side'
 
-const Footer: React.FC<React.PropsWithChildren<{ variant?: FooterVariant; helpUrl?: string }>> = ({
-  variant = 'default',
-  helpUrl = EXCHANGE_DOCS_URLS,
-}) => {
+const Footer: React.FC<{ variant?: FooterVariant }> = ({ variant = 'default' }) => {
   const { t } = useTranslation()
   const isSide = variant === 'side'
   return (
@@ -49,7 +45,7 @@ const Footer: React.FC<React.PropsWithChildren<{ variant?: FooterVariant; helpUr
       <Flex flexDirection={isSide ? 'column' : ['column', 'column', 'row']} alignItems="center">
         <ButtonMenu variant="subtle" scale="sm" activeIndex={0}>
           <ButtonMenuItem>V2</ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://v1exchange.pancakeswap.finance/#/">
+          <ButtonMenuItem as="a" href="https://v1exchange.sobaswap.finance/#/">
             {t('V1 (old)')}
           </ButtonMenuItem>
         </ButtonMenu>
@@ -71,7 +67,13 @@ const Footer: React.FC<React.PropsWithChildren<{ variant?: FooterVariant; helpUr
         justifyContent={['center', 'center', 'center', 'flex-end']}
       >
         <BubbleWrapper>
-          <Button id="clickExchangeHelp" as="a" external href={helpUrl} variant="subtle">
+          <Button
+            id="clickExchangeHelp"
+            as="a"
+            external
+            href="https://docs.sobaswap.finance/products/sobaswap-exchange"
+            variant="subtle"
+          >
             {t('Need help ?')}
           </Button>
           <Svg viewBox="0 0 16 16">
@@ -84,4 +86,4 @@ const Footer: React.FC<React.PropsWithChildren<{ variant?: FooterVariant; helpUr
   )
 }
 
-export default memo(Footer)
+export default Footer

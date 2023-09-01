@@ -1,12 +1,13 @@
 import React, { useMemo, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip, useToast } from '@pancakeswap/uikit'
+import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from 'opsoba-uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useSobaVaultContract } from 'hooks/useContract'
 import useTheme from 'hooks/useTheme'
-import { useTranslation } from '@pancakeswap/localization'
+import useToast from 'hooks/useToast'
+import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import Balance from 'components/Balance'
@@ -79,7 +80,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   }
 
   return (
-    <Modal title={t('Claim Bounty')} onDismiss={onDismiss} headerBackground={theme.colors.gradientCardHeader}>
+    <Modal title={t('Claim Bounty')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
       {tooltipVisible && tooltip}
       <Flex alignItems="flex-start" justifyContent="space-between">
         <Text>{t('You’ll claim')}</Text>

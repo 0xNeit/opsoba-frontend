@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Button, Text, Link, Flex, Checkbox, Message } from '@pancakeswap/uikit'
+import { Button, Text, Link, Flex, Checkbox, Message } from 'opsoba-uikit'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Layout/Column'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
@@ -12,7 +12,7 @@ import { AppDispatch } from 'state'
 import useFetchListCallback from 'hooks/useFetchListCallback'
 import { removeList, enableList } from 'state/lists/actions'
 import { useAllLists } from 'state/lists/hooks'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 
 interface ImportProps {
   listURL: string

@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useWeb3React } from '@web3-react/core'
 import { ethers, Contract } from 'ethers'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { useSoba, useSousChef, useSobaVaultContract } from 'hooks/useContract'
-import { useToast } from '@pancakeswap/uikit'
+import useToast from 'hooks/useToast'
 import useLastUpdated from 'hooks/useLastUpdated'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { ToastDescriptionWithTx } from 'components/Toast'
@@ -24,7 +24,7 @@ export const useApprovePool = (lpContract: Contract, sousId, earningTokenSymbol)
       setRequestedApproval(true)
       const tx = await callWithGasPrice(lpContract, 'approve', [sousChefContract.address, ethers.constants.MaxUint256])
       const receipt = await tx.wait()
-      // @ts-ignore
+
       dispatch(updateUserAllowance(sousId, account))
       if (receipt.status) {
         toastSuccess(

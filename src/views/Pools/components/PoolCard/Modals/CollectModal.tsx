@@ -10,11 +10,11 @@ import {
   ButtonMenuItem,
   HelpIcon,
   useTooltip,
-  useToast
-} from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+} from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import { Token } from '@pancakeswap/sdk'
+import useToast from 'hooks/useToast'
+import { Token } from 'opsoba-sdk'
 import { formatNumber } from 'utils/formatBalance'
 import useHarvestPool from '../../../hooks/useHarvestPool'
 import useStakePool from '../../../hooks/useStakePool'
@@ -94,7 +94,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
     <Modal
       title={`${earningToken.symbol} ${isCompoundPool ? t('Collect') : t('Harvest')}`}
       onDismiss={onDismiss}
-      headerBackground={theme.colors.gradientCardHeader}
+      headerBackground={theme.colors.gradients.cardHeader}
     >
       {isCompoundPool && (
         <Flex justifyContent="center" alignItems="center" mb="24px">

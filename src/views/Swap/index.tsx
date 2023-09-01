@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Currency, CurrencyAmount, JSBI, Token, Trade, TradeType } from '@pancakeswap/sdk'
-import { useRouter } from 'next/router'
+import { CurrencyAmount, JSBI, Token, Trade } from 'opsoba-sdk'
 import {
   Button,
   Text,
@@ -13,11 +12,12 @@ import {
   // BottomDrawer,
   useMatchBreakpoints,
   ArrowUpDownIcon,
-} from '@pancakeswap/uikit'
+} from 'opsoba-uikit'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import Footer from 'components/Menu/Footer'
-import { useTranslation } from '@pancakeswap/localization'
+import { RouteComponentProps } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
 import SwapWarningTokens from 'config/constants/swapWarningTokens'
 import AddressInputPanel from './components/AddressInputPanel'
 import { GreyCard } from '../../components/Card'
@@ -86,14 +86,13 @@ const SwitchIconButton = styled(IconButton)`
   }
 `
 
-export default function Swap() {
+export default function Swap({ history }: RouteComponentProps) {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
   const [isChartExpanded] = useState(false)
   const [userChartPreference, setUserChartPreference] = useExchangeChartManager(isMobile)
   const [isChartDisplayed, setIsChartDisplayed] = useState(userChartPreference)
-  const router = useRouter()
 
   useEffect(() => {
     setUserChartPreference(isChartDisplayed)
@@ -126,31 +125,8 @@ export default function Swap() {
   const [allowedSlippage] = useUserSlippageTolerance()
 
   // swap state
-  const { 
-    independentField, 
-    typedValue, 
-    recipient,
-    [Field.INPUT]: { currencyId: inputCurrencyId },
-    [Field.OUTPUT]: { currencyId: outputCurrencyId }, 
-  } = useSwapState()
-
-  const inputCurrency = useCurrency(inputCurrencyId)
-  const outputCurrency = useCurrency(outputCurrencyId)
-
-  const currencies: { [field in Field]?: Currency } = useMemo(
-    () => ({
-      [Field.INPUT]: inputCurrency ?? undefined,
-      [Field.OUTPUT]: outputCurrency ?? undefined,
-    }),
-    [inputCurrency, outputCurrency],
-  )
-
-  const { 
-    v2Trade, 
-    currencyBalances, 
-    parsedAmount, 
-    inputError: swapInputError 
-  } = useDerivedSwapInfo(independentField, typedValue, inputCurrency, outputCurrency, recipient)
+  const { independentField, typedValue, recipient } = useSwapState()
+  const { v2Trade, currencyBalances, parsedAmount, currencies, inputError: swapInputError } = useDerivedSwapInfo()
 
   const {
     wrapType,
@@ -191,7 +167,7 @@ export default function Swap() {
 
   // modal and loading
   const [{ tradeToConfirm, swapErrorMessage, attemptingTxn, txHash }, setSwapState] = useState<{
-    tradeToConfirm: Trade<Currency, Currency, TradeType> | undefined
+    tradeToConfirm: Trade | undefined
     attemptingTxn: boolean
     swapErrorMessage: string | undefined
     txHash: string | undefined
@@ -228,7 +204,7 @@ export default function Swap() {
     }
   }, [approval, approvalSubmitted])
 
-  const maxAmountInput: CurrencyAmount<Currency> | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
+  const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
   // the callback to execute the swap
@@ -307,12 +283,12 @@ export default function Swap() {
   }, [swapWarningCurrency])
 
   const handleInputSelect = useCallback(
-    (currencyInput) => {
+    (inputCurrency) => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
-      onCurrencySelection(Field.INPUT, currencyInput)
-      const showSwapWarning = shouldShowSwapWarning(currencyInput)
+      onCurrencySelection(Field.INPUT, inputCurrency)
+      const showSwapWarning = shouldShowSwapWarning(inputCurrency)
       if (showSwapWarning) {
-        setSwapWarningCurrency(currencyInput)
+        setSwapWarningCurrency(inputCurrency)
       } else {
         setSwapWarningCurrency(null)
       }
@@ -327,11 +303,11 @@ export default function Swap() {
   }, [maxAmountInput, onUserInput])
 
   const handleOutputSelect = useCallback(
-    (currencyOutput) => {
-      onCurrencySelection(Field.OUTPUT, currencyOutput)
-      const showSwapWarning = shouldShowSwapWarning(currencyOutput)
+    (outputCurrency) => {
+      onCurrencySelection(Field.OUTPUT, outputCurrency)
+      const showSwapWarning = shouldShowSwapWarning(outputCurrency)
       if (showSwapWarning) {
-        setSwapWarningCurrency(currencyOutput)
+        setSwapWarningCurrency(outputCurrency)
       } else {
         setSwapWarningCurrency(null)
       }
@@ -343,7 +319,7 @@ export default function Swap() {
   const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
 
   const [onPresentImportTokenWarningModal] = useModal(
-    <ImportTokenWarningModal tokens={importTokensNotInDefault} onCancel={() => router.push('/swap')} />,
+    <ImportTokenWarningModal tokens={importTokensNotInDefault} onCancel={() => history.push('/swap')} />,
   )
 
   useEffect(() => {

@@ -1,10 +1,5 @@
 import { PairDataTimeWindowEnum } from '../types'
 
-export interface Block {
-  number: number
-  timestamp: string
-}
-
 export type fetchPairDataParams = {
   pairId: string
   timeWindow: PairDataTimeWindowEnum

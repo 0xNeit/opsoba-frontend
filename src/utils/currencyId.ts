@@ -1,7 +1,7 @@
-import { Currency, Token } from '@pancakeswap/sdk'
+import { Currency, ETHER, Token } from 'opsoba-sdk'
 
 export function currencyId(currency: Currency): string {
-  if (currency?.isNative) return 'BNB'
+  if (currency === ETHER) return 'BNB'
   if (currency instanceof Token) return currency.address
   throw new Error('invalid currency')
 }

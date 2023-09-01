@@ -1,7 +1,7 @@
-import { Box, Flex, FlexProps, Link, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Box, Flex, FlexProps, Link, Text, useMatchBreakpoints } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import useScript from 'hooks/useScript'
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { DefaultTheme, useTheme } from 'styled-components'
 
 /**

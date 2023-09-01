@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TooltipText, useTooltip } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Text, TooltipText, useTooltip } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import Balance from 'components/Balance'
 
 interface RecentSobaProfitBalanceProps {

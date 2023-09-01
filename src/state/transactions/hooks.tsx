@@ -2,14 +2,8 @@ import { TransactionResponse } from '@ethersproject/providers'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import pickBy from 'lodash/pickBy'
-import mapValues from 'lodash/mapValues'
-import keyBy from 'lodash/keyBy'
-import orderBy from 'lodash/orderBy'
-import omitBy from 'lodash/omitBy'
-import isEmpty from 'lodash/isEmpty'
 import { AppDispatch, AppState } from '../index'
-import { addTransaction, NonBscFarmStepType, FarmTransactionStatus } from './actions'
+import { addTransaction } from './actions'
 import { TransactionDetails } from './reducer'
 
 // helper that can take a ethers library transaction response and add it to the list of transactions
@@ -48,40 +42,11 @@ export function useTransactionAdder(): (
 
 // returns all the transactions for the current chain
 export function useAllTransactions(): { [txHash: string]: TransactionDetails } {
-  const { account } = useActiveWeb3React()
+  const { chainId } = useActiveWeb3React()
 
-  const state: {
-    [chainId: number]: {
-      [txHash: string]: TransactionDetails
-    }
-  } = useSelector<AppState, AppState['transactions']>((s) => s.transactions)
+  const state = useSelector<AppState, AppState['transactions']>((s) => s.transactions)
 
-  // @ts-ignore
-  return useMemo(() => {
-    return mapValues(state, (transactions) =>
-      pickBy(transactions, (transactionDetails) => transactionDetails.from.toLowerCase() === account?.toLowerCase()),
-    )
-  }, [account, state])
-}
-
-export function useAllSortedRecentTransactions(): { [chainId: number]: { [txHash: string]: TransactionDetails } } {
-  const allTransactions = useAllTransactions()
-  // @ts-ignore
-  return useMemo(() => {
-    return omitBy(
-      mapValues(allTransactions, (transactions) =>
-        keyBy(
-          orderBy(
-            pickBy(transactions, (trxDetails) => isTransactionRecent(trxDetails)),
-            ['addedTime'],
-            'desc',
-          ),
-          'hash',
-        ),
-      ),
-      isEmpty,
-    )
-  }, [allTransactions])
+  return chainId ? state[chainId] ?? {} : {}
 }
 
 export function useIsTransactionPending(transactionHash?: string): boolean {
@@ -120,42 +85,3 @@ export function useHasPendingApproval(tokenAddress: string | undefined, spender:
     [allTransactions, spender, tokenAddress],
   )
 }
-
-// we want the latest one to come first, so return negative if a is after b
-function newTransactionsFirst(a: TransactionDetails, b: TransactionDetails) {
-  return b.addedTime - a.addedTime
-}
-
-// calculate pending transactions
-interface NonBscPendingData {
-  txid: string
-  lpAddress: string
-  type: NonBscFarmStepType
-}
-export function usePendingTransactions(): {
-  hasPendingTransactions: boolean
-  pendingNumber: number
-  nonBscFarmPendingList: NonBscPendingData[]
-} {
-  const allTransactions = useAllTransactions()
-  const sortedRecentTransactions = useMemo(() => {
-    const txs = Object.values(allTransactions).flatMap((trxObjects) => Object.values(trxObjects))
-    return txs.filter(isTransactionRecent).sort(newTransactionsFirst)
-  }, [allTransactions])
-
-  const pending = sortedRecentTransactions
-    .filter((tx) => !tx.receipt || tx?.nonBscFarm?.status === FarmTransactionStatus.PENDING)
-    .map((tx) => tx.hash)
-  const hasPendingTransactions = !!pending.length
-
-  const nonBscFarmPendingList = sortedRecentTransactions
-    .filter((tx) => pending.includes(tx.hash) && !!tx.nonBscFarm)
-    .map((tx) => ({ txid: tx.hash, lpAddress: tx.nonBscFarm.lpAddress, type: tx.nonBscFarm.type }))
-
-  return {
-    hasPendingTransactions,
-    nonBscFarmPendingList,
-    pendingNumber: pending.length,
-  }
-}
-

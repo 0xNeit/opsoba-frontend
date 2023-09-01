@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request'
 
-const requestWithTimeout = <T>(
+const requestWithTimeout = <T extends any>(
   graphQLClient: GraphQLClient,
   request: string,
   variables?: any,

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text } from '@pancakeswap/uikit'
+import { Text } from 'opsoba-uikit'
 import getTimePeriods from 'utils/getTimePeriods'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 
 const WithdrawalFeeTimer: React.FC<{ secondsRemaining: number }> = ({ secondsRemaining }) => {
   const { t } = useTranslation()

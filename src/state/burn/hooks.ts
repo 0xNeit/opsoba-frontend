@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, JSBI, Pair, Percent, Token } from '@pancakeswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Pair, Percent, TokenAmount } from 'opsoba-sdk'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -6,7 +6,7 @@ import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { usePair } from 'hooks/usePairs'
 import useTotalSupply from 'hooks/useTotalSupply'
 
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { AppDispatch, AppState } from '../index'
 import { tryParseAmount } from '../swap/hooks'
 import { useTokenBalances } from '../wallet/hooks'
@@ -23,9 +23,9 @@ export function useDerivedBurnInfo(
   pair?: Pair | null
   parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent
-    [Field.LIQUIDITY]?: CurrencyAmount<Token>
-    [Field.CURRENCY_A]?: CurrencyAmount<Currency>
-    [Field.CURRENCY_B]?: CurrencyAmount<Currency>
+    [Field.LIQUIDITY]?: TokenAmount
+    [Field.CURRENCY_A]?: CurrencyAmount
+    [Field.CURRENCY_B]?: CurrencyAmount
   }
   error?: string
 } {
@@ -40,7 +40,7 @@ export function useDerivedBurnInfo(
 
   // balances
   const relevantTokenBalances = useTokenBalances(account ?? undefined, [pair?.liquidityToken])
-  const userLiquidity: undefined | CurrencyAmount<Token> = relevantTokenBalances?.[pair?.liquidityToken?.address ?? '']
+  const userLiquidity: undefined | TokenAmount = relevantTokenBalances?.[pair?.liquidityToken?.address ?? '']
 
   const [tokenA, tokenB] = [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
   const tokens = {
@@ -57,8 +57,8 @@ export function useDerivedBurnInfo(
     userLiquidity &&
     tokenA &&
     // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-    JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
-      ? CurrencyAmount.fromRawAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).quotient)
+    JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
+      ? new TokenAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).raw)
       : undefined
   const liquidityValueB =
     pair &&
@@ -66,10 +66,10 @@ export function useDerivedBurnInfo(
     userLiquidity &&
     tokenB &&
     // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-    JSBI.greaterThanOrEqual(totalSupply.quotient, userLiquidity.quotient)
-      ? CurrencyAmount.fromRawAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).quotient)
+    JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
+      ? new TokenAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).raw)
       : undefined
-  const liquidityValues: { [Field.CURRENCY_A]?: CurrencyAmount<Token>; [Field.CURRENCY_B]?: CurrencyAmount<Token> } = {
+  const liquidityValues: { [Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount } = {
     [Field.CURRENCY_A]: liquidityValueA,
     [Field.CURRENCY_B]: liquidityValueB,
   }
@@ -84,7 +84,7 @@ export function useDerivedBurnInfo(
     if (pair?.liquidityToken) {
       const independentAmount = tryParseAmount(typedValue, pair.liquidityToken)
       if (independentAmount && userLiquidity && !independentAmount.greaterThan(userLiquidity)) {
-        percentToRemove = new Percent(independentAmount.quotient, userLiquidity.quotient)
+        percentToRemove = new Percent(independentAmount.raw, userLiquidity.raw)
       }
     }
   }
@@ -93,28 +93,28 @@ export function useDerivedBurnInfo(
     const independentAmount = tryParseAmount(typedValue, tokens[independentField])
     const liquidityValue = liquidityValues[independentField]
     if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
-      percentToRemove = new Percent(independentAmount.quotient, liquidityValue.quotient)
+      percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
     }
   }
 
   const parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent
-    [Field.LIQUIDITY]?: CurrencyAmount<Token>
-    [Field.CURRENCY_A]?: CurrencyAmount<Token>
-    [Field.CURRENCY_B]?: CurrencyAmount<Token>
+    [Field.LIQUIDITY]?: TokenAmount
+    [Field.CURRENCY_A]?: TokenAmount
+    [Field.CURRENCY_B]?: TokenAmount
   } = {
     [Field.LIQUIDITY_PERCENT]: percentToRemove,
     [Field.LIQUIDITY]:
       userLiquidity && percentToRemove && percentToRemove.greaterThan('0')
-        ? CurrencyAmount.fromRawAmount(userLiquidity.currency, percentToRemove.multiply(userLiquidity.quotient).quotient)
+        ? new TokenAmount(userLiquidity.token, percentToRemove.multiply(userLiquidity.raw).quotient)
         : undefined,
     [Field.CURRENCY_A]:
       tokenA && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueA
-        ? CurrencyAmount.fromRawAmount(tokenA, percentToRemove.multiply(liquidityValueA.quotient).quotient)
+        ? new TokenAmount(tokenA, percentToRemove.multiply(liquidityValueA.raw).quotient)
         : undefined,
     [Field.CURRENCY_B]:
       tokenB && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueB
-        ? CurrencyAmount.fromRawAmount(tokenB, percentToRemove.multiply(liquidityValueB.quotient).quotient)
+        ? new TokenAmount(tokenB, percentToRemove.multiply(liquidityValueB.raw).quotient)
         : undefined,
   }
 

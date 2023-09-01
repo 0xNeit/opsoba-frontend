@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Box, Flex, Text, Input, CheckmarkIcon, PencilIcon, IconButton } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Box, Flex, Text, Input, CheckmarkIcon, PencilIcon, IconButton } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { CalculatorMode, RoiCalculatorReducerState } from './useRoiCalculatorReducer'
 
 const MILLION = 1000000
@@ -18,7 +18,7 @@ const RoiCardInner = styled(Box)`
   height: 120px;
   padding: 24px;
   border-radius: ${({ theme }) => theme.radii.default};
-  background: ${({ theme }) => theme.colors.gradientBubblegum};
+  background: ${({ theme }) => theme.colors.gradients.bubblegum};
 `
 
 const RoiInputContainer = styled(Box)`

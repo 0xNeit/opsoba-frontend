@@ -6,7 +6,6 @@ describe('swap reducer', () => {
   let store: Store<SwapState>
 
   beforeEach(() => {
-    // @ts-ignore
     store = createStore(reducer, {
       [Field.OUTPUT]: { currencyId: '' },
       [Field.INPUT]: { currencyId: '' },

@@ -1,9 +1,10 @@
-import { Currency, Price } from '@pancakeswap/sdk'
-import { Text, AutoRenewIcon } from '@pancakeswap/uikit'
+import React from 'react'
+import { Price } from 'opsoba-sdk'
+import { Text, AutoRenewIcon } from 'opsoba-uikit'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {
-  price?: Price<Currency, Currency>
+  price?: Price
   showInverted: boolean
   setShowInverted: (showInverted: boolean) => void
 }

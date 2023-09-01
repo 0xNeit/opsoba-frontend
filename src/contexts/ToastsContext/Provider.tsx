@@ -1,11 +1,11 @@
 import React, { createContext, useCallback, useState } from 'react'
-import kebabCase from 'lodash/kebabCase'
+import { kebabCase } from 'lodash'
 import { Toast, toastTypes } from 'components/Toast'
 import { ToastContextApi } from './types'
 
 export const ToastsContext = createContext<ToastContextApi>(undefined)
 
-export const ToastsProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const ToastsProvider: React.FC = ({ children }) => {
   const [toasts, setToasts] = useState<ToastContextApi['toasts']>([])
 
   const toast = useCallback(

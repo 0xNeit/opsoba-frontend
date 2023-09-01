@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import { stakeFarm } from 'utils/calls'
@@ -48,9 +48,7 @@ const useStakePool = (sousId: number, isUsingBnb = false) => {
       } else {
         await sousStake(sousChefContract, amount, decimals)
       }
-      // @ts-ignore
       dispatch(updateUserStakedBalance(sousId, account))
-      // @ts-ignore
       dispatch(updateUserBalance(sousId, account))
     },
     [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],

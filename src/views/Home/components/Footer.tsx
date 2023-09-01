@@ -1,9 +1,10 @@
+import React from 'react'
 import styled from 'styled-components'
-import { Flex, Heading, Text, Link } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Flex, Heading, Text, Link } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Container from 'components/Layout/Container'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from '@web3-react/core'
 import SunburstSvg from './SunburstSvg'
 import CompositeImage from './CompositeImage'
 

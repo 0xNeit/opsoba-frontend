@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { usePriceSobaBusd } from 'state/farms/hooks'
 import { useAppDispatch } from 'state'
-import orderBy from 'lodash/orderBy'
+import { orderBy } from 'lodash'
 import { DeserializedPool } from 'state/types'
 import { fetchSobaVaultFees, fetchPoolsPublicDataAsync } from 'state/pools'
 import { simpleRpcProvider } from 'utils/providers'

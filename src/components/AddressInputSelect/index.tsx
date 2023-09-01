@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
-import { Box, BoxProps, Text, Input } from '@pancakeswap/uikit'
+import { Box, BoxProps, Text, Input } from 'opsoba-uikit'
 import styled from 'styled-components'
 import { isAddress } from 'utils'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import CircleLoader from 'components/Loader/CircleLoader'
 
 enum ResultStatus {

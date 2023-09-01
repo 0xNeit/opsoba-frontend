@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { ChainId, Currency, Token } from '@pancakeswap/sdk'
+import { ChainId, Currency, Token } from 'opsoba-sdk'
 import styled from 'styled-components'
 import {
   Button,
@@ -13,9 +13,9 @@ import {
   Spinner,
   Modal,
   InjectedModalProps,
-} from '@pancakeswap/uikit'
+} from 'opsoba-uikit'
 import { registerToken } from 'utils/wallet'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { RowFixed } from '../Layout/Row'
@@ -66,6 +66,7 @@ function TransactionSubmittedContent({
   chainId: ChainId
   currencyToAdd?: Currency | undefined
 }) {
+  const { library } = useActiveWeb3React()
 
   const { t } = useTranslation()
 
@@ -84,7 +85,7 @@ function TransactionSubmittedContent({
               {t('View on BscScan')}
             </Link>
           )}
-          {currencyToAdd && (
+          {currencyToAdd && library?.provider?.isMetaMask && (
             <Button
               variant="tertiary"
               mt="12px"

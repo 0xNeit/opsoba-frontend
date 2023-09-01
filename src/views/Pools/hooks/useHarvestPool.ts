@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
 import { updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { harvestFarm } from 'utils/calls'
@@ -40,9 +40,7 @@ const useHarvestPool = (sousId, isUsingBnb = false) => {
     } else {
       await harvestPool(sousChefContract)
     }
-    // @ts-ignore
     dispatch(updateUserPendingReward(sousId, account))
-    // @ts-ignore
     dispatch(updateUserBalance(sousId, account))
   }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId])
 

@@ -1,6 +1,7 @@
+import React from 'react'
 import styled from 'styled-components'
-import { Text, Button, HelpIcon, Link } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Text, Button, HelpIcon, Link } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 
 const ButtonText = styled(Text)`
   display: none;

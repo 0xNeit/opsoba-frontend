@@ -1,7 +1,9 @@
 import { BSC_BLOCK_TIME } from 'config'
-import { TranslateFunction, useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
+import { Translate } from 'contexts/Localization/types'
+import React from 'react'
 import styled from 'styled-components'
-import { Card, Box, InfoIcon, Text, useTooltip } from '@pancakeswap/uikit'
+import { Card, Box, InfoIcon, Text, useTooltip } from 'opsoba-uikit'
 import { useSubgraphHealthIndicatorManager } from 'state/user/hooks'
 import useSubgraphHealth, { SubgraphStatus } from 'hooks/useSubgraphHealth'
 import { useRouter } from 'next/router'
@@ -26,7 +28,7 @@ const Dot = styled(Box)<{ $color: string }>`
   background: ${({ $color, theme }) => theme.colors[$color]};
 `
 
-const indicator = (t: TranslateFunction) =>
+const indicator = (t: Translate) =>
   ({
     delayed: {
       label: t('Delayed'),

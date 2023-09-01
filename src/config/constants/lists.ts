@@ -1,5 +1,5 @@
-const SOBA_EXTENDED = 'https://raw.githubusercontent.com/0xNeit/@pancakeswap/uikit/master/packages/token-lists/lists/pancakeswap-extended.json'
-const SOBA_TOP100 = 'https://raw.githubusercontent.com/0xNeit/@pancakeswap/uikit/master/packages/token-lists/lists/pancakeswap-top-100.json'
+const SOBA_EXTENDED = 'https://raw.githubusercontent.com/0xNeit/opsoba-uikit/master/packages/token-lists/lists/pancakeswap-extended.json'
+const SOBA_TOP100 = 'https://raw.githubusercontent.com/0xNeit/opsoba-uikit/master/packages/token-lists/lists/pancakeswap-top-100.json'
 
 export const UNSUPPORTED_LIST_URLS: string[] = []
 

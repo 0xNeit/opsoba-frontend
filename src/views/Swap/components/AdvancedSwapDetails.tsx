@@ -1,7 +1,8 @@
-import { Currency, Trade, TradeType } from '@pancakeswap/sdk'
-import { Text } from '@pancakeswap/uikit'
+import React from 'react'
+import { Trade, TradeType } from 'opsoba-sdk'
+import { Text } from 'opsoba-uikit'
 import { Field } from 'state/swap/actions'
-import { useTranslation } from '@pancakeswap/localization'
+import { useTranslation } from 'contexts/Localization'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/prices'
 import { AutoColumn } from 'components/Layout/Column'
@@ -10,7 +11,7 @@ import { RowBetween, RowFixed } from 'components/Layout/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
 
-function TradeSummary({ trade, allowedSlippage }: { trade: Trade<Currency, Currency, TradeType>; allowedSlippage: number }) {
+function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const { t } = useTranslation()
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
@@ -81,7 +82,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade<Currency, Curre
 }
 
 export interface AdvancedSwapDetailsProps {
-  trade?: Trade<Currency, Currency, TradeType>
+  trade?: Trade
 }
 
 export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {

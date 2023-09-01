@@ -1,6 +1,7 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@pancakeswap/sdk'
-import { Button, Text } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Currency, CurrencyAmount, Fraction, Percent } from 'opsoba-sdk'
+import React from 'react'
+import { Button, Text } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { RowBetween, RowFixed } from '../../components/Layout/Row'
 import { CurrencyLogo } from '../../components/Logo'
 import { Field } from '../../state/mint/actions'
@@ -16,7 +17,7 @@ function ConfirmAddModalBottom({
   noLiquidity?: boolean
   price?: Fraction
   currencies: { [field in Field]?: Currency }
-  parsedAmounts: { [field in Field]?: CurrencyAmount<Currency> }
+  parsedAmounts: { [field in Field]?: CurrencyAmount }
   poolTokenPercentage?: Percent
   onAdd: () => void
 }) {

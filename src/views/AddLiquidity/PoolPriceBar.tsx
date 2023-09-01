@@ -1,6 +1,7 @@
-import { Currency, Percent, Price } from '@pancakeswap/sdk'
-import { Text } from '@pancakeswap/uikit'
-import { useTranslation } from '@pancakeswap/localization'
+import { Currency, Percent, Price } from 'opsoba-sdk'
+import React from 'react'
+import { Text } from 'opsoba-uikit'
+import { useTranslation } from 'contexts/Localization'
 import { AutoColumn } from '../../components/Layout/Column'
 import { AutoRow } from '../../components/Layout/Row'
 import { ONE_BIPS } from '../../config/constants'
@@ -15,7 +16,7 @@ function PoolPriceBar({
   currencies: { [field in Field]?: Currency }
   noLiquidity?: boolean
   poolTokenPercentage?: Percent
-  price?: Price<Currency, Currency>
+  price?: Price
 }) {
   const { t } = useTranslation()
   return (
