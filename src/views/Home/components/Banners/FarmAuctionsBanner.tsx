@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Button, ArrowForwardIcon, Heading } from 'opsoba-uikit'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledSubheading = styled(Heading)`
@@ -90,14 +90,14 @@ const FarmAuctionsBanner = () => {
         <LeftWrapper>
           <StyledSubheading>{t('%num% Contenders...', { num: 16 })}</StyledSubheading>
           <StyledHeading scale="xl">{t('%num% Winners', { num: 3 })}</StyledHeading>
-          <NextLinkFromReactRouter to="/farms/auction">
+          <Link to="/farms/auction">
             <Button>
               <Text color="invertedContrast" bold fontSize="16px" mr="4px">
                 {t('Farm Auctions')}
               </Text>
               <ArrowForwardIcon color="invertedContrast" />
             </Button>
-          </NextLinkFromReactRouter>
+          </Link>
         </LeftWrapper>
         <RightWrapper>
           <img src="/images/decorations/auction-bunny.png" alt={t('auction bunny')} />

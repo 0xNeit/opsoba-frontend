@@ -1,6 +1,11 @@
+/// <reference types="react-scripts" />
+
 interface Window {
   ethereum?: {
     isMetaMask?: true
+    isTrust?: true
+    isCoinbaseWallet?: true
+    isTokenPocket?: true
     request?: (...args: any[]) => Promise<void>
   }
   BinanceChain?: {

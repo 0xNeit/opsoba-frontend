@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Flex, Text, Skeleton, Button, ArrowForwardIcon } from 'opsoba-uikit'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import { useSlowFresh } from 'hooks/useRefresh'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
@@ -11,7 +11,7 @@ import { fetchCurrentLotteryIdAndMaxBuy, fetchLottery } from 'state/lottery/help
 import BigNumber from 'bignumber.js'
 import { getBalanceAmount } from 'utils/formatBalance'
 
-const StyledLink = styled(NextLinkFromReactRouter)`
+const StyledLink = styled(Link)`
   width: 100%;
 `
 

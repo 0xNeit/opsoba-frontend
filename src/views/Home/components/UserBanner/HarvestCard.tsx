@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import { AutoRenewIcon, Button, Card, CardBody, Flex, Skeleton, Text, ArrowForwardIcon } from 'opsoba-uikit'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Link } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceSobaBusd } from 'state/farms/hooks'
@@ -95,14 +95,14 @@ const HarvestCard = () => {
             </Text>
           </Flex>
           {numTotalToCollect <= 0 ? (
-            <NextLinkFromReactRouter to="farms">
+            <Link to="farms">
               <Button width={['100%', null, null, 'auto']} variant="secondary">
                 <Text color="primary" bold>
                   {t('Start earning')}
                 </Text>
                 <ArrowForwardIcon ml="4px" color="primary" />
               </Button>
-            </NextLinkFromReactRouter>
+            </Link>
           ) : (
             <Button
               width={['100%', null, null, 'auto']}

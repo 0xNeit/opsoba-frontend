@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useParticleBurst } from 'opsoba-uikit'
-import { useRouter } from 'next/router'
+import { useLocation } from 'react-router-dom'
 
 const disableWhenNotChristmas = () => {
   const today = new Date()
@@ -19,7 +19,7 @@ const disableWhenNotChristmas = () => {
 }
 
 const useMerryChristmas = () => {
-  const { pathname } = useRouter()
+  const { pathname } = useLocation()
   const { initialize, teardown } = useParticleBurst({
     imgSrc: '/images/bunny-santa.svg',
     disableWhen: disableWhenNotChristmas,

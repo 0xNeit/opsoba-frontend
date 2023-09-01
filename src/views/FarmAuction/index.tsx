@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link as RouterLink } from 'react-router-dom'
 import { Button, Heading, Text, Flex, Link, Breadcrumbs } from 'opsoba-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import PageHeader from 'components/PageHeader'
 import PageSection from 'components/PageSection'
 import useTheme from 'hooks/useTheme'
-import NextLink from 'next/link'
 import FAQs from './components/FAQs'
 import AuctionDetails from './components/AuctionDetailsCard'
 import AuctionLeaderboard from './components/AuctionLeaderboard'
@@ -79,16 +79,12 @@ const FarmAuction = () => {
     <>
       <StyledHeader>
         <Breadcrumbs>
-          <NextLink href="/" passHref>
-            <Link href="/" color="primary" style={{ fontWeight: 400 }}>
-              {t('Home')}
-            </Link>
-          </NextLink>
-          <NextLink href="/farms" passHref>
-            <Link href="/farms" color="primary" style={{ fontWeight: 400 }}>
-              {t('Farms')}
-            </Link>
-          </NextLink>
+          <RouterLink to="/" color="primary" style={{ fontWeight: 400 }}>
+            {t('Home')}
+          </RouterLink>
+          <RouterLink to="/farms" color="primary" style={{ fontWeight: 400 }}>
+            {t('Farms')}
+          </RouterLink>
           <Text>{t('Community Farm Auction')}</Text>
         </Breadcrumbs>
         <Flex flexDirection={['column-reverse', null, 'row']}>

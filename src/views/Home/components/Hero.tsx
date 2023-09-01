@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Link } from 'react-router-dom'
 import { Flex, Heading, Button } from 'opsoba-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
@@ -114,9 +114,9 @@ const Hero = () => {
           </Heading>
           <Flex>
             {!account && <ConnectWalletButton mr="8px" />}
-            <NextLinkFromReactRouter to="/swap">
+            <Link to="/swap">
               <Button variant={!account ? 'secondary' : 'primary'}>{t('Trade Now')}</Button>
-            </NextLinkFromReactRouter>
+            </Link>
           </Flex>
         </Flex>
         <Flex

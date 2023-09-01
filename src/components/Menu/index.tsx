@@ -1,11 +1,11 @@
 import React from 'react'
-import { useRouter } from 'next/router'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { useLocation } from 'react-router'
 import { Menu as UikitMenu } from 'opsoba-uikit'
 import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { usePriceSobaBusd } from 'state/farms/hooks'
+import { Link } from 'react-router-dom'
 import config from './config/config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
@@ -16,7 +16,7 @@ const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
   const sobaPriceUsd = usePriceSobaBusd()
   const { currentLanguage, setLanguage, t } = useTranslation()
-  const { pathname } = useRouter()
+  const { pathname } = useLocation()
   // const [showPhishingWarningBanner] = usePhishingBannerManager()
 
   const activeMenuItem = getActiveMenuItem({ menuConfig: config(t), pathname })
@@ -24,8 +24,8 @@ const Menu = (props) => {
 
   return (
     <UikitMenu
-      linkComponent={(linkProps) => {
-        return <NextLinkFromReactRouter to={linkProps.href} {...linkProps} />
+      linkComponent={({ href, ...linkProps }: any) => {
+        return <Link to={href} {...linkProps} />
       }}
       userMenu={<UserMenu />}
       globalMenu={<GlobalSettings />}

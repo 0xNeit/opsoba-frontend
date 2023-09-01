@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Button, ArrowForwardIcon, Heading } from 'opsoba-uikit'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledSubheading = styled(Heading)`
@@ -96,14 +96,14 @@ const IFOBanner = () => {
         <LeftWrapper>
           <StyledSubheading>{t('Soon')}</StyledSubheading>
           <StyledHeading scale="xl">Froyo IFO</StyledHeading>
-          <NextLinkFromReactRouter to="/ifo">
+          <Link to="/ifo">
             <Button>
               <Text color="invertedContrast" bold fontSize="16px" mr="4px">
                 {t('Go to IFO')}
               </Text>
               <ArrowForwardIcon color="invertedContrast" />
             </Button>
-          </NextLinkFromReactRouter>
+          </Link>
         </LeftWrapper>
         <RightWrapper>
           <img src="/images/decorations/3d-ifo-froyo.png" alt="IFO Froyo" />

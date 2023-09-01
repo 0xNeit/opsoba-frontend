@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Text, Flex, Button, ArrowForwardIcon, Heading, useMatchBreakpoints } from 'opsoba-uikit'
-import { NextLinkFromReactRouter } from 'components/NextLink'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 
 const StyledSubheading = styled(Heading)`
@@ -104,14 +104,14 @@ const CompetitionBanner = () => {
               {t('$120,000 in Prizes!')}
             </StyledHeading>
           </Flex>
-          <NextLinkFromReactRouter to="/competition">
+          <Link to="/competition">
             <Button>
               <Text color="invertedContrast" bold fontSize="16px" mr="4px">
                 {t('Trade Now')}
               </Text>
               <ArrowForwardIcon color="invertedContrast" />
             </Button>
-          </NextLinkFromReactRouter>
+          </Link>
         </RightWrapper>
       </Inner>
     </Wrapper>

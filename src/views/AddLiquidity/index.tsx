@@ -3,12 +3,12 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from 'opsoba-sdk'
 import { Button, Text, Flex, AddIcon, CardBody, Message, useModal } from 'opsoba-uikit'
+import { RouteComponentProps } from 'react-router-dom'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
 import { AppDispatch } from '../../state'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
@@ -39,10 +39,12 @@ import { currencyId } from '../../utils/currencyId'
 import PoolPriceBar from './PoolPriceBar'
 import Page from '../Page'
 
-export default function AddLiquidity() {
-  const router = useRouter()
-  const [currencyIdA, currencyIdB] = router.query.currency || []
-
+export default function AddLiquidity({
+  match: {
+    params: { currencyIdA, currencyIdB },
+  },
+  history,
+}: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
   const { account, chainId, library } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const { t } = useTranslation()
@@ -128,7 +130,7 @@ export default function AddLiquidity() {
 
   async function onAdd() {
     if (!chainId || !library || !account) return
-    const routerContract = getRouterContract(chainId, library, account)
+    const router = getRouterContract(chainId, library, account)
 
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB || !deadline) {
@@ -146,8 +148,8 @@ export default function AddLiquidity() {
     let value: BigNumber | null
     if (currencyA === ETHER || currencyB === ETHER) {
       const tokenBIsETH = currencyB === ETHER
-      estimate = routerContract.estimateGas.addLiquidityETH
-      method = routerContract.addLiquidityETH
+      estimate = router.estimateGas.addLiquidityETH
+      method = router.addLiquidityETH
       args = [
         wrappedCurrency(tokenBIsETH ? currencyA : currencyB, chainId)?.address ?? '', // token
         (tokenBIsETH ? parsedAmountA : parsedAmountB).raw.toString(), // token desired
@@ -158,8 +160,8 @@ export default function AddLiquidity() {
       ]
       value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString())
     } else {
-      estimate = routerContract.estimateGas.addLiquidity
-      method = routerContract.addLiquidity
+      estimate = router.estimateGas.addLiquidity
+      method = router.addLiquidity
       args = [
         wrappedCurrency(currencyA, chainId)?.address ?? '',
         wrappedCurrency(currencyB, chainId)?.address ?? '',
@@ -263,29 +265,29 @@ export default function AddLiquidity() {
     (currencyA_: Currency) => {
       const newCurrencyIdA = currencyId(currencyA_)
       if (newCurrencyIdA === currencyIdB) {
-        router.replace(`/add/${currencyIdB}/${currencyIdA}`, undefined, { shallow: true })
+        history.push(`/add/${currencyIdB}/${currencyIdA}`)
       } else if (currencyIdB) {
-        router.replace(`/add/${newCurrencyIdA}/${currencyIdB}`, undefined, { shallow: true })
+        history.push(`/add/${newCurrencyIdA}/${currencyIdB}`)
       } else {
-        router.replace(`/add/${newCurrencyIdA}`, undefined, { shallow: true })
+        history.push(`/add/${newCurrencyIdA}`)
       }
     },
-    [currencyIdB, router, currencyIdA],
+    [currencyIdB, history, currencyIdA],
   )
   const handleCurrencyBSelect = useCallback(
     (currencyB_: Currency) => {
       const newCurrencyIdB = currencyId(currencyB_)
       if (currencyIdA === newCurrencyIdB) {
         if (currencyIdB) {
-          router.replace(`/add/${currencyIdB}/${newCurrencyIdB}`, undefined, { shallow: true })
+          history.push(`/add/${currencyIdB}/${newCurrencyIdB}`)
         } else {
-          router.replace(`/add/${newCurrencyIdB}`, undefined, { shallow: true })
+          history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        router.replace(`/add/${currencyIdA || 'BNB'}/${newCurrencyIdB}`, undefined, { shallow: true })
+        history.push(`/add/${currencyIdA || 'BNB'}/${newCurrencyIdB}`)
       }
     },
-    [currencyIdA, router, currencyIdB],
+    [currencyIdA, history, currencyIdB],
   )
 
   const handleDismissConfirmation = useCallback(() => {
@@ -322,7 +324,7 @@ export default function AddLiquidity() {
           helper={t(
             'Liquidity providers earn a 0.17% trading fee on all trades made for that token pair, proportional to their share of the liquidity pool.',
           )}
-          backTo="/liquidity"
+          backTo="/pool"
         />
         <CardBody>
           <AutoColumn gap="20px">
