@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'

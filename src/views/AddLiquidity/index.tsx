@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useCallback, useEffect, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
