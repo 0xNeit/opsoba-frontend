@@ -14,23 +14,23 @@
       "name": "WBNB Token",
       "symbol": "WBNB",
       "address": "0x4200000000000000000000000000000000000006",
-      "chainId": 5611,
+      "chainId": 204,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c.png"
     },
     {
       "name": "SobaSwap Token",
       "symbol": "SOBA",
-      "address": "0x5643b96d07e49decc24d8b559a00d63498aea47b",
-      "chainId": 5611,
+      "address": "0xa8a20DDEB8eD9a3f38B455a45CC54250c6Dd8226",
+      "chainId": 204,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
     {
       "name": "Binance Pegged BUSD",
       "symbol": "BUSD",
-      "address": "0xb1a54003bf3d37f12c6b78a6b75f951199800ad0",
-      "chainId": 5611,
+      "address": "0x5e6A78Dc6ad966433271CD2E352A3226e617bf81",
+      "chainId": 204,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.png"
     },
