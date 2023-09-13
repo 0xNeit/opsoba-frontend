@@ -3,7 +3,7 @@ import tokens from './tokens'
 import { FarmAuctionBidderConfig } from './types'
 
 export const whitelistedBidders: FarmAuctionBidderConfig[] = [
-  {
+  /* {
     account: '0x9Ed5a62535A5Dd2dB2d9bB21bAc42035Af47F630',
     farmName: 'NAV-BNB',
     tokenAddress: '0xBFEf6cCFC830D3BaCA4F6766a0d4AaA242Ca9F3D',
@@ -546,7 +546,7 @@ export const whitelistedBidders: FarmAuctionBidderConfig[] = [
     quoteToken: tokens.busd,
     tokenName: 'AgeOfGods',
     projectSite: 'https://ageofgods.net/',
-  },
+  }, */
 ].map((bidderConfig) => ({
   ...bidderConfig,
   lpAddress: getLpAddress(bidderConfig.tokenAddress, bidderConfig.quoteToken),

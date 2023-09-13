@@ -23,21 +23,21 @@ export const mainnetTokens = defineTokens({
   bnb: new Token(MAINNET, '0x4200000000000000000000000000000000000006', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
   soba: new Token(
     MAINNET,
-    '0x5643b96d07e49DECc24D8b559a00d63498AEa47B',
+    '0xa8a20DDEB8eD9a3f38B455a45CC54250c6Dd8226',
     18,
     'SOBA',
     'SobaSwap Token',
     'https://sobaswap.finance/',
   ),
   busd: new Token(
-    TESTNET,
-    '0xb1A54003bF3D37F12c6b78a6b75F951199800ad0',
+    MAINNET,
+    '0x5e6A78Dc6ad966433271CD2E352A3226e617bf81',
     18,
     'BUSD',
     'Binance USD',
     'https://www.paxos.com/busd/',
   ),
-  dai: new Token(
+  /* dai: new Token(
     MAINNET,
     '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
     18,
@@ -76,10 +76,10 @@ export const mainnetTokens = defineTokens({
     'USDC',
     'Binance-Peg USD Coin',
     'https://www.centre.io/usdc',
-  ),
+  ), */
   syrup: new Token(
     MAINNET,
-    '0x97c8c4f6C41Eb0ff135aD0270Ddd4EB2b00931e3',
+    '0xEADB7a1bD64215823300699B66dc6e54391b1396',
     18,
     'SYRUP',
     'SyrupBar Token',

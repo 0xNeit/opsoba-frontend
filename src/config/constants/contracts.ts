@@ -1,7 +1,7 @@
 export default {
   masterChef: {
     5611: '0x47118a04912DE53b239D18dA9E18DD82b7C7b1D2',
-    204: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+    204: '0x44F5df3921C30819F785cabb694DaB9b71269745',
   },
   sousChef: {
     5611: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -12,7 +12,7 @@ export default {
     204: '0x5aF6D33DE2ccEC94efb1bDF8f92Bd58085432d2c',
   },
   multiCall: {
-    204: '',
+    204: '0xe6B5C565304ee626495B6582DDEDa51097BCB59D',
     5611: '0xc75F79Fe72BC34D6eEaBF587E55f866cCE783d94',
   },
   pancakeProfile: {
@@ -52,7 +52,7 @@ export default {
     5611: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
   sobaVault: {
-    204: '',
+    204: '0x94F61E022Ca405149247418AEF392B92E0eccB68',
     5611: '0xe71C3d3cF6faC0D58aD5feb31C4656683872D1bA',
   },
   ifoPool: {

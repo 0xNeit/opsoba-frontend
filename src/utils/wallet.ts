@@ -1,7 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_BSC_SCAN_URL, BASE_URL } from 'config'
-import { Address } from 'wagmi'
+import { BASE_URL } from 'config'
 import { nodes } from './getRpcUrl'
 
 /**
@@ -18,10 +17,10 @@ export const setupNetwork = async () => {
         params: [
           {
             chainId: `0x${chainId.toString(16)}`,
-            chainName: 'opBNB Testnet',
+            chainName: 'opBNB Mainnet',
             nativeCurrency: {
-              name: 'tcBNB',
-              symbol: 'tcbnb',
+              name: 'opBNB',
+              symbol: 'bnb',
               decimals: 18,
             },
             rpcUrls: nodes,
