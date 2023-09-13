@@ -37,6 +37,14 @@ export const mainnetTokens = defineTokens({
     'Binance USD',
     'https://www.paxos.com/busd/',
   ),
+  qsd: new Token(
+    MAINNET,
+    '0xfe7624cc5cDcDe84DD3bd4F82Ee4E9e05082C40A',
+    18,
+    'QSD',
+    'QIAN second generation dollar',
+    'https://chemix.io/home',
+  ),
   /* dai: new Token(
     MAINNET,
     '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
@@ -1163,14 +1171,6 @@ export const mainnetTokens = defineTokens({
     'QIAN governance token',
     'https://chemix.io/home',
   ), */
-  qsd: new Token(
-    MAINNET,
-    '0x3F41348F08179c94cA03E6C66956465f7c100C5F',
-    18,
-    'QSD',
-    'QIAN second generation dollar',
-    'https://chemix.io/home',
-  ),
   /* hyfi: new Token(
     MAINNET,
     '0x9a319b959e33369C5eaA494a770117eE3e585318',

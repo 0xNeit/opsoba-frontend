@@ -36,6 +36,16 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
       },
     ],
   },
+  {
+    label: t('Bridge'),
+    icon: 'Bridge',
+    href: 'https://opbnb-bridge.bnbchain.org/deposit'
+  },
+  {
+    label: t('Launchpad'),
+    icon: 'Ifo',
+    href: ''
+  }
   /* {
     label: t('Win'),
     href: '/prediction',

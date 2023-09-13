@@ -12,7 +12,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'SOBA',
     lpAddresses: {
       5611: '0x5643b96d07e49DECc24D8b559a00d63498AEa47B',
-      204: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
+      204: '0xa8a20DDEB8eD9a3f38B455a45CC54250c6Dd8226',
     },
     token: serializedTokens.syrup,
     quoteToken: serializedTokens.wbnb,
