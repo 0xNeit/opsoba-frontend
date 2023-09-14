@@ -67,7 +67,7 @@
     "multihashes": "^3.0.1",
     "numeral": "^2.0.6",
     "opsoba-sdk": "^2.4.7",
-    "opsoba-uikit": "^1.0.1",
+    "opsoba-uikit": "^1.1.0",
     "qs": "^6.9.4",
     "react": "^17.0.1",
     "react-countup": "^4.3.3",

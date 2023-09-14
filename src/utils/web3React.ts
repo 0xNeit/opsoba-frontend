@@ -18,12 +18,12 @@ const walletconnect = new WalletConnectConnector({
   // pollingInterval: POLLING_INTERVAL,
 })
 
-const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
+// const bscConnector = new BscConnector({ supportedChainIds: [chainId] })
 
 export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected,
   [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.BSC]: bscConnector,
+  // [ConnectorNames.BSC]: bscConnector,
 }
 
 export const getLibrary = (provider): ethers.providers.Web3Provider => {

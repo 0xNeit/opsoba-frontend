@@ -16440,10 +16440,10 @@ opsoba-sdk@^2.4.7:
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-opsoba-uikit@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/opsoba-uikit/-/opsoba-uikit-1.0.1.tgz#f5d49d4864b4c13946fbf4aeff125bf987110013"
-  integrity sha512-gj5NWaAaXuTkwsSg4eRkKDb9vU1Ub9wT9OAXWVqDkX6U1lNYUHrBX2UMzOrU5GjgErEkyJPhl61JU2FXofNnVw==
+opsoba-uikit@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/opsoba-uikit/-/opsoba-uikit-1.1.0.tgz#d8167df08ba135e0d9f6cd82d8e227c70f71cbac"
+  integrity sha512-CZgZ4WoAECABeIIS+4UztC/E9c69j0Gh8HgM8/+QMblygeWZWRmXFT/eS6sxWd4BiKSn68MzmNxry9rfrjIMoQ==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/styled-system" "^5.1.10"
